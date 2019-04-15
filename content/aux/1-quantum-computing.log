@@ -1,0 +1,600 @@
+This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.4.16)  13 APR 2019 19:28
+ system commands enabled.
+**1-quantum-computing.tex
+(./1-quantum-computing.tex
+LaTeX2e <2018-04-01> patch level 2
+Lua module: luaotfload-main 2017/01/29 2.80001 OpenType layout system.
+Lua module: lualibs 2017-02-01 2.5 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2017-02-01 2.5 ConTeXt Lua libraries -- extended co
+llection.(using write cache: /Users/tristan/Library/texlive/2018/texmf-var/luate
+x-cache/generic)(using read cache: /usr/local/texlive/2018/texmf-var/luatex-cach
+e/generic /Users/tristan/Library/texlive/2018/texmf-var/luatex-cache/generic)
+luaotfload | conf : Root cache directory is /Users/tristan/Library/texlive/2018/
+texmf-var/luatex-cache/generic/names.
+luaotfload | init : Loading fontloader “fontloader-2017-02-11.lua” from kpse
+-resolved path “/usr/local/texlive/2018/texmf-dist/tex/luatex/luaotfload/fontl
+oader-2017-02-11.lua”.
+Lua-only attribute luaotfload@state = 1
+Lua-only attribute luaotfload@noligature = 2
+Lua-only attribute luaotfload@syllabe = 3
+luaotfload | init : Context OpenType loader version “3.027”
+Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
+Inserting `luaotfload.define_font' at position 1 in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 4
+luaotfload | conf : Root cache directory is /Users/tristan/Library/texlive/2018/
+texmf-var/luatex-cache/generic/names.
+Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_
+font'.
+Inserting `luaotfload.aux.patch_cambria_domh' at position 2 in `luaotfload.patch
+_font'.
+Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_fon
+t_unsafe'.
+Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
+'.
+Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
+.
+luaotfload | main : initialization completed in 0.196 seconds
+Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
+! Undefined control sequence.
+l.1 \chapter
+          {Quantum Computing}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \chapter{Q
+            uantum Computing}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--2
+[]Quantum
+ []
+
+! Undefined control sequence.
+l.3 \section
+          {Learning Problems}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 \section{L
+            earning Problems}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 3--4
+[]Learning
+ []
+
+! Undefined control sequence.
+l.5 \subsection
+             {A Motivating Example}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 \subsection{A
+                Motivating Example}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 5--6
+[]A
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8         S
+           uppose you're involved in a simple card game: A dealer places two...
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 8.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 8.
+luaotfload | db : Font names database loaded from /Users/tristan/Library/texlive
+/2018/texmf-var/luatex-cache/generic/names/luaotfload-names.luc(load luc: /Users
+/tristan/Library/texlive/2018/texmf-var/luatex-cache/generic/fonts/otl/lmroman7-
+regular.luc)(load luc: /Users/tristan/Library/texlive/2018/texmf-var/luatex-cach
+e/generic/fonts/otl/lmroman10-regular.luc)
+! Undefined control sequence.
+\@footnotetext ...tins {\reset@font \footnotesize 
+                                                  \interlinepenalty \interfo...
+l.9 ...ack, with equal probability of each occuring}
+                                                    face down on a table. Yo...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\@footnotetext ...}\color@begingroup \@makefntext 
+                                                  {\rule \z@ \footnotesep \i...
+l.9 ...ack, with equal probability of each occuring}
+                                                    face down on a table. Yo...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (14.77pt too wide) in paragraph at lines 9--9
+[][]\TU/lmr/m/n/10 As-
+ []
+
+
+Overfull \hbox (22.27pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 sume
+ []
+
+
+Overfull \hbox (18.34pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 that
+ []
+
+
+Overfull \hbox (13.89pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 the
+ []
+
+
+Overfull \hbox (22.86pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 cards
+ []
+
+
+Overfull \hbox (13.36pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 are
+ []
+
+
+Overfull \hbox (10.55pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 ei-
+ []
+
+
+Overfull \hbox (17.81pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 ther
+ []
+
+
+Overfull \hbox (13.92pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 red
+ []
+
+
+Overfull \hbox (8.92pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 or
+ []
+
+
+Overfull \hbox (25.56pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 black,
+ []
+
+
+Overfull \hbox (19.45pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 with
+ []
+
+
+Overfull \hbox (23.06pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 equal
+ []
+
+
+Overfull \hbox (23.37pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 prob-
+ []
+
+
+Overfull \hbox (8.33pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 a-
+ []
+
+
+Overfull \hbox (14.45pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 bil-
+ []
+
+
+Overfull \hbox (11.67pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 ity
+ []
+
+
+Overfull \hbox (8.06pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 of
+ []
+
+
+Overfull \hbox (19.16pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 each
+ []
+
+
+Overfull \hbox (13.05pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 oc-
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 cur-
+ []
+
+
+Overfull \hbox (13.34pt too wide) in paragraph at lines 9--9
+\TU/lmr/m/n/10 ing| 
+ []
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 8--12
+[]Suppose
+ []
+
+
+Overfull \hbox (4.483pt too wide) in paragraph at lines 8--12
+cards[]
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13         H
+            ow many of the cards do you need to see to determine with certai...
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 13--16
+[]How
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18         I
+            f you have no information at all, you can't do substantially bet...
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 18--21
+[]If
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.23         T
+            his is of course a very simple game, but it is an example of a t...
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+(load luc: /Users/tristan/Library/texlive/2018/texmf-var/luatex-cache/generic/fo
+nts/otl/lmroman10-italic.luc)
+Overfull \hbox (20.0pt too wide) in paragraph at lines 23--31
+[]This
+ []
+
+
+Overfull \hbox (25.18001pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 learn-
+ []
+
+
+Overfull \hbox (13.29001pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 ing
+ []
+
+
+Overfull \hbox (22.11002pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 prob-
+ []
+
+
+Overfull \hbox (19.43pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 lems
+ []
+
+
+Overfull \hbox (12.91pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 or-
+ []
+
+
+Overfull \hbox (8.69pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 a-
+ []
+
+
+Overfull \hbox (11.76001pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 cle
+ []
+
+
+Overfull \hbox (22.11002pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 prob-
+ []
+
+
+Overfull \hbox (19.43pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 lems\nullfont .
+ []
+
+
+Overfull \hbox (12.91pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 or-
+ []
+
+
+Overfull \hbox (8.69pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 a-
+ []
+
+
+Overfull \hbox (11.76001pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 cle
+ []
+
+
+Overfull \hbox (22.24pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 func-
+ []
+
+
+Overfull \hbox (17.12001pt too wide) in paragraph at lines 23--31
+\TU/lmr/m/it/10 tion
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32         W
+            e rephrase the scenario given above in this language.  Choose 0 ...
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 32--34
+[]We
+ []
+
+
+Overfull \hbox (5.28589pt too wide) in paragraph at lines 32--34
+\OML/cmm/m/it/10 a$
+ []
+
+
+Overfull \hbox (4.29166pt too wide) in paragraph at lines 32--34
+\OML/cmm/m/it/10 b$\nullfont . 
+ []
+
+
+! LaTeX Error: Environment example undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35         \begin{example}
+                          
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.36             G
+                iven oracle access to a function $f: \{a, b\} \rightarrow \{...
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: \begin{document} ended by \end{example}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38         \end{example}
+                        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 36--39
+[]Given
+ []
+
+
+Overfull \hbox (11.52776pt too wide) in paragraph at lines 36--39
+\OML/cmm/m/it/10 f \OT1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (36.79971pt too wide) in paragraph at lines 36--39
+\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 a; b\OMS/cmsy/m/n/10 g !
+ []
+
+
+Overfull \hbox (24.44447pt too wide) in paragraph at lines 36--39
+\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OMS/cms
+y/m/n/10 g$\nullfont .
+ []
+
+
+Overfull \hbox (26.81375pt too wide) in paragraph at lines 36--39
+\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 ) \OMS/cms
+y/m/n/10 
+ []
+
+
+Overfull \hbox (18.04172pt too wide) in paragraph at lines 36--39
+\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 b\OT1/cmr/m/n/10 )$
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 36--39
+\OMS/cmsy/m/n/10 $
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.40         O
+            racle problems are an extremely useful tool classically because ...
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+l.41 ...bounds on algorithmic complexity. \textcolor
+                                                  {blue}{Is this true? Expand?}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 40--42
+[]Oracle
+ []
+
+
+! LaTeX Error: Environment example undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.44         \begin{example}
+                          
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+l.45             \TODO
+                    {Example 2?}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.45             \TODO{E
+                      xample 2?}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: \begin{document} ended by \end{example}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.46         \end{example}
+                        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 45--47
+[]Example
+ []
+
+)
+! Emergency stop.
+<*> 1-quantum-computing.tex
+                        
+*** (job aborted, no legal \end found)
+
+
+
+Here is how much of LuaTeX's memory you used:
+ 29 strings out of 494413
+ 100000,89155 words of node,token memory allocated 18836 words of node memory still in use:
+   91 hlist, 2 rule, 1 ins, 20 disc, 12 local_par, 1 dir, 7 math, 523 glue, 12 k
+ern, 61 penalty, 1905 glyph, 1 page_insert, 41 attribute, 35 glue_spec, 41 attri
+bute_list nodes
+   avail lists: 2:2,3:3,4:63,5:2,7:9,8:13,10:62
+ 4308 multiletter control sequences out of 65536+600000
+ 27 fonts using 1608167 bytes
+ 24i,5n,14p,153b,112s stack positions out of 5000i,500n,10000p,200000b,100000s
+!  ==> Fatal error occurred, no output PDF file produced!

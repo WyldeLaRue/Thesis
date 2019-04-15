@@ -1,0 +1,63 @@
+\documentclass[12pt,twoside]{reedthesis}
+
+% Default Thesis Packages:
+\usepackage{graphicx,latexsym} 
+\usepackage{amssymb,amsthm,amsmath}
+\usepackage{longtable,booktabs,setspace} 
+\usepackage[hyphens]{url}
+\usepackage{rotating}
+\usepackage{natbib}
+
+% Added by me:
+\usepackage{enumitem}
+\newenvironment{halfpage}{\begin{minipage}{0.5\textwidth}}{\end{minipage}}
+\usepackage{braket}
+\usepackage{tristan-math}
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{definition}\newtheorem{example}{Example}
+\usetikzlibrary{arrows, shapes.gates.logic.US, calc}
+
+
+% Editing/Debugging
+\newcommand{\TODO}[1]{{ \color{red} \textbf{TODO}: {#1}}}
+\definecolor{background}{HTML}{F0DBB7}
+
+
+
+\includeonly{
+     %content/preamble,
+     %content/introduction,
+     content/quantum-computing,
+%     content/representation-theory,
+%     content/symmetric-oracles,
+%     content/results,
+}
+
+\listfiles
+
+\begin{document}
+
+
+\include{content/preamble}
+\include{content/introduction}
+
+\onehalfspacing
+
+\include{content/quantum-computing}
+\include{content/representation-theory}
+\include{content/symmetric-oracles}
+\include{content/results}
+
+% -- bibliography --
+% (must be placed _before_ appendix)
+%\printbibliography[% heading=bibintoc, % (bibintoc, bibnumbered) ]   
+
+% -- list of figures and tables --
+%\clearpage \listoffigures \listoftables
+
+% --- Appendix --- --- --- --- --- --- ---
+%\appendix % switch to appendix mode 
+
+%\include{content/Z-Appendix}
+
+\end{document}

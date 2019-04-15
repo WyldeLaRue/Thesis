@@ -1,0 +1,96 @@
+\chapter{Quantum Computing}
+
+\section{Learning Problems}
+
+\subsection{A Motivating Example}
+
+
+        Suppose you're involved in a simple card game: A dealer places two cards\footnote{Assume that the cards are
+        either red or black, with equal probability of each occurring}  face down on a table. You win the game and a
+        substantial prize if you can guess whether the two face-down cards share the same color. You're allowed to
+        ask the dealer to reveal cards to you, but for each card revealed your potential prize gets smaller.
+
+        How many of the cards do you need to see to determine with certainty whether the cards share the same
+        color?  Maybe you don't need to know for certain. How does the probability of you being able to guess the
+            correct answer relate to the number of cards seen?
+
+
+        If you have no information at all, you can't do substantially better (or worse) than a fifty-percent
+        chance. In fact, seeing only a single card, does not give you any more knowledge of what the answer to the
+        question is. If you wanted to know with certainty what the answer was, you would need to see both cards.
+
+
+        This is of course a very simple game, but it is an example of a type of problem that we refer to as
+        \emph{learning problems} or often \emph{oracle problems}. These problems consist of a learner who is trying
+        to determine the answer to some question, generally to find the output of a certain function. The learner
+        starts out with incomplete information, but is given access to an \emph{oracle function} she can query to
+        gain more information. An oracle function--also sometimes called a black-box function--is one that you can
+        evaluate the oracle at any input of your choosing, but you have no information about the function other
+        than its responses to your inputs. The learner's goal is to determine the answer to the question in as few
+        questions as possible.
+
+        We rephrase the scenario given above in this language.  Choose 0 to represent a black card and 1 to
+        represent a red card. Suppose the two facedown cards are labeled $a$ and $b$.   
+
+        \begin{example} 
+            Given oracle access to a function $f: \{a, b\} \rightarrow \{0, 1\}$. What is the minimum number of
+            queries required to determine $f(a) \oplus f(b)$ where $\oplus$ denotes addition mod 2?
+        \end{example}
+
+        Oracle problems are an extremely useful tool classically because they provide a method for determining
+        lower bounds on algorithmic complexity. \textcolor{blue}{Is this true? Expand?}
+
+        \begin{example}
+            \TODO{Example 2?} 
+        \end{example}
+        
+
+\section{Classical Computing}
+        
+        Before we delve into \emph{quantum} computation, we should first briefly review \emph{classical} 
+        computation. The fundamental object of classical information is the \emph{bit}. We define a bit as an 
+        element of $\Z/2\Z = \{0,1\}$. It also can be useful to think of bits as representing a true or false 
+        value. This relationship gives a direct correspondence between classical computation and propositional 
+        logic. We write the state space of a bit as $\Z/2\Z$ to emphasize that it has a natural additive operation 
+        given by mod 2 addition. Alluding to propositional logic, this operation is called exclusive-or, usually 
+        written as \texttt{XOR} or $\oplus$, although we will oftentimes just write $+$.
+
+        Of course having just one bit, is not particularly interesting. As a reference, it is common today to 
+        measure memory in terms of \emph{gigabytes}. One gigabyte is equivalent to eight billion bits. We most 
+        often work with \emph{strings of bits}. A string of 2 bits has four possible states, each described by an 
+        element of $\Z/2\Z \times \Z/2\Z$. Analogously, an $n$ bit string has state space $(\Z/2\Z)^n$. The group 
+        addition readily extends to $n$ bit strings giving it the operation that is commonly known as bitwise XOR.
+
+        Any computer program can be described entirely in terms of a finite sequence of logical operations on bits.
+        \footnote{This is somewhat confusing, do I use the word operation too many times?}
+        The logical operations are known as \emph{logic gates}. 
+
+
+        \TODO{Continue...}
+        
+
+
+\section{Quantum Computing} 
+        
+        Now we introduce the concepts required for quantum computation. In the quantum world, the \emph{qubit} is 
+        the fundamental unit of information. In the same way that we could express any classical algorithm as a 
+        circuit of logical operations on bits, we can express any quantum operation as a \emph{unitary} operation 
+        on \emph{qubit}. 
+
+        While a bit is represented by 0 or 1, a qubit is represented as a vector living on the unit sphere in 
+        $\C^2$.
+
+        \begin{definition}
+            A \emph{qubit} is a pair of complex numbers
+            \[
+                (\alpha, \beta) \in \C^2
+            \]
+            satisfying the normalization condition %
+            \[
+                |\alpha|^2 + |\beta|^2 = 1
+            \]
+        \end{definition}
+        
+        We can perform single qubit operations by  ?
+        
+
