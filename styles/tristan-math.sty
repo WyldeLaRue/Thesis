@@ -1,0 +1,82 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tristan-math}[2018/30/09 My math commands and macros]
+ 
+
+\RequirePackage{xparse}
+
+\RequirePackage{amsmath,amsthm,amsfonts,amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{tikz}
+\RequirePackage{environ}
+
+
+
+% Blackboard Bold
+    \newcommand{\Z}{\mathbb{Z}}
+    \newcommand{\R}{\mathbb{R}}
+    \newcommand{\C}{\mathbb{C}}
+    \newcommand{\N}{\mathbb{N}}
+    \newcommand{\Q}{\mathbb{Q}}
+    \newcommand{\F}{\mathbb{F}}
+
+% Algebra
+    \newcommand{\GL}{\operatorname{GL}}
+    \newcommand{\SL}{\operatorname{SL}}
+    \newcommand{\z}{\mathbf{Z}}
+    \newcommand{\cent}{\mathbf{C}}
+    \newcommand{\orb}{\operatorname{Orb}}
+    \newcommand{\stab}{\operatorname{Stab}}
+    \renewcommand{\Im}{\operatorname{Im}}
+
+    \newcommand{\Hom}{\operatorname{Hom}}
+    \newcommand{\Aut}{\operatorname{Aut}}
+    \newcommand{\id}{\operatorname{id}}
+    \newcommand{\sgn}{\operatorname{sgn}}
+    \newcommand{\Gal}{\operatorname{Gal}}
+    \newcommand{\Sym}{\operatorname{Sym}}
+    \newcommand{\tr}{\operatorname{tr}}
+
+
+    \newcommand{\CG}{$\C G$}
+
+% Cryptography
+    \newcommand{\Enc}{\textsf{Enc}}
+    \newcommand{\Dec}{\textsf{Dec}}
+    \newcommand{\Gen}{\textsf{Gen}}
+    \newcommand{\Mac}{\textsf{Mac}}
+    \newcommand{\D}{\mathcal{D}}
+    \newcommand{\A}{\mathcal{A}}
+
+% Self-defined
+    \newcommand\rmat[4]{\left[\begin{array}{rr}#1&#2\\#3&#4\end{array}\right]}
+    \newcommand\bmat[4]{\left(\begin{array}{rr}#1&#2\\#3&#4\end{array}\right)}
+
+    \newcommand\rvec[2]{\left[\begin{array}{r}#1\\#2\end{array}\right]}
+
+    \def\contra{\tikz[baseline, x=0.25em, y=0.25em, line width=0.08em]\draw (0,2.53)--(2.83,-0.3) (0.71,3.34)--(3.54,0.41) (0,0.41)--(2.83,3.24) (0.71,-0.3)--(3.54,2.53);}
+
+    \newcommand{\smeq}{\,\texttt{=}\,}
+
+    \makeatletter
+    \newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+    \newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+    \makeatother
+
+
+
+    \newcommand*{\bigp}[1]{\vcenter{\hbox{\scalebox{1.5}{\ensuremath#1}}}}
+    \newcommand*{\biggp}[1]{\vcenter{\hbox{\scalebox{1.8}{\ensuremath#1}}}}
+    \newcommand*{\bigvar}[2]{{\hbox{\scalebox{#1}{\ensuremath#2}}}}
+    \newcommand*{\bigchar}[1]{{\hbox{\scalebox{1.2}{\ensuremath#1}}}}
+    \newcommand*{\biggchar}[1]{{\hbox{\scalebox{1.4}{\ensuremath#1}}}}
+
+    \NewEnviron{lign}{%
+    \begin{equation}\begin{split}
+        \BODY
+    \end{split}\end{equation}
+    }
+
+
+    % Self-defined
+    \newcommand\cvec[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+    

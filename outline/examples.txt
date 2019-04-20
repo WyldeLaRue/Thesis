@@ -1,0 +1,17 @@
+# Quantum Computing
+
+
+Classical Oracle Problems
+    - Deutch-Jozsa
+    - Sorting
+    - Base Size of a Group
+
+Classical Circuits: 
+    IDK if I'll include any
+
+
+Quantum Circuits: 
+
+       
+
+

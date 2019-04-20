@@ -1,0 +1,23 @@
+
+
+Things I need to do for introducing quantum computing:
+
+
+Definitions: 
+    Qubit
+    Multiple Qubits
+    Quantum Gate
+    Unitary Matrix
+    Measurement
+    Braket Notation
+    
+
+Intuition: 
+    Physical Interpretation -- Polarization
+    
+
+
+
+
+
+
