@@ -1,6 +1,6 @@
 ## Thesis Outline
 
-Chapter 1: 
+Chapter 1:
     - Learning Problems
         - Motivating Example
         - Sorting
