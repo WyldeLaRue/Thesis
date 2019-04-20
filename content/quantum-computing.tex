@@ -12,7 +12,7 @@
 
         How many of the cards do you need to see to determine with certainty whether the cards share the same
         color?  Maybe you don't need to know for certain. How does the probability of you being able to guess the
-            correct answer relate to the number of cards seen?
+        correct answer relate to the number of cards seen?
 
 
         If you have no information at all, you can't do substantially better (or worse) than a fifty-percent
@@ -27,18 +27,22 @@
         gain more information. An oracle function--also sometimes called a black-box function--is one that you can
         evaluate the oracle at any input of your choosing, but you have no information about the function other
         than its responses to your inputs. The learner's goal is to determine the answer to the question in as few
-        questions as possible.
+        questions as possible. 
 
         We rephrase the scenario given above in this language.  Choose 0 to represent a black card and 1 to
         represent a red card. Suppose the two facedown cards are labeled $a$ and $b$.   
-
+       
         \begin{example} 
             Given oracle access to a function $f: \{a, b\} \rightarrow \{0, 1\}$. What is the minimum number of
             queries required to determine $f(a) \oplus f(b)$ where $\oplus$ denotes addition mod 2?
         \end{example}
+        
 
-        Oracle problems are an extremely useful tool classically because they provide a method for determining
-        lower bounds on algorithmic complexity. \textcolor{blue}{Is this true? Expand?}
+        \TODO{rewrite this example}
+
+        Phrasing problems in terms of oracles is an extremely useful tool. It provides an approach for using 
+        information theoretic arguments to provide algorithmic lower bounds. We know of very few tools to show that 
+        there is no way to possible solve something quickly.
 
         \begin{example}
             \TODO{Example 2?} 
@@ -46,14 +50,35 @@
         
 
 \section{Classical Computing}
+    
+        Before we delve into  \emph{quantum computation}, we first briefly give an overview of the relevant 
+        concepts from the study of \emph{classical} computation. Although we will not need information theory for 
+        any of the arguments we will make, it will be used frequently as a source of intuition.
+
+        The fundamental idea of information theory is that any the amount of information that an object contains is 
+        determined exactly by the number of possible states it could have been in. In this way, the bit, which can 
+        be in exactly one of two possible states is the most basic unit of information.
+
+
+        In the 16th and 18th centuries mathematicians and logicians worked to convert formal systems of logic into 
+        algebra and arithmetic. One of the most prominent successes of these attempts was by George Boole who 
+        managed to faithfully encode propositional logic in the language of arithmetic and algebra. The idea was to 
+        let 1 and 0 represent true and false respectively. Then, by interpreting addition and multiplication as mod 
+        2, one obtains exactly the logical operations \texttt{AND} and  \texttt{XOR}. In modern terms, we recognize 
+        this as the structure of the field $\F_2$. \TODO{remove this paragraph}
+
+
+        Thus any function $f :  \{0, 1\}^m \rightarrow \{0, 1\}^n$ can be expressed by some sequence of logical 
+        operations and each sequence of logical operations corresponds to a function. 
+
         
-        Before we delve into \emph{quantum} computation, we should first briefly review \emph{classical} 
-        computation. The fundamental object of classical information is the \emph{bit}. We define a bit as an 
-        element of $\Z/2\Z = \{0,1\}$. It also can be useful to think of bits as representing a true or false 
-        value. This relationship gives a direct correspondence between classical computation and propositional 
-        logic. We write the state space of a bit as $\Z/2\Z$ to emphasize that it has a natural additive operation 
-        given by mod 2 addition. Alluding to propositional logic, this operation is called exclusive-or, usually 
-        written as \texttt{XOR} or $\oplus$, although we will oftentimes just write $+$.
+    
+        
+        We define a bit as an element of $\Z/2\Z = \{0,1\}$. It also can be useful to think of bits as representing 
+        a true or false value. This relationship gives a direct correspondence between classical computation and 
+        propositional logic. We write the state space of a bit as $\Z/2\Z$ to emphasize that it has a natural 
+        additive operation given by mod 2 addition.  Alluding to propositional logic, this operation is called 
+        exclusive-or, usually written as \texttt{XOR} or $\oplus$, although we will oftentimes just write $+$.
 
         Of course having just one bit, is not particularly interesting. As a reference, it is common today to 
         measure memory in terms of \emph{gigabytes}. One gigabyte is equivalent to eight billion bits. We most 
@@ -61,27 +86,24 @@
         element of $\Z/2\Z \times \Z/2\Z$. Analogously, an $n$ bit string has state space $(\Z/2\Z)^n$. The group 
         addition readily extends to $n$ bit strings giving it the operation that is commonly known as bitwise XOR.
 
-        Any computer program can be described entirely in terms of a finite sequence of logical operations on bits.
-        \footnote{This is somewhat confusing, do I use the word operation too many times?}
-        The logical operations are known as \emph{logic gates}. 
-
-
-        \TODO{Continue...}
+        
         
 
-
-\section{Quantum Computing} 
         
+        \subsection{Circuits}
+
+
+\section{Quantum Computing}
         Now we introduce the concepts required for quantum computation. In the quantum world, the \emph{qubit} is 
         the fundamental unit of information. In the same way that we could express any classical algorithm as a 
-        circuit of logical operations on bits, we can express any quantum operation as a \emph{unitary} operation 
-        on \emph{qubit}. 
-
-        While a bit is represented by 0 or 1, a qubit is represented as a vector living on the unit sphere in 
-        $\C^2$.
+        circuit of logical operations on bits, we can express any quantum operation as a sequence of \emph{unitary} 
+        operations on \emph{qubits}.
+        
+        The following definitions will give a complete description of a model of quantum computing. These can all 
+        be derived from the postulates of quantum mechanics.
 
         \begin{definition}
-            A \emph{qubit} is a pair of complex numbers
+            Formally, a \emph{qubit} is unit vector in $\C^2$. That is a pair of complex numbers
             \[
                 (\alpha, \beta) \in \C^2
             \]
@@ -89,8 +111,177 @@
             \[
                 |\alpha|^2 + |\beta|^2 = 1
             \]
+            We consider the state space $\C^2$ to be equipped with the standard inner-product.
         \end{definition}
         
-        We can perform single qubit operations by  ?
+        
+        
+        \begin{definition}
+               
+        \end{definition}
+
+        It is very hard to picture qubits as they live on the unit sphere in $\C^2$. However, if we naively think 
+        of them as vectors in $\R^2$ we can generate some limited geometric intuition.  \\
+    
+        \begin{center}
+            \begin{tikzpicture}
+                \draw (2,2) circle (3cm);
+            \end{tikzpicture}
+        \end{center}
+        
         
 
+
+
+        Although a qubit can exist in an uncountable number of states, paradoxically, they can only contain a 
+        finite amount of classical information. This is because in order to extract \emph{classical} information 
+        from a qubit, it must be \emph{measured}. 
+        
+
+        
+        \begin{definition}
+            Measurement
+        \end{definition}
+
+        
+
+
+
+        
+
+    
+\subsection{Gates}
+        
+        As postulated, measurements can be made in any orthonormal basis. This means that, in some sense, qubits 
+        can only carry information up to a choice of orthonormal basis. For this reason, instead of thinking about 
+        measurement being performed in any basis, we could equivalently fix a basis for measurement, but allow for 
+        arbitrary change of basis maps on each qubit. \FIX{This sounds awkward.}
+        
+        These maps are exactly the ones that preserve the inner-product on $\C^n$ (because they send pairs of 
+        orthonormal vectors to pairs of orthonormal vectors). This is often called the set (group) of isometries
+        of $\C^n$ which is $U(n)$, the set of $2 \times 2$  unitary matrices with determinant one.
+                
+        \begin{definition}
+            A matrix $U$ is said to be unitary if its conjugate transpose is equal to its inverse. That is often 
+            written as $U^\dagger = U$.
+        \end{definition}
+        
+        Quantum computation is the manipulation of qubits by these unitary matrices.
+
+        \begin{definition}
+            An $n$-qubit \emph{quantum gate} is a $2^n$ by $2^n$ unitary matrix.
+        \end{definition}
+        
+
+        \begin{example}
+            An important single qubit gate is the Hadamard gate defined by 
+            \[
+                H := \frac{1}{\sqrt{2}} \rmat{1}{1}{1}{-1}
+            \]
+            It has the nice property that it is it's own inverse, i.e. $H^2 = I$.
+
+            The Hadamard sends
+            \[
+                \ket{0} = \rvec{1}{0}  \longmapsto \frac{1}{\sqrt{2}}\left(\ket{0} + \ket{1}\right)  = 
+                \frac{1}{\sqrt{2}} \rvec{1}{1}
+            \]
+            and
+            \[
+                \ket{1} = \rvec{0}{1} \longmapsto \frac{1}{\sqrt{2}}\left( \ket{0} - \ket{1} \right) = 
+                \frac{1}{\sqrt{2}} \rvec{1}{-1}
+            \]
+            \TODO{Unit circle diagram}
+
+        \end{example}
+        
+        \TODO{Introduce Generators}
+
+        \TODO{Introduce other gates that we need}
+
+
+        
+
+        % \begin{example}
+        %     The set of single qubit gates are the $2\times 2$ unitary matrices.
+        % \end{example}
+
+
+        % Keeping a fixed computational basis is also important because in practice, we do not have the ability to 
+        % measure in any basis. Doing so would require infinitely precise tools. By thinking fixing a computational 
+        % basis, but allowing for unitary operations on qubits, we can measure how many unitaries were used.
+        % \FIX{Make Unitary thing more precise}
+
+        % 
+        % \begin{postulate}
+        %     Quantum information cannot be created or destroyed.
+        % \end{postulate}
+
+        % The operations that we can perform on qubits correspond to \emph{unitary} maps. On a single qubit, the 
+        % unitary maps can be represented as the $2 \times 2$ unitary matrices over $\C$.
+        % 
+        % 
+
+        % \begin{definition}
+        %     A matrix $U$ is said to be unitary if its conjugate transpose is equal to its inverse. That is often 
+        %     written as $U^\dagger = U$.
+        % \end{definition}
+        % 
+        % The $n$ by $n$ unitary matrices are the isometries on $\C^n$. That is, it preserves the inner product. This 
+        % means that the unitary matrices are exactly those that change one orthonormal basis into another. 
+
+        
+        \subsection{(Possibly) Relevant Theorems about Quantum Circuits}
+
+        \begin{theorem}
+            No cloning? 
+        \end{theorem}
+
+        \begin{definition}
+            idk
+        \end{definition}
+
+        \begin{theorem}
+                Measurements can be made at the end
+        \end{theorem}
+        
+        
+\subsection{Quantum Circuits}
+
+
+        Much like classical circuits, a quantum circuit is made up of wires and gates. 
+
+
+
+        
+        
+
+
+
+
+
+        \begin{example}
+            Deutsch-Josza
+            
+            \Qcircuit @C=1em @R=.7em {
+                & \gate{H} & \gate{Z} & \gate{H} & \qw \\
+                & \qw & \gate{X} & \qw & \qw
+            }
+
+
+        
+            
+        \end{example}
+
+        The Deutsch-Josza Algorithm 
+        
+            
+        \begin{example}
+            Bernstein-Vazirani 
+            
+        \end{example}
+        
+        
+
+        
+
+       
