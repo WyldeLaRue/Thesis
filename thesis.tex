@@ -26,6 +26,15 @@
 \definecolor{background}{HTML}{F0DBB7}
 
 
+\newcommand{\placeholderfig}{
+    \begin{center}
+        \begin{tikzpicture}
+            \draw (2,2) circle (1.8cm) node[align=center] {Placeholder\\ Figure};
+            \draw (0,0) rectangle (4,4);
+        \end{tikzpicture}
+    \end{center}
+}
+
 
 \includeonly{
      %content/preamble,
@@ -53,6 +62,8 @@
 
 % -- bibliography --
 % (must be placed _before_ appendix)
+\bibliography{thesis}
+\bibliographystyle{plain} 
 %\printbibliography[% heading=bibintoc, % (bibintoc, bibnumbered) ]   
 
 % -- list of figures and tables --
@@ -62,5 +73,6 @@
 %\appendix % switch to appendix mode 
 
 %\include{content/Z-Appendix}
+
 
 \end{document}

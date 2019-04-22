@@ -36,6 +36,7 @@
             Given oracle access to a function $f: \{a, b\} \rightarrow \{0, 1\}$. What is the minimum number of
             queries required to determine $f(a) \oplus f(b)$ where $\oplus$ denotes addition mod 2?
         \end{example}
+
         
         \TODO{rewrite this example}
 
@@ -46,10 +47,12 @@
         \begin{example}
             \TODO{Example 2?} 
         \end{example}
+
+
         
 
 \section{Classical Computing}
-    
+        \subsection{History, Bits, Information Theory}
         Before we delve into  \emph{quantum computation}, we first briefly give an overview of the relevant 
         concepts from the study of \emph{classical} computation. Although we will not need information theory for 
         any of the arguments we will make, it will be used frequently as a source of intuition.
@@ -65,14 +68,9 @@
         let 1 and 0 represent true and false respectively. Then, by interpreting addition and multiplication as mod 
         2, one obtains exactly the logical operations \texttt{AND} and  \texttt{XOR}. In modern terms, we recognize 
         this as the structure of the field $\F_2$. \TODO{remove this paragraph}
-
-
-        Thus any function $f :  \{0, 1\}^m \rightarrow \{0, 1\}^n$ can be expressed by some sequence of logical 
-        operations and each sequence of logical operations corresponds to a function. 
-
         
-    
-        
+        \TODO{\textit{These next two paragraphs just repeat the previous two paragraphs, clean this up}}
+
         We define a bit as an element of $\Z/2\Z = \{0,1\}$. It also can be useful to think of bits as representing 
         a true or false value. This relationship gives a direct correspondence between classical computation and 
         propositional logic. We write the state space of a bit as $\Z/2\Z$ to emphasize that it has a natural 
@@ -85,11 +83,87 @@
         element of $\Z/2\Z \times \Z/2\Z$. Analogously, an $n$ bit string has state space $(\Z/2\Z)^n$. The group 
         addition readily extends to $n$ bit strings giving it the operation that is commonly known as bitwise XOR.
 
+
+        Thus any function $f :  \{0, 1\}^m \rightarrow \{0, 1\}^n$ can be expressed by some sequence of logical 
+        operations and each sequence of logical operations corresponds to a function. 
         
+        \subsection{Circuits and Logic Gates}
+
+        \begin{definition}
+            [Nielsen and Chuang, pg 129]
+            A \emph{circuit} is made up of wires and gates, which carry information around, and perform simple 
+            computational tasks, respectively.
+        \end{definition}
+
+        \begin{definition}
+            [Nielsen and Chuang, pg 129]
+            A \emph{logic gate} is a function $f : \{0, 1\}^k \rightarrow \{0, 1\}^\ell$ from some fixed number $k$ 
+            of input bits to some fixed number $\ell$ of output bits.
+        \end{definition}
+
+        \begin{example}
+         Here is an example of a logic gate
+
+         \begin{figure}[ht]
+            \centering
+            \placeholderfig
+            \caption{ The logic gates \texttt{AND} and \texttt{XOR} }
+        \end{figure}
+        \end{example}
+
+        \bigskip
+
+        \begin{example}
+            Here is an example of a circuit
+
+            \begin{figure}[h]
+                \centering
+                    \placeholderfig
+                \caption{An example of a basic circuit, maybe make it match whatever example I use for a circuit 
+                family}
+            \end{figure}
+
+    
+        \end{example}
+
+        \begin{theorem}
+            Any function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ can be represented by circuit a consisting of only 
+            \texttt{AND}, \texttt{NOT}, and \texttt{OR} gates.
+        \end{theorem}
+        
+        {\textcolor{red}{\bfseries I don't know how to fill the rest of this circuit part in}}
         
 
+        \subsection{Circuits as Algorithms}
         
-        \subsection{Circuits}
+        \begin{definition}
+            [verbatim from Sipser -- cleanup]
+                 A \emph{circuit family} is an infinite list of circuits $(C_0, C_1, C_2, ...)$, where $C_n$ has 
+                 $n$ input variables.
+        \end{definition}
+
+        \begin{definition}
+            The circuit complexity of a function is the size complexity of a minimal circuit family for that 
+            language. 
+        \end{definition}
+
+        \begin{example}
+            Example circuit family to compute something. Maybe how many input bits are odd.  \begin{figure}[h]
+                \centering
+                    \placeholderfig
+                \caption{}
+            \end{figure}
+
+        \end{example}
+        
+        \subsection{Introduce controlled gate notation}
+        
+        Just example of Toffoli gate or whatever
+
+        \subsection{Circuits with Oracles}
+
+        We can consider circuits with oracle access.  Give example from original motivating problem.
+
 
 
 \section{Quantum Computing}
@@ -114,40 +188,51 @@
         \end{definition}
         
         
+      
+
+        It is very hard to picture qubits because they live on the unit sphere in $\C^2$. However, if we naively 
+        think of them as vectors in $\R^2$ we can generate some limited geometric intuition. 
         
-        \begin{definition}
-               
-        \end{definition}
-
-        It is very hard to picture qubits as they live on the unit sphere in $\C^2$. However, if we naively think 
-        of them as vectors in $\R^2$ we can generate some limited geometric intuition.  \\
-    
-        \begin{center}
-            \begin{tikzpicture}
-                \draw (2,2) circle (3cm);
-            \end{tikzpicture}
-        \end{center}
+        \begin{figure}[h]
+            \centering
+            \begin{center}
+                \begin{tikzpicture}
+                    \draw (2,2) circle (3cm);
+                \end{tikzpicture}
+            \end{center}
+            \caption{An unfaithful depiction of a qubit (finish this diagram)}
+        \end{figure}
         
-        
-
-
-
         Although a qubit can exist in an uncountable number of states, paradoxically, they can only contain a 
         finite amount of classical information. This is because in order to extract \emph{classical} information 
         from a qubit, it must be \emph{measured}. 
         
-
+        There are many interpretations of what measurement is and many deep philosophical questions, however it is 
+        very clear from experimental evidence what outcomes it produces.
+        
         
         \begin{definition}
-            Measurement
+            A measurement is a 
         \end{definition}
 
+        \begin{postulate}
+            Given a qubit $\ket{\phi} \in \C^{2}$, and any orthonormal basis $ \mathcal{B} = \{\ket{q_0}, \ket{q_1 
+            }\}$ of $ \C^2$, we may perform a \emph{measurement} of $\psi$ with respect to the basis $\mathcal{B}$.  
+            The result of this measurement is $\ket{q_0}$ with probability $\braket{q_0 | \phi }^2$ and $\ket{q_1}$ 
+            with probability $\braket{q_0 | \phi }^2$.
+        \end{postulate}
         
+        This is only a specific case of the more general measurement postulate of quantum mechanics. Refer to 
+        \cite{Nielsen&Chuang}.
 
-
+        \begin{example}
+            Given a qubit $\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$, a measurement of $\phi$ in the basis 
+            $\ket{0}, \ket{1}$ will return $\ket{0}$ with probability $ | \alpha |^2$  and $\ket{0}$ with 
+            probability
+            $ |\beta|^2 $.
+        \end{example}
 
         
-
     
 \subsection{Gates}
         
@@ -193,7 +278,7 @@
 
         \end{example}
         
-        \TODO{Introduce Generators}
+       \TODO{Introduce Generators of U2?}
 
         \TODO{Introduce other gates that we need}
 
@@ -279,8 +364,4 @@
             
         \end{example}
         
-        
-
-        
-
-       
+        Test

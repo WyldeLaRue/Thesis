@@ -2,18 +2,13 @@ _____________________________________
     Things I need to do today
 -------------------------------------
 
-
-
-
------------------------------------------------
-    Things I stil need to do for tomorrow:
------------------------------------------------
      Classical Computing:
         - Clean up (or remove) historical introductions
         - Clean up classical circuits
         - Introduce classical query complexity
         - Introduce classical oracles (and give examples)
          
+
     Quantum Computing:
         - Fix Measurement according to jamie's feedback
         - Multiple Qubits (and tensor product)
@@ -26,5 +21,12 @@ _____________________________________
         - Examples:
              Deutch-Josza (2 bit)
              Berstein-Vazirani
+
+
+    ┌────────────────────────────────────────┐
+    │ Things I still need to do for tomorrow │
+    └────────────────────────────────────────┘
+
     
-        
+
+
