@@ -116,7 +116,7 @@
         \begin{example}
             Here is an example of a circuit
 
-            \begin{figure}[h]
+            \begin{figure}[ht]
                 \centering
                     \placeholderfig
                 \caption{An example of a basic circuit, maybe make it match whatever example I use for a circuit 
@@ -126,12 +126,14 @@
     
         \end{example}
 
+        We state the following important result without proof.
         \begin{theorem}
-            Any function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ can be represented by circuit a consisting of only 
+            The set of gates $\{ \texttt{AND},\ \texttt{NOT},\ \texttt{OR} \}$ are \emph{universal}. That is any 
+            function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ can be represented by circuit a consisting of only 
             \texttt{AND}, \texttt{NOT}, and \texttt{OR} gates.
         \end{theorem}
         
-        {\textcolor{red}{\bfseries I don't know how to fill the rest of this circuit part in}}
+        %{\textcolor{red}{\bfseries I don't know how to fill the rest of this circuit part in}}
         
 
         \subsection{Circuits as Algorithms}
@@ -139,7 +141,7 @@
         \begin{definition}
             [verbatim from Sipser -- cleanup]
                  A \emph{circuit family} is an infinite list of circuits $(C_0, C_1, C_2, ...)$, where $C_n$ has 
-                 $n$ input variables.
+                 $n$ input bits.
         \end{definition}
 
         \begin{definition}
@@ -148,12 +150,12 @@
         \end{definition}
 
         \begin{example}
-            Example circuit family to compute something. Maybe how many input bits are odd.  \begin{figure}[h]
+            Example circuit family to compute something. Maybe how many input bits are odd.  
+            \begin{figure}[ht]
                 \centering
                     \placeholderfig
                 \caption{}
             \end{figure}
-
         \end{example}
         
         \subsection{Introduce controlled gate notation}
@@ -171,11 +173,13 @@
         the fundamental unit of information. In the same way that we could express any classical algorithm as a 
         circuit of logical operations on bits, we can express any quantum operation as a sequence of \emph{unitary} 
         operations on \emph{qubits}.
-        
+       
+   \subsection{Qubits}
+
         The following definitions will give a complete description of a model of quantum computing. These can all 
         be derived from the postulates of quantum mechanics.
-
-        \begin{definition}
+       
+      \begin{definition}
             Formally, a \emph{qubit} is unit vector in $\C^2$. That is a pair of complex numbers
             \[
                 (\alpha, \beta) \in \C^2
@@ -187,13 +191,13 @@
             We consider the state space $\C^2$ to be equipped with the standard inner-product.
         \end{definition}
         
-        
-      
-
+    
         It is very hard to picture qubits because they live on the unit sphere in $\C^2$. However, if we naively 
         think of them as vectors in $\R^2$ we can generate some limited geometric intuition. 
         
-        \begin{figure}[h]
+        
+        
+        \begin{figure}[ht]
             \centering
             \begin{center}
                 \begin{tikzpicture}
@@ -203,17 +207,40 @@
             \caption{An unfaithful depiction of a qubit (finish this diagram)}
         \end{figure}
         
+    \subsection{Dirac Notation}
+
+        There is a convention in quantum mechanics to write vectors representing quantum states using 
+        \emph{bra-ket} notation. In this notation, row vectors are written with an angle bracket on the right, e.g.
+        $\ket{\psi}$. While column vectors, are written with an angle bracket on the left e.g.
+        $\bra{\psi}$.\footnote{In more generality, \emph{kets} $\ket{\, \cdot \,}$ denote vectors in the state 
+        space, while \emph{bras} $\bra{\, \cdot \,}$ are elements of the dual space. For our purposes, considering 
+    kets as row vectors and bras as column vectors will be sufficient.}
+
+         %It is common in the field of quantum mechanics to write vectors representing quantum states in the form
+        %$\ket{\psi}$. This `$\ket{\,\cdot \,}$' symbol is called the \emph{ket}.  Correspondingly, linear 
+        %functionals on the state space are denoted $\bra{\psi}$. This symbol is called the \emph{bra}.
+
+        %Together, they form a \emph{bra-ket} \TODO{Finish this}
+       
+
+
+
+        
         Although a qubit can exist in an uncountable number of states, paradoxically, they can only contain a 
         finite amount of classical information. This is because in order to extract \emph{classical} information 
         from a qubit, it must be \emph{measured}. 
+
+
+    
+
+
+
         
+
         There are many interpretations of what measurement is and many deep philosophical questions, however it is 
         very clear from experimental evidence what outcomes it produces.
+               
         
-        
-        \begin{definition}
-            A measurement is a 
-        \end{definition}
 
         \begin{postulate}
             Given a qubit $\ket{\phi} \in \C^{2}$, and any orthonormal basis $ \mathcal{B} = \{\ket{q_0}, \ket{q_1 
@@ -222,12 +249,15 @@
             with probability $\braket{q_0 | \phi }^2$.
         \end{postulate}
         
-        This is only a specific case of the more general measurement postulate of quantum mechanics. Refer to 
+        This is only a specific case of a much more general postulate of quantum mechanics. In general, there are 
+        more types of measurements that can be made and there are systems that are not finite dimensional.  However 
+        , this restricted notion of measurement will be sufficient for the content of this thesis. A good 
+        explanation of the postulates of quantum mechanics and how they relate to quantum computing can be found in 
         \cite{Nielsen&Chuang}.
 
         \begin{example}
-            Given a qubit $\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$, a measurement of $\phi$ in the basis 
-            $\ket{0}, \ket{1}$ will return $\ket{0}$ with probability $ | \alpha |^2$  and $\ket{0}$ with 
+            Given a qubit $\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$, a measurement of $\phi$ in the basis $\{ 
+            \ket{0}, \ket{1}\}$ will return $\ket{0}$ with probability $ | \alpha |^2$  and $\ket{0}$ with 
             probability
             $ |\beta|^2 $.
         \end{example}
@@ -235,16 +265,16 @@
         
     
 \subsection{Gates}
-        
-        As postulated, measurements can be made in any orthonormal basis. This means that, in some sense, qubits 
-        can only carry information up to a choice of orthonormal basis. For this reason, instead of thinking about 
-        measurement being performed in any basis, we could equivalently fix a basis for measurement, but allow for 
-        arbitrary change of basis maps on each qubit. \FIX{This sounds awkward.}
-        
-        These maps are exactly the ones that preserve the inner-product on $\C^n$ (because they send pairs of 
-        orthonormal vectors to pairs of orthonormal vectors). This is often called the set (group) of isometries
-        of $\C^n$ which is $U(n)$, the set of $2 \times 2$  unitary matrices with determinant one.
-                
+
+        While measurements can be made in any orthonormal basis, it is helpful to instead to choose a fixed basis 
+        for measurement beforehand and instead allow for arbitrary change of basis operations on the state.  This 
+        fixed basis is referred to as the \emph{computational basis}.  We assume that any measurement is made in 
+        the computational basis unless explicitly noted otherwise.
+
+        The valid operations on quantum states then, are the linear maps that map one orthonormal basis to another.  
+        These are the isometries (inner-product preserving maps) of $\C^n$ which can be identified as $U(n)$, the 
+        set of $n \times n$ \emph{unitary} matrices.
+
         \begin{definition}
             A matrix $U$ is said to be unitary if its conjugate transpose is equal to its inverse. That is often 
             written as $U^\dagger = U$.
@@ -274,44 +304,13 @@
                 \ket{1} = \rvec{0}{1} \longmapsto \frac{1}{\sqrt{2}}\left( \ket{0} - \ket{1} \right) = 
                 \frac{1}{\sqrt{2}} \rvec{1}{-1}
             \]
-            \TODO{Unit circle diagram}
+            %\TODO{Unit circle diagram}
 
         \end{example}
         
-       \TODO{Introduce Generators of U2?}
+       %\TODO{Introduce Generators of U2?}
 
-        \TODO{Introduce other gates that we need}
-
-
-        
-
-        % \begin{example}
-        %     The set of single qubit gates are the $2\times 2$ unitary matrices.
-        % \end{example}
-
-
-        % Keeping a fixed computational basis is also important because in practice, we do not have the ability to 
-        % measure in any basis. Doing so would require infinitely precise tools. By thinking fixing a computational 
-        % basis, but allowing for unitary operations on qubits, we can measure how many unitaries were used.
-        % \FIX{Make Unitary thing more precise}
-
-        % 
-        % \begin{postulate}
-        %     Quantum information cannot be created or destroyed.
-        % \end{postulate}
-
-        % The operations that we can perform on qubits correspond to \emph{unitary} maps. On a single qubit, the 
-        % unitary maps can be represented as the $2 \times 2$ unitary matrices over $\C$.
-        % 
-        % 
-
-        % \begin{definition}
-        %     A matrix $U$ is said to be unitary if its conjugate transpose is equal to its inverse. That is often 
-        %     written as $U^\dagger = U$.
-        % \end{definition}
-        % 
-        % The $n$ by $n$ unitary matrices are the isometries on $\C^n$. That is, it preserves the inner product. This 
-        % means that the unitary matrices are exactly those that change one orthonormal basis into another. 
+        %\TODO{Introduce other gates that we need}
 
         
         \subsection{(Possibly) Relevant Theorems about Quantum Circuits}
@@ -333,35 +332,74 @@
 
 
         Much like classical circuits, a quantum circuit is made up of wires and gates. 
-
-
-
         
         
-
-
-
-
 
         \begin{example}
             Deutsch-Josza
-            
+            $$
             \Qcircuit @C=1em @R=.7em {
                 & \gate{H} & \gate{Z} & \gate{H} & \qw \\
                 & \qw & \gate{X} & \qw & \qw
             }
-
-
-        
-            
+            $$
         \end{example}
 
         The Deutsch-Josza Algorithm 
-        
-            
+    
         \begin{example}
-            Bernstein-Vazirani 
+            The Bernstein-Vazirani Algorithm
+
+            Let $s \in \{0, 1\}^m$ be a hidden $m$-bit binary string and let $b \in \{0, 1\}$ be a hidden bit.  
+            Given oracle access to a function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ defined by
+            $f(\vec{x}) = \vec{x} \cdot \vec{s} + b \ (\text{mod } 2)$, how many queries are required to determine 
+            the values of $\vec{s}$ and $b$?
+
+
+
+            We initialize our state to
             
-        \end{example}
+
+
+
+            
+
+            
+
+            \[
+                \Qcircuit @C=1em @R=1em {
+               \lstick{\ket{1}} & \qw &
+               \qw \ar@{.}[]+<-0em,1em>;[d]+<-0em,-6.3em>&
+                     \gate{H} & \qw &
+                     \qw \ar@{.}[]+<-0em,1em>;[d]+<-0em,-6.5em>&
+                    \ctrl{1} & \qw &
+                    \qw \ar@{.}[]+<-0em,1em>;[d]+<-0em,-6em>&
+                    \gate{H} & \qw &
+                    \meter 
+                    \\
+                \lstick{\ket{1}} & \qw &\qw &
+                    \gate{H} & \qw &\qw &
+                    \ctrl{1} & \qw &\qw &
+                    \gate{H} & \qw &
+                    \meter 
+                      \\
+                \lstick{\ket{1}} & \qw &\qw &
+                    \gate{H} & \qw &\qw &
+                    \ctrl{1} & \qw &\qw &
+                    \gate{H} & \qw &
+                    \meter 
+                      \\
+                 \frac{1}{\sqrt{2}} &  \qw &\qw &
+                     \qw &\qw &
+                     \qw &                
+                     \gate{U} & \qw &
+                     \qw &  \qw &
+                     \qw \frac{1}{\sqrt{2}} \\
+               && 0 &  &  & 1 &  &  &2  & &
+            }
+           \]
+     \end{example}    
+           
+
+
         
-        Test
