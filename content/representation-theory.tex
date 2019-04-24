@@ -1,0 +1,122 @@
+
+\chapter{Representation Theory of Finite Groups}
+
+
+
+
+Representation theory is a very powerful tool for analyzing groups. Representation theoretic tools give much more 
+profound insight into much of group theory that can be hard to find without it.
+
+
+
+In order to study more sophisticated quantum oracle problems, we will need more sophisticated algebraic tools. What 
+we are looking at is somewhere at the intersection of algebra and quantum computing.
+
+
+The idea of representation theory, is to study groups by looking at how they act on vector spaces. This allows us 
+to use the tools of linear algebra to study groups. In particular, under the right conditions, we will see that 
+quantum oracles naturally give us unitary representations of their underlying groups.
+
+This chapter will focus on developing the tools of representation theory so that we may make this connection 
+between group theory and quantum oracle problems more precise. I'm really just writing some stuff off the top of my 
+head, I actually have no idea where this is going. 
+
+
+
+In this thesis, we will assume that all representations are over $\C $. 
+\begin{definition}
+    A \emph{representation} of a group $G$ over $\C$ is a homomorphism $\rho$ from $G$ to $\GL(n,F)$, for some $n$. 
+    The degree of $\rho$ is the integer $n$.
+
+    We say that $\rho$ is a \emph{faithful} representation if $G \cong \rho(G)$.
+\end{definition}
+
+
+In linear algebra, when given a linear map, we commonly looked for the subspaces it was invariant on. These spaces 
+were so important that we gave them their own name, \emph{eigenspaces} 
+
+
+
+\begin{definition}
+    Irreducible representation
+\end{definition}
+
+
+\begin{definition}
+    Equivalent representations? I don't know if I need this.
+\end{definition}
+
+
+\begin{theorem}
+    Let $V$ and $W$ be irreducible \CG-modules.
+
+    \begin{enumerate}
+        \item If $\varphi : V \rightarrow W$ is a \CG-homomorphism, then either $\varphi$ is a \CG-isomorphism, or 
+            $v\varphi = 0$ for all $v \in V$. 
+            
+        \item If $\varphi \rightarrow V$ is a \CG-isomorphism, then $\varphi$ is a scalar multiple of the identity 
+            endomorphism $1_v$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    I'll almost certainly include this one.
+\end{proof}
+
+
+\section{Character Theory}
+
+One of the most surprising tools in representation theory is \emph{characters}. It's a pain to have to associate an 
+entire matrix to each element of our group. What would happen if we just wrote down the trace of each matrix 
+instead?
+
+
+
+
+\begin{definition}
+    Let $G$ be a group and $\rho : G \rightarrow \GL(n, \C)$ a representation of $G$. 
+
+    The \emph{character of }$\rho$ is the function $\chi : G \rightarrow \C$ defined for all $g \in G$ by
+    \[
+        \chi(g) = \text{Tr}\,\rho(G)
+  \]
+\end{definition}
+
+Recall from linear algebra that the trace can be equivalently defined as the sum of the eigenvalues of a matrix. 
+This result makes it clear that the trace, and thus characters, are invariant under change of basis. This is the 
+key part of the remarkable properties that the trace seems to have, one might think of it as, the simplest 
+invariant of linear maps (depending on how simple you find its cousin, the determinant to be).
+
+
+Much in the same way that we think of the relationship between matrices and linear maps to be defined `up to change 
+of basis', we might think that groups themselves are also only defined up to inner automorphism.
+
+Although character theory is just a shadow of the representation theory above it, the characters of a group carry a 
+surprising amount of information about it. In fact, understanding the character theory of a group, is one of the 
+best ways to study the representation theory of a group.
+
+All of this prose was just written in like 30 seconds. I have no actual idea if any of this is readable or at all 
+true. Anyways, back to the math.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
