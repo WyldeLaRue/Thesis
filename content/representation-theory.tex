@@ -1,14 +1,14 @@
 
 \chapter{Representation Theory of Finite Groups}
 
-\section{Intro}
+\section{Introduction}
 
 
-Representation theory is a very powerful tool for analyzing groups. Representation theoretic tools give much more 
-profound insight into much of group theory that can be hard to find without it. The idea of representation theory, 
-is to study groups by looking at how they act on vector spaces. This allows us to use the tools of linear algebra 
-to study groups. In particular, under the right conditions, we will see that quantum oracles naturally give us 
-unitary representations of their underlying groups.
+%Representation theory is a very powerful tool for analyzing groups. Representation theoretic tools give much more 
+%profound insight into much of group theory that can be hard to find without it. The idea of representation theory, 
+%is to study groups by looking at how they act on vector spaces. This allows us to use the tools of linear algebra 
+%to study groups. In particular, under the right conditions, we will see that quantum oracles naturally give us 
+%unitary representations of their underlying groups.
 
 The purpose of this chapter will be to introduce the terminology and results from representation theory that we 
 will need to investigate symmetric oracle problems in chapters 3 and 4. A reader familiar with the basic results of 
@@ -34,7 +34,7 @@ In this thesis, we will assume that all representations are over $\C $ if not ex
     the representation is defined by the homomorphism $\rho$, it is common instead to refer to it by the space its 
     acting on.
 
-    We can equivalently characterize a representation as an action of a group $G$ on a vector space $V$. In this 
+    Equivalently, a representation can be characterized as an action of a group $G$ on a vector space $V$. In this 
     case, the action is required to be compatible with the vector space structure on $V$. That is, in addition to 
     the requirements for an action of a group on a set, we must have
 \[g \cdot (\alpha v_1 + v_2) = g\cdot \alpha(v_1) + g\cdot(v_2)\]
@@ -42,20 +42,21 @@ In this thesis, we will assume that all representations are over $\C $ if not ex
     We denote the action of $g \in G$ on a vector $v$ as $g \cdot v$ or $gv$.
 \end{definition}
 
-For the rest of this thesis, we will assume that all representations are over $\C$.
+For this thesis, we will only need to consider representations of finite groups over $\C$.
+
+We say a representation $\rho$ is \emph{faithful} if $G \cong \rho(G)$.
+
+The degree of a representation is the dimension of $V$.
 
  
 \begin{definition}
     Let $\rho$ be a representation of a group $G$ on a vector space $V$. A \emph{subrepresentation} is a vector 
     subspace $W \subset V$ that is invariant under the action of $G$.\footnotemark That is, for all $g\cdot w \in 
     W$ for all $g \in G$, $v \in W$.
-    \footnotetext{This is a slight abuse of notation. The subrepresentation in this case is actually function given 
-    by the homomorphism $\varphi : G \rightarrow \Aut(V)$ defined by $\varphi(g) = \rho|_W.$  }
     
     An representation is said to be irreducible if it has no nontrivial subrepresentations (the only $G$-invariant 
     subspaces of $V$ are $\{ 0 \}$ and $V$ itself).
 \end{definition}
-
 
 
 \begin{theorem}[Maschke's Theorem]
@@ -63,59 +64,32 @@ For the rest of this thesis, we will assume that all representations are over $\
 there is a subrepresentation $W'$ such that $V = W \oplus W'$.  
 \end{theorem}
 
+
+
+
 \begin{proof}
     Define $\pi : V \rightarrow W$ to be the projection of $V$ onto $W$. TODO rest of proof
+
 \end{proof}
 
 
-
-In linear algebra, when given a linear map, we commonly looked for the subspaces it was invariant on. These spaces 
-were so important that we gave them their own name, \emph{eigenspaces}
-
-\begin{definition}
-    Subrepresentation
-
-    Let $G$ be a group and $\rho : G \rightarrow \GL(n, \C)$ be a representation. 
-
-    I've maybe messed all of this up, by not giving a formal enough treatment of it. I'm not exactly sure what to 
-    do.
-
-\end{definition}
-
-
-Although, on the surface level, faithful representations might seem like what we want, we really care about 
-irreducible representations.
-
-
-
-\begin{definition}
-    A representation $\rho : G \rightarrow \GL(n, \C)$ is \emph{irreducible} if its only subrepresentations are 
-    $\{0\}$ and $V$. \textcolor{blue}{This and the definition I give for subprepresentation should be cleaned up 
-    and made more coherent. Should I just do this in terms of FG-modules?}
-\end{definition}
-
-
-
-\begin{definition}
-    Equivalent representations? I don't know if I need this. At least as a remark.
-\end{definition}
-
-
-\begin{theorem}[Maschke's Theorem]
-    Every 
-\end{theorem}
-
 \begin{theorem}[Schur's Lemma]
-    Let $V$ and $W$ be irreducible \CG-modules.
-
-    \begin{enumerate}
-        \item If $\varphi : V \rightarrow W$ is a \CG-homomorphism, then either $\varphi$ is a \CG-isomorphism, or 
-            $v\varphi = 0$ for all $v \in V$. 
-            
-        \item If $\varphi V \rightarrow V$ is a \CG-isomorphism, then $\varphi$ is a scalar multiple of the 
-            identity endomorphism $1_v$.
-    \end{enumerate}
+    If M and N are two finite-dimensional irreducible representations of a group $G$, and $\varphi:M->N$ is a 
+    linear transformation that commutes with the action of the group, then $\varphi$ is either an isomorphism or 
+    the $0$ map.
 \end{theorem}
+
+%\begin{theorem}[Schur's Lemma]
+    %Let $V$ and $W$ be irreducible \CG-modules.
+
+    %\begin{enumerate}
+        %\item If $\varphi : V \rightarrow W$ is a \CG-homomorphism, then either $\varphi$ is a \CG-isomorphism, or 
+            %$v\varphi = 0$ for all $v \in V$. 
+            
+        %\item If $\varphi V \rightarrow V$ is a \CG-isomorphism, then $\varphi$ is a scalar multiple of the 
+            %identity endomorphism $1_v$.
+    %\end{enumerate}
+%\end{theorem}
 
 \begin{proof}
     I'll almost certainly include this one.
@@ -130,47 +104,38 @@ instead?
 
 
 
+%Recall from linear algebra that the trace can be equivalently defined as the sum of the eigenvalues of a matrix. 
+%This result makes it clear that the trace, and thus characters, are invariant under change of basis. This is the 
+%key part of the remarkable properties that the trace seems to have, one might think of it as, the simplest 
+%invariant of linear maps (depending on how simple you find its cousin, the determinant to be).
+
+
+%Much in the same way that we think of the relationship between matrices and linear maps to be defined `up to change 
+%of basis', we might think that groups themselves are also only defined up to inner automorphism.
+
+%Although character theory is just a shadow of the representation theory above it, the characters of a group carry a 
+%surprising amount of information about it. In fact, understanding the character theory of a group, is one of the 
+%best ways to study the representation theory of a group.
+
+%All of this prose was just written in like 30 seconds. I have no actual idea if any of this is readable or at all 
+%true. Anyways, back to the math.
 
 \begin{definition}
-    Let $G$ be a group and $\rho : G \rightarrow \GL(n, \C)$ a representation of $G$. 
-
-    The \emph{character of }$\rho$ is the function $\chi : G \rightarrow \C$ defined for all $g \in G$ by
-    \[
-        \chi(g) = \text{Tr}\,\rho(G)
-    \]
+    Let $\rho : G \rightarrow V$ be a representation. The map $\chi : G \rightarrow \C$ given by $\chi(g) = 
+    \text{Tr}\,\rho(g)$ is called the \emph{character} of $V$.
 \end{definition}
 
-Recall from linear algebra that the trace can be equivalently defined as the sum of the eigenvalues of a matrix. 
-This result makes it clear that the trace, and thus characters, are invariant under change of basis. This is the 
-key part of the remarkable properties that the trace seems to have, one might think of it as, the simplest 
-invariant of linear maps (depending on how simple you find its cousin, the determinant to be).
-
-
-Much in the same way that we think of the relationship between matrices and linear maps to be defined `up to change 
-of basis', we might think that groups themselves are also only defined up to inner automorphism.
-
-Although character theory is just a shadow of the representation theory above it, the characters of a group carry a 
-surprising amount of information about it. In fact, understanding the character theory of a group, is one of the 
-best ways to study the representation theory of a group.
-
-All of this prose was just written in like 30 seconds. I have no actual idea if any of this is readable or at all 
-true. Anyways, back to the math.
-
-
-
 \begin{definition}
-    We say that $\chi$ is a character of a group $G$ if it is the character of some representation of $G$.
+    Let $G$ be a group. We say that $\chi$ is a character of $G$ if it is the character of some representation of 
+    $G$.
+
     Moreover, if $\chi$ is the character of an irreducible representation of $G$, we say that $\chi$ is an
     \emph{irreducible character of} $G$.
 \end{definition}
 
 
-\begin{definition}
-    degree of a character??
-\end{definition}
 
-\subsection{Properties of Characters}
-
+We give a few basic properties of characters.
 \begin{theorem}
     Let $\chi$ be a character of a group $G$. Suppose $g \in G$ and $g$ has order $m$. Then
     \begin{enumerate}
@@ -186,6 +151,19 @@ true. Anyways, back to the math.
 
 \subsection{Character Tables}
     
+
+
+\begin{theorem}
+    The number of irreducible characters of $G$ is equal to the number of conjugacy classes of $G$.
+\end{theorem}
+
+\begin{theorem}
+    The characters of a group $G$ are constant on the conjugacy classes of $G$. That is, for all $g,h \in G$, 
+    $\varphi(g) = \varphi(h)$ if and only if $h = kgk^{-1}$ for some $k \in G$.
+\end{theorem}
+
+I can give short proofs of these two.
+
     Writing the information of the characters of a group into a table, gives us an extremely compact way write down 
     the important information associated to a group.
     
@@ -199,60 +177,107 @@ true. Anyways, back to the math.
 
 
 
+\subsection{Important Properties of Characters}
 
-\subsection{Important Properties}
-
-
-\begin{theorem}
-    The number of irreducible characters of $G$ is equal to the number of conjugacy classes of $G$.
-\end{theorem}
-
-
-
-
-There is an inner product on the space of functions from $G$ to $\C$.
 \begin{definition}
-    Let $\varphi$, $\theta$ be functions from $G$ to $\C$. Define
+    A \emph{class function} of a group $G$ is a function $\varphi : G \rightarrow \C$ that is constant on the 
+    conjugacy classes of $G$.
+    
+    The set of class functions on a group $G$ form a vector space under pointwise addition. This space has an inner 
+    product given by
     \[
-        \langle \varphi, \theta \rangle := \frac{1}{|G|} \sum_{g \in G} \varphi(g)\overline{\psi(g)}
+        \langle \varphi, \psi \rangle := \frac{1}{|G|} \sum_{g \in G} \varphi(g)\overline{\psi(g)}
     \]
 \end{definition}
 
+
+\begin{theorem}
+    The set of irreducible characters of a group $G$ form an orthonormal basis for the space of class functions on 
+    $G$.
+\end{theorem}
+
+
+\begin{proof}
+    For now, just refer to James and Liebeck.
+\end{proof}
 
 
 \begin{theorem}
     Let $\chi$ and $\psi$ be inequivalent, irreducible characters of a group $G$.
     Then $\langle \chi, \chi \rangle = 1$ and $\langle \chi, \psi \rangle = 0$. 
 \end{theorem}
+TODO: Prove or figure out what to do with these two theorems
+
+\begin{theorem}
+    Let $V$ be a representation of a group $G$ and let $\psi$ be its associated character.  $V$ is irreducible if 
+    and only if and only if $\langle \psi, \psi \rangle = 1$ .
+\end{theorem}
+Same with the above theorem
+
+
+\subsection{More Results on Characters}
+
+\begin{theorem}
+    Let $\chi_1, ..., \chi_n$ be the irreducible characters of a group $G$. If $\psi$ is any character of $G$, then 
+    \[
+        \psi = d_1\chi_1 + ... + d_k\chi_k.
+    \]
+    for some non-negative integers $d_1, ..., d_k$. Moreover, these coefficients count the number of times each 
+    irreducible character appears:
+    \[
+        d_i = \langle \psi, \chi_i \rangle
+    \]
+    and
+    \[
+        \langle \psi, \psi \rangle = \sum_{i=1}^k d_i^2
+    \]
+\end{theorem}
+
+I should add proof here and slightly more commentary
+
+
+\begin{definition}
+    Suppose that $\psi$ is a character of $G$, and that $\chi$ is an irreducible character of $G$. We say that 
+    $\chi$ is a \emph{constituent} character of $\psi$ if $\langle \psi, \chi \rangle \neq 0$. Thus, the 
+    constituents of $\psi$ are the irreducible characters $\chi_i$ of $G$ for which the integer $d_i$ in the 
+    expression $\psi = d_1\chi_1 + ... + d_k\chi_k$ is nonzero.
+\end{definition}
 
 
 \begin{theorem}
-    Let $V$ be a \CG-module with characters $\chi$ and $\psi$, respectively. Then $V$ is irreducible if and only if 
-    $\langle \psi, \psi \rangle = 1$ .
-\end{theorem}
-
-
-This is the most important one I think.
-\begin{theorem}
-    The set of irreducible characters form an orthonormal basis of the space of class functions.
+    Let $V$ be a representation with character $\psi$. Then $V$ is irreducible if and only if $\langle \psi , \psi 
+    \rangle$ = 1.
 \end{theorem}
 
 
 
+\subsection{Powers of Characters}
+
+\begin{definition}
+    Tensor product of characters/
+\end{definition}
+
+\begin{definition}
+    Let $G$ be a group. Define a product on the space of class functions by pointwise multiplication. i.e.
+    for all class functions $\chi, \psi$ of $G$, 
+    \[
+        \chi\psi(g) = \chi(g)\psi(g) \text{ for all } g \in G
+    \]
+\end{definition}
 
 
+\begin{proposition}
+    Let $G$ be a group. Let $V$ and $W$ be representations of with characters $\chi$ and $\psi$ respectively. Then 
+    the character of the representation $V \otimes W$ is the product character $\chi\psi$
+\end{proposition}
 
 
+\begin{theorem}(Burnside-Brauer)
+    Let $\chi$ be a faithful character of $G$, and suppose that $\chi(g)$ takes precisely $r$ different values as 
+    $g$ varies over all the elements of $G$. Then every irreducible character of $G$ is a constituent of one of the 
+    powers $\chi^0, \chi^1, ... , \chi^{r-1}$
+\end{theorem}
 
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{proof}
+    TODO: Prove this one. The proof is not hard and it is very relevant.
+\end{proof}
