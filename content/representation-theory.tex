@@ -17,23 +17,27 @@ the representation theory of finite groups can skip ahead to chapter 3.
 This treatment of representation theory largely follows \cite{James&Liebeck}. I have omitted many proofs here and 
 instead leave the reader to refer to \cite{James&Liebeck}
 
+Although there are many analogues of the results given here for fields other than $\C$ and for infinite groups, we 
+will not express them in their full generality. The representations that will arise in our study of quantum oracle 
+problems will be of finite groups and over $\C$. Moreover, many proofs in representation theory are substantially 
+simpler and more elegant when the underlying field is restricted to $\C$.
+
 \section{Representations}
 
-In this thesis, we will assume that all representations are over $\C $ if not explicitly stated.
+A representation of a group $G$ is an encoding of $G$ as a set of linear maps on some vector space $V$. When a 
+basis of $V$ is specified, this yields an explicit representation of each $g \in G$ as a matrix. Looking at the 
+possible ways of representing $G$ as a matrix group uncovers much information about the structure of $G$ that may 
+have been hidden otherwise. In particular, any encoding of $G$ into a set of matrices will be unique only up to a 
+change of basis. This exposes a deep connection between the symmetry arising in vector spaces by change of basis 
+and symmetry inherent in the structure of groups, arising from conjugation.
 
-\begin{definition}
-    A \emph{representation} of a group $G$ over $\C$ is a homomorphism $\rho$ from $G$ to $\GL(n,F)$, for some $n$. 
-    The degree of $\rho$ is the integer $n$.
-
-    We say that $\rho$ is a \emph{faithful} representation if $G \cong \rho(G)$.
-\end{definition}
 
 \begin{definition}
     Let $G$ be a group and $V$ be a vector space over a field $F$. A \emph{representation} of $G$ is a homomorphism 
     $\rho : G \rightarrow \Aut(V)$, where $\Aut(V)$ denotes the group of linear maps from $V$ to itself. Although, 
-    the representation is defined by the homomorphism $\rho$, it is common instead to refer to it by the space its 
-    acting on.
-
+    the representation is defined by the homomorphism $\rho$, it is common instead to refer to it by the vector 
+    space it is acting on.
+    
     Equivalently, a representation can be characterized as an action of a group $G$ on a vector space $V$. In this 
     case, the action is required to be compatible with the vector space structure on $V$. That is, in addition to 
     the requirements for an action of a group on a set, we must have
@@ -42,39 +46,79 @@ In this thesis, we will assume that all representations are over $\C $ if not ex
     We denote the action of $g \in G$ on a vector $v$ as $g \cdot v$ or $gv$.
 \end{definition}
 
-For this thesis, we will only need to consider representations of finite groups over $\C$.
 
-We say a representation $\rho$ is \emph{faithful} if $G \cong \rho(G)$.
+    There is yet a third way to express the information of a representation. Although this is the most abstract, it 
+    provides the most concrete language for working with representations.
+    
+    First we must define an object called the \emph{group algebra} that is naturally associated to every group.
+    \footnote{The terms \emph{group algebra} and \emph{group ring} are often used synonymously.} One can view the 
+    group algebra as an encoding of a group into the structure of polynomial arithmetic.
 
-The degree of a representation is the dimension of $V$.
 
- 
+\begin{definition}
+    Let $G$ be a finite group of order $n$. The \emph{group algebra} of $G$, denoted $\C[G]$ or \CG, is defined as 
+    a polynomial ring over $\C$ with one indeterminant for every $g \in G$. Thus every element of $\C[G]$ is of the 
+    form
+    \[
+        \alpha_1 g_1 + \alpha_2 g_2 + ... + \alpha_n g_n
+    \]
+    where $\alpha_1, ..., \alpha_n \in \C$ and $\{g_1, ..., g_n\} = G$.
+    
+    The operations of addition, multiplication, and scalar-multiplication are inherited from the properties of 
+    polynomial rings, except we define the multiplication of monomials to follow the group structure.
+    For any $\alpha_1, \alpha_2 \in \C$ and $g_1, g_2 \in G$ we define
+    \[
+        (\alpha_1g_1)(\alpha_2g_2) = (\alpha_1\alpha_2)(g_1g_2)
+    \]
+    where $\alpha_1\alpha_2$ is the product of $\alpha_1, \alpha_2$ in $\C$ and $g_1 g_2$ is the product of $g_1, 
+    g_2$ in $G$. In particular, this means $\C[G]$ is a commutative ring if and only if $G$ is abelian.
+\end{definition}
+
+
+A representation $\rho : G \rightarrow \Aut(V)$ defines a $\C G$-module structure on $V$ by the action
+\[
+    (\alpha_1g_1 + ... \alpha_ng_n) \dot v := \alpha_1\rho(g_1)v + ...+ \alpha_n\rho(g_n)v
+\]
+Conversely, a $\C G$-module with action $\varphi : \C G \times V \rightarrow V$ determines a representation $\rho$ 
+defined by $\rho(g) = \varphi(1g)$. This establishes a correspondence between representations of $G$ and 
+\CG-modules.
+
+
+\section{The structure of representations}
+
+
 \begin{definition}
     Let $\rho$ be a representation of a group $G$ on a vector space $V$. A \emph{subrepresentation} is a vector 
-    subspace $W \subset V$ that is invariant under the action of $G$.\footnotemark That is, for all $g\cdot w \in 
-    W$ for all $g \in G$, $v \in W$.
+    subspace $W \subset V$ that is invariant under the action of $G$. That is, for all $g\cdot w \in W$ for all $g 
+    \in G$, $v \in W$. 
     
-    An representation is said to be irreducible if it has no nontrivial subrepresentations (the only $G$-invariant 
+    A representation is said to be irreducible if it has no nontrivial subrepresentations (the only $G$-invariant 
     subspaces of $V$ are $\{ 0 \}$ and $V$ itself).
 \end{definition}
 
 
+The next two results are fundamental to the study of representations.
+
+
 \begin{theorem}[Maschke's Theorem]
     Let $G$ be a finite group and $V$ a representation of $G$ over $\C$. If $W$ is a subrepresentation of $V$, then 
-there is a subrepresentation $W'$ such that $V = W \oplus W'$.  
-\end{theorem}
-
-
+there is a subrepresentation $W'$ such that $V = W \oplus W'$.  \end{theorem}
 
 
 \begin{proof}
-    Define $\pi : V \rightarrow W$ to be the projection of $V$ onto $W$. TODO rest of proof
+    We are given that $W$ is a subrepresentation of $V$. Let $\pi : V \rightarrow W$ be a projection of $V$ onto 
+    $W$. Although $\ker \pi \oplus W = V$, we do not know that $\ker \pi$ must be a subrepresentation, in fact, it 
+    will not be a subrepresentation in general. We will need to modify it slightly.
 
+    We construct a new function $\pi_G : V \rightarrow W$ by averaging over $G$. Define it by
+    \[
+        \pi_G(v) = \frac{1}{|G|}\sum_{g \in G} g \cdot \pi(v) \cdot g^{-1}
+    \]
 \end{proof}
 
 
 \begin{theorem}[Schur's Lemma]
-    If M and N are two finite-dimensional irreducible representations of a group $G$, and $\varphi:M->N$ is a 
+    If M and N are two finite-dimensional irreducible representations of a group $G$, and $\varphi:M \to N$ is a 
     linear transformation that commutes with the action of the group, then $\varphi$ is either an isomorphism or 
     the $0$ map.
 \end{theorem}
@@ -91,16 +135,14 @@ there is a subrepresentation $W'$ such that $V = W \oplus W'$.
     %\end{enumerate}
 %\end{theorem}
 
-\begin{proof}
-    I'll almost certainly include this one.
-\end{proof}
+%\begin{proof}
+    %I'll almost certainly include this one.
+%\end{proof}
 
 
 \section{Character Theory}
 
-One of the most surprising tools in representation theory is \emph{characters}. It's a pain to have to associate an 
-entire matrix to each element of our group. What would happen if we just wrote down the trace of each matrix 
-instead?
+
 
 
 
@@ -172,16 +214,15 @@ I can give short proofs of these two.
     A character table of a group $G$ is of the form 
     
 
-    [insert exmaple table]
 \end{definition}
 
 
 
-\subsection{Important Properties of Characters}
+\subsection{Properties of Irreducible Characters}
 
 \begin{definition}
     A \emph{class function} of a group $G$ is a function $\varphi : G \rightarrow \C$ that is constant on the 
-    conjugacy classes of $G$.
+    conjugacy classes of $G$. As we have already seen, the characters of a group are always class functions.
     
     The set of class functions on a group $G$ form a vector space under pointwise addition. This space has an inner 
     product given by
@@ -196,23 +237,16 @@ I can give short proofs of these two.
     $G$.
 \end{theorem}
 
+\begin{theorem}
+    Let $V$ be a representation of a group $G$ and let $\psi$ be its associated character.  $V$ is irreducible if 
+    and only if and only if $\langle \psi, \psi \rangle = 1$ .
+\end{theorem}
 
 \begin{proof}
     For now, just refer to James and Liebeck.
 \end{proof}
 
 
-\begin{theorem}
-    Let $\chi$ and $\psi$ be inequivalent, irreducible characters of a group $G$.
-    Then $\langle \chi, \chi \rangle = 1$ and $\langle \chi, \psi \rangle = 0$. 
-\end{theorem}
-TODO: Prove or figure out what to do with these two theorems
-
-\begin{theorem}
-    Let $V$ be a representation of a group $G$ and let $\psi$ be its associated character.  $V$ is irreducible if 
-    and only if and only if $\langle \psi, \psi \rangle = 1$ .
-\end{theorem}
-Same with the above theorem
 
 
 \subsection{More Results on Characters}
@@ -233,8 +267,7 @@ Same with the above theorem
     \]
 \end{theorem}
 
-I should add proof here and slightly more commentary
-
+This is redundant with orthonormal basis theorem, but I should introduce the combinatorial interpretation.
 
 \begin{definition}
     Suppose that $\psi$ is a character of $G$, and that $\chi$ is an irreducible character of $G$. We say that 
@@ -244,21 +277,17 @@ I should add proof here and slightly more commentary
 \end{definition}
 
 
-\begin{theorem}
-    Let $V$ be a representation with character $\psi$. Then $V$ is irreducible if and only if $\langle \psi , \psi 
-    \rangle$ = 1.
-\end{theorem}
 
 
 
-\subsection{Powers of Characters}
+\subsection{Products of Characters}
 
 \begin{definition}
-    Tensor product of characters/
+    Tensor product of representations
 \end{definition}
 
 \begin{definition}
-    Let $G$ be a group. Define a product on the space of class functions by pointwise multiplication. i.e.
+    Let $G$ be a group. Define a product on the space of class functions of $G$ by pointwise multiplication. i.e.
     for all class functions $\chi, \psi$ of $G$, 
     \[
         \chi\psi(g) = \chi(g)\psi(g) \text{ for all } g \in G
