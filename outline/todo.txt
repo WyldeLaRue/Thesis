@@ -1,0 +1,31 @@
+┌───────────┐
+│ Chapter 2 │
+└───────────┘
+
+Brief Outline:
+    - Intro
+    - Representations
+        - Definition
+        - Subrepresentations and Irreducibility
+        - Maschke's Theorem
+        - Schur's Lemma
+        - Examples?
+    - Characters
+        - Introduction
+        - Definition
+        - Basic Theorems                   
+        - Character Tables                 
+        - Theorems about Character Tables  (143pdf)
+
+
+
+
+
+
+    
+
+
+┌───────────┐
+│ Chapter 1 │
+└───────────┘
+
