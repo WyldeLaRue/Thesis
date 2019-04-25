@@ -13,12 +13,12 @@
 \newenvironment{halfpage}{\begin{minipage}{0.5\textwidth}}{\end{minipage}}
 \usepackage{braket}
 \usepackage{tristan-math}
-\theoremstyle{definition}\newtheorem{definition}{Definition}
-\theoremstyle{definition}\newtheorem{example}{Example}
+\theoremstyle{definition}\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{definition}\newtheorem{example}{Example}[chapter]
 \theoremstyle{plain}\newtheorem{postulate}{Postulate}
-\theoremstyle{plain}\newtheorem{theorem}{Theorem}
-\theoremstyle{plain}\newtheorem{lemma}{Lenna}
-\theoremstyle{plain}\newtheorem{proposition}{Proposition}
+\theoremstyle{plain}\newtheorem{theorem}{Theorem}[chapter]
+\theoremstyle{plain}\newtheorem{lemma}{Lenna}[chapter]
+\theoremstyle{plain}\newtheorem{proposition}{Proposition}[chapter]
 \usetikzlibrary{arrows, shapes.gates.logic.US, calc}
 \usepackage{qcircuit}
 
@@ -41,7 +41,7 @@
 \includeonly{
      %content/preamble,
      %content/introduction,
-%     content/quantum-computing,
+     content/quantum-computing,
       content/representation-theory,
 %     content/symmetric-oracles,
 %     content/results,
@@ -55,7 +55,7 @@
 \include{content/preamble}
 \include{content/introduction}
 
-\onehalfspacing
+%\onehalfspacing
 
 \include{content/quantum-computing}
 \include{content/representation-theory}
