@@ -1,29 +1,30 @@
 
 \chapter{Representation Theory of Finite Groups}
 
-
+\section{Intro}
 
 
 Representation theory is a very powerful tool for analyzing groups. Representation theoretic tools give much more 
-profound insight into much of group theory that can be hard to find without it.
+profound insight into much of group theory that can be hard to find without it. The idea of representation theory, 
+is to study groups by looking at how they act on vector spaces. This allows us to use the tools of linear algebra 
+to study groups. In particular, under the right conditions, we will see that quantum oracles naturally give us 
+unitary representations of their underlying groups.
+
+The purpose of this chapter will be to introduce the terminology and results from representation theory that we 
+will need to investigate symmetric oracle problems in chapters 3 and 4. A reader familiar with the basic results of 
+the representation theory of finite groups can skip ahead to chapter 3. 
+
+This treatment of representation theory largely follows \cite{James&Liebeck}. I have omitted many proofs here and 
+instead leave the reader to refer to \cite{James&Liebeck}
+
+\section{Representations}
 
 
 
-In order to study more sophisticated quantum oracle problems, we will need more sophisticated algebraic tools. What 
-we are looking at is somewhere at the intersection of algebra and quantum computing.
 
 
-The idea of representation theory, is to study groups by looking at how they act on vector spaces. This allows us 
-to use the tools of linear algebra to study groups. In particular, under the right conditions, we will see that 
-quantum oracles naturally give us unitary representations of their underlying groups.
+In this thesis, we will assume that all representations are over $\C $ if not explicitly stated.
 
-This chapter will focus on developing the tools of representation theory so that we may make this connection 
-between group theory and quantum oracle problems more precise. I'm really just writing some stuff off the top of my 
-head, I actually have no idea where this is going. 
-
-
-
-In this thesis, we will assume that all representations are over $\C $. 
 \begin{definition}
     A \emph{representation} of a group $G$ over $\C$ is a homomorphism $\rho$ from $G$ to $\GL(n,F)$, for some $n$. 
     The degree of $\rho$ is the integer $n$.
@@ -31,31 +32,73 @@ In this thesis, we will assume that all representations are over $\C $.
     We say that $\rho$ is a \emph{faithful} representation if $G \cong \rho(G)$.
 \end{definition}
 
+\begin{definition}
+    Let $G$ be a group and $V$ be a vector space over a field $F$. A \emph{representation} of $G$ is a homomorphism 
+    $\rho : G \rightarrow \Aut(V)$, where $\Aut(V)$ denotes the group of linear maps from $V$ to itself.
+
+    A representation can equivalently be thought of as an action of a group $G$ on a vector space $V$.  We require 
+    this action to be compatible with the vector space structure on $V$. That is, in addition to the requirements 
+    for an action of a group on a set, we must have
+\[g \cdot (\alpha v_1 + v_2) = g\cdot \alpha(v_1) + g\cdot(v_2)\]
+    for all $g \in G,\ v_1, v_2 \in V,$ and $\alpha \in F$.
+    We denote the action of $g \in G$ on a vector $v$ as $g \cdot v$ or $gv$.
+\end{definition}
+
+For the rest of this thesis, we will assume that all representations are over $\C$.
+
+
+
+\begin{definition}
+    Let $V$ be a representation of $G$
+    Let $\rho$ be a representation of a group $G$ on a vector space $V$. A representation $\varphi$ of $G$ on a 
+vector space $W$ is said to be a \emph{subrepresentation} of $\rho$ if $W \subset V$ and $V$ \end{definition}
 
 In linear algebra, when given a linear map, we commonly looked for the subspaces it was invariant on. These spaces 
-were so important that we gave them their own name, \emph{eigenspaces} 
+were so important that we gave them their own name, \emph{eigenspaces}
+
+\begin{definition}
+    Subrepresentation
+
+    Let $G$ be a group and $\rho : G \rightarrow \GL(n, \C)$ be a representation. 
+
+
+    I've maybe messed all of this up, by not giving a formal enough treatment of it. I'm not exactly sure what to 
+    do.
+
+\end{definition}
+
+
+Although, on the surface level, faithful representations might seem like what we want, we really care about 
+irreducible representations.
 
 
 
 \begin{definition}
-    Irreducible representation
+    A representation $\rho : G \rightarrow \GL(n, \C)$ is \emph{irreducible} if its only subrepresentations are 
+    $\{0\}$ and $V$. \textcolor{blue}{This and the definition I give for subprepresentation should be cleaned up 
+    and made more coherent. Should I just do this in terms of FG-modules?}
 \end{definition}
+
 
 
 \begin{definition}
-    Equivalent representations? I don't know if I need this.
+    Equivalent representations? I don't know if I need this. At least as a remark.
 \end{definition}
 
 
-\begin{theorem}
+\begin{theorem}[Maschke's Theorem]
+    Every 
+\end{theorem}
+
+\begin{theorem}[Schur's Lemma]
     Let $V$ and $W$ be irreducible \CG-modules.
 
     \begin{enumerate}
         \item If $\varphi : V \rightarrow W$ is a \CG-homomorphism, then either $\varphi$ is a \CG-isomorphism, or 
             $v\varphi = 0$ for all $v \in V$. 
             
-        \item If $\varphi \rightarrow V$ is a \CG-isomorphism, then $\varphi$ is a scalar multiple of the identity 
-            endomorphism $1_v$.
+        \item If $\varphi V \rightarrow V$ is a \CG-isomorphism, then $\varphi$ is a scalar multiple of the 
+            identity endomorphism $1_v$.
     \end{enumerate}
 \end{theorem}
 
@@ -79,7 +122,7 @@ instead?
     The \emph{character of }$\rho$ is the function $\chi : G \rightarrow \C$ defined for all $g \in G$ by
     \[
         \chi(g) = \text{Tr}\,\rho(G)
-  \]
+    \]
 \end{definition}
 
 Recall from linear algebra that the trace can be equivalently defined as the sum of the eigenvalues of a matrix. 
@@ -100,6 +143,84 @@ true. Anyways, back to the math.
 
 
 
+\begin{definition}
+    We say that $\chi$ is a character of a group $G$ if it is the character of some representation of $G$.
+    Moreover, if $\chi$ is the character of an irreducible representation of $G$, we say that $\chi$ is an
+    \emph{irreducible character of} $G$.
+\end{definition}
+
+
+\begin{definition}
+    degree of a character??
+\end{definition}
+
+\subsection{Properties of Characters}
+
+\begin{theorem}
+    Let $\chi$ be a character of a group $G$. Suppose $g \in G$ and $g$ has order $m$. Then
+    \begin{enumerate}
+        \item $\chi(1) = \dim V$.
+        \item $\chi(g)$ is a sum of $m$th roots of unity.
+        \item $\chi(g^{-1}) = \overline{\chi(g)}$.
+        \item $\chi(g)$ is a real number if $g$ is conjugate  to $g^{-1}$
+    \end{enumerate}
+\end{theorem}
+
+
+
+
+\subsection{Character Tables}
+    
+    Writing the information of the characters of a group into a table, gives us an extremely compact way write down 
+    the important information associated to a group.
+    
+
+\begin{definition}
+    A character table of a group $G$ is of the form 
+    
+
+    [insert exmaple table]
+\end{definition}
+
+
+
+
+\subsection{Important Properties}
+
+
+\begin{theorem}
+    The number of irreducible characters of $G$ is equal to the number of conjugacy classes of $G$.
+\end{theorem}
+
+
+
+
+There is an inner product on the space of functions from $G$ to $\C$.
+\begin{definition}
+    Let $\varphi$, $\theta$ be functions from $G$ to $\C$. Define
+    \[
+        \langle \varphi, \theta \rangle := \frac{1}{|G|} \sum_{g \in G} \varphi(g)\overline{\psi(g)}
+    \]
+\end{definition}
+
+
+
+\begin{theorem}
+    Let $\chi$ and $\psi$ be inequivalent, irreducible characters of a group $G$.
+    Then $\langle \chi, \chi \rangle = 1$ and $\langle \chi, \psi \rangle = 0$. 
+\end{theorem}
+
+
+\begin{theorem}
+    Let $V$ be a \CG-module with characters $\chi$ and $\psi$, respectively. Then $V$ is irreducible if and only if 
+    $\langle \psi, \psi \rangle = 1$ .
+\end{theorem}
+
+
+This is the most important one I think.
+\begin{theorem}
+    The set of irreducible characters form an orthonormal basis of the space of class functions.
+\end{theorem}
 
 
 
