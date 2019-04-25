@@ -19,10 +19,6 @@ instead leave the reader to refer to \cite{James&Liebeck}
 
 \section{Representations}
 
-
-
-
-
 In this thesis, we will assume that all representations are over $\C $ if not explicitly stated.
 
 \begin{definition}
@@ -34,11 +30,13 @@ In this thesis, we will assume that all representations are over $\C $ if not ex
 
 \begin{definition}
     Let $G$ be a group and $V$ be a vector space over a field $F$. A \emph{representation} of $G$ is a homomorphism 
-    $\rho : G \rightarrow \Aut(V)$, where $\Aut(V)$ denotes the group of linear maps from $V$ to itself.
+    $\rho : G \rightarrow \Aut(V)$, where $\Aut(V)$ denotes the group of linear maps from $V$ to itself. Although, 
+    the representation is defined by the homomorphism $\rho$, it is common instead to refer to it by the space its 
+    acting on.
 
-    A representation can equivalently be thought of as an action of a group $G$ on a vector space $V$.  We require 
-    this action to be compatible with the vector space structure on $V$. That is, in addition to the requirements 
-    for an action of a group on a set, we must have
+    We can equivalently characterize a representation as an action of a group $G$ on a vector space $V$. In this 
+    case, the action is required to be compatible with the vector space structure on $V$. That is, in addition to 
+    the requirements for an action of a group on a set, we must have
 \[g \cdot (\alpha v_1 + v_2) = g\cdot \alpha(v_1) + g\cdot(v_2)\]
     for all $g \in G,\ v_1, v_2 \in V,$ and $\alpha \in F$.
     We denote the action of $g \in G$ on a vector $v$ as $g \cdot v$ or $gv$.
@@ -46,12 +44,30 @@ In this thesis, we will assume that all representations are over $\C $ if not ex
 
 For the rest of this thesis, we will assume that all representations are over $\C$.
 
-
-
+ 
 \begin{definition}
-    Let $V$ be a representation of $G$
-    Let $\rho$ be a representation of a group $G$ on a vector space $V$. A representation $\varphi$ of $G$ on a 
-vector space $W$ is said to be a \emph{subrepresentation} of $\rho$ if $W \subset V$ and $V$ \end{definition}
+    Let $\rho$ be a representation of a group $G$ on a vector space $V$. A \emph{subrepresentation} is a vector 
+    subspace $W \subset V$ that is invariant under the action of $G$.\footnotemark That is, for all $g\cdot w \in 
+    W$ for all $g \in G$, $v \in W$.
+    \footnotetext{This is a slight abuse of notation. The subrepresentation in this case is actually function given 
+    by the homomorphism $\varphi : G \rightarrow \Aut(V)$ defined by $\varphi(g) = \rho|_W.$  }
+    
+    An representation is said to be irreducible if it has no nontrivial subrepresentations (the only $G$-invariant 
+    subspaces of $V$ are $\{ 0 \}$ and $V$ itself).
+\end{definition}
+
+
+
+\begin{theorem}[Maschke's Theorem]
+    Let $G$ be a finite group and $V$ a representation of $G$ over $\C$. If $W$ is a subrepresentation of $V$, then 
+there is a subrepresentation $W'$ such that $V = W \oplus W'$.  
+\end{theorem}
+
+\begin{proof}
+    Define $\pi : V \rightarrow W$ to be the projection of $V$ onto $W$. TODO rest of proof
+\end{proof}
+
+
 
 In linear algebra, when given a linear map, we commonly looked for the subspaces it was invariant on. These spaces 
 were so important that we gave them their own name, \emph{eigenspaces}
@@ -60,7 +76,6 @@ were so important that we gave them their own name, \emph{eigenspaces}
     Subrepresentation
 
     Let $G$ be a group and $\rho : G \rightarrow \GL(n, \C)$ be a representation. 
-
 
     I've maybe messed all of this up, by not giving a formal enough treatment of it. I'm not exactly sure what to 
     do.
