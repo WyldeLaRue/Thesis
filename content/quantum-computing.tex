@@ -179,8 +179,13 @@
         The following definitions will give a complete description of a model of quantum computing. These can all 
         be derived from the postulates of quantum mechanics.
         
-      \begin{definition}
-            Formally, a \emph{qubit} is unit vector in $\C^2$. That is a pair of complex numbers
+        Whereas the state of a bit has \emph{two} possible values---either 0 or 1---the state of a qubit is a unit
+        vector in complex vector space spanned by \emph{two} basis states. We give the following precise definition
+
+        Whereas a bit has two states---0 or 1---a qubit has \emph{two basis states}. The following definition makes 
+        this precise
+        \begin{definition}
+            The state of a \emph{qubit} is a unit vector in $\C^2$. That is, a pair of complex numbers
             \[
                 (\alpha, \beta) \in \C^2
             \]
@@ -188,153 +193,207 @@
             \[
                 |\alpha|^2 + |\beta|^2 = 1
             \]
-            We consider the state space $\C^2$ to be equipped with the standard inner-product.
         \end{definition}
         
-        It is very hard to picture qubits because they live on the unit sphere in $\C^2$. However, if we naively 
-        think of them as vectors in $\R^2$ we can generate some limited geometric intuition. 
+        We refer to the space $\C^2$ as the \emph{state space} of a qubit and consider it to be an inner product 
+        space equipped with the standard inner product on $\C^n$.\footnote{In quantum mechanics literature, state 
+            spaces of quantum systems are always referred to as \emph{Hilbert spaces} regardless of their 
+            dimension. This can be confusing as \emph{Hilbert spaces} in mathematics are generally associated with 
+        infinite dimensional spaces. Since all of the spaces in this thesis will be finite dimensional (and 
+    isomorphic to $\C^{2^n}$), it is easier to avoid the confusion and use the term state space instead.}
+    We choose the standard basis $\{(0,1), (1,0)\}$ to represent $\C$. In order to make the analogy with bits more 
+    clear, we denote \[
+            \ket{0} := \rvec{1}{0}, \quad
+            \ket{1} := \rvec{0}{1}.
+         \] The symbol $\ket{\ }$ is called a ket and is used to denote a vector representing a quantum state. It 
+         comes from the \emph{bra-ket} notation which is widely used in the greater theory of quantum mechanics.
         
+        
+         \subsection{Measurement} 
+         
+         Although a qubit has a quantum state in $\C^2$, the we cannot directly observe this quantum state. Despite 
+         having what seems like a much richer state, when we try to measure qubits using any sort of detector, they 
+         snap into the states $\ket{0}$ or $\ket{1}$. This of course defies any reasonable expectations one would 
+         have about the world, and has raised much philosophical debate about how it should be interpreted. 
+         However, regardless of what interpretation we take, it remains an experimental fact. The following 
+         postulate formalizes this concept as a process called \emph{measurement in the computational basis} .
+
+         \begin{postulate}
+             Given a qubit $\psi$, we may perform \emph{measurement} of $\psi$ in the \emph{computational basis}. 
+             If $\psi$ was in state $\alpha \ket{0} + \beta \ket{1}$ prior to the measurement, after the 
+             measurement it will be in state $\ket{0}$ with probability $|\alpha|^2$ and $ \ket{1}$ with 
+             probability $|\beta|^2.$
+     \end{postulate}
+
+        This is only a specific case of a much more general postulate of measurement in quantum mechanics. However, 
+        this conception of measurement will be sufficient enough for many of the results in quantum computing and 
+        all of the results that we will need to consider. A more in depth discussion of the postulates of quantum 
+        mechanics and how they relate to quantum computing can be found in \cite{Nielsen&Chuang}.
+        
+        If we naively think of the state of a qubit as being in $\R^2$ rather than $\C^2$ by just ignoring the 
+        imaginary part, we can generate some limited geometric intuition about what is going on.
+
+
         \begin{figure}[ht]
             \centering
             \begin{center}
-                \begin{tikzpicture}
-                    \draw (2,2) circle (3cm);
-                \end{tikzpicture}
+            \begin{tikzpicture}
+                 \draw[->] (0,0) -- (0,4) node[above]{$\ket{1}$};
+                 \draw[->] (0,0) -- (4,0) node[right]{$\ket{0}$};
+                 \draw[->, thick] (0,0) -- (2, 3.4) node[right]{$\frac{\sqrt{3}}{2}\ket{1} + \frac{1}{2}\ket{0}$};
+            \end{tikzpicture}
             \end{center}
-            \caption{An unfaithful depiction of a qubit (finish this diagram)}
-        \end{figure}
-        
-    \subsection{Dirac Notation}
+            \caption{A qubit with state $\frac{\sqrt{3}}{2}\ket{1} + \frac{1}{2}\ket{0}$ pictured in the plane by 
+            ignoring the imaginary part. }
+    \end{figure}
 
-        There is a convention in quantum mechanics to write vectors representing quantum states using 
-        \emph{bra-ket} notation. In this notation, row vectors are written with an angle bracket on the right, e.g.
-        $\ket{\psi}$. While column vectors, are written with an angle bracket on the left e.g.
-        $\bra{\psi}$.\footnote{In more generality, \emph{kets} $\ket{\, \cdot \,}$ denote vectors in the state 
-        space, while \emph{bras} $\bra{\, \cdot \,}$ are elements of the dual space. For our purposes, considering 
-    kets as row vectors and bras as column vectors will be sufficient.}
-
-         %It is common in the field of quantum mechanics to write vectors representing quantum states in the form
-        %$\ket{\psi}$. This `$\ket{\,\cdot \,}$' symbol is called the \emph{ket}.  Correspondingly, linear 
-        %functionals on the state space are denoted $\bra{\psi}$. This symbol is called the \emph{bra}.
-
-        %Together, they form a \emph{bra-ket} \TODO{Finish this}
-       
+    A measurement on the pictured qubit will return 0 with probability $3/4$ and $1$ with probability $1/4$. This 
+    perspective hopefully makes it clear why the state of a qubit had to be a unit vector. When written in the 
+    standard basis, the coefficients of $\ket{0}$ and $\ket{1}$ correspond to the probability of a measurement 
+    producing that outcome. Thus requiring that this state be a unit vector is equivalent to requiring that the 
+    total probabilities sum to one.
 
 
+    This also motivates the other postulate of quantum mechanics that we will need to formalize this model of 
+    quantum computation. 
 
-        
-        Although a qubit can exist in an uncountable number of states, paradoxically, they can only contain a 
-        finite amount of classical information. This is because in order to extract \emph{classical} information 
-        from a qubit, it must be \emph{measured}. 
+    \begin{postulate}
+        The possible operations on quantum states are those given by \emph{unitary transformations}.
+    \end{postulate}
 
+    The unitary transformations on $\C^n$ are exactly the \emph{isometries} of $\C^n$, that is, the ones that 
+    preserve the inner-product. This is, perhaps not too surprising, given that preserving the metric is necessary 
+    condition to ensure that the probabilities sum to one. 
+
+    \begin{definition}
+        The set of unitary transformations on $\C^n$ can be represented as the set of $n \times n$ matrices $U$ 
+        satisfying the identity $U^{-1} = U^\dagger$ where $U^\dagger$ denotes the conjugate-transpose of $U$.
+    \end{definition}
+
+    A consequence of this postulate of quantum mechanics is that quantum information cannot be destroyed without a 
+    making a measurement.
 
     
-
-
-
+    
+\subsection{Gates}
+        
+        By postulate 2, the valid operations on a qubit are the $2 \times 2$ unitary matrices.
         
 
-        There are many interpretations of what measurement is and many deep philosophical questions, however it is 
-        very clear from experimental evidence what outcomes it produces.
-               
-        
-
-        \begin{postulate}
-            Given a qubit $\ket{\phi} \in \C^{2}$, and any orthonormal basis $ \mathcal{B} = \{\ket{q_0}, \ket{q_1 
-            }\}$ of $ \C^2$, we may perform a \emph{measurement} of $\psi$ with respect to the basis $\mathcal{B}$.  
-            The result of this measurement is $\ket{q_0}$ with probability $\braket{q_0 | \phi }^2$ and $\ket{q_1}$ 
-            with probability $\braket{q_0 | \phi }^2$.
-        \end{postulate}
-        
-        This is only a specific case of a much more general postulate of quantum mechanics. In general, there are 
-        more types of measurements that can be made and there are systems that are not finite dimensional.  However 
-        , this restricted notion of measurement will be sufficient for the content of this thesis. A good 
-        explanation of the postulates of quantum mechanics and how they relate to quantum computing can be found in 
-        \cite{Nielsen&Chuang}.
+        This part of quantum computing can be confusing at first, since the notation constantly switches between 
+        kets and matrices.
 
         \begin{example}
-            Given a qubit $\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$, a measurement of $\phi$ in the basis $\{ 
-            \ket{0}, \ket{1}\}$ will return $\ket{0}$ with probability $ | \alpha |^2$  and $\ket{0}$ with 
-            probability
-            $ |\beta|^2 $.
+            The quantum \texttt{NOT} gate is the single qubit gate defined by
+            \begin{align*}
+                \ket{0} &\mapsto \ket{1} \\
+                \ket{1} &\mapsto \ket{0}
+            \end{align*}
+            It should be noted that it is common to refer to the quantum \texttt{NOT} gate by the letter $X$.
+
+            In standard vector notation this is
+            \begin{align*}
+                \rvec{1}{0} &\mapsto \rvec{0}{1} \\
+                \rvec{0}{1} &\mapsto \rvec{1}{0} 
+            \end{align*}
+
+            Which gives us that the quantum \texttt{NOT} gate is represented by the matrix
+            \[
+                X := \rmat{0}{1}{1}{0}
+            \]
         \end{example}
 
         
-    
-\subsection{Gates}
-
-        While measurements can be made in any orthonormal basis, it is helpful to instead to choose a fixed basis 
-        for measurement beforehand and instead allow for arbitrary change of basis operations on the state.  This 
-        fixed basis is referred to as the \emph{computational basis}.  We assume that any measurement is made in 
-        the computational basis unless explicitly noted otherwise.
-
-        The valid operations on quantum states then, are the linear maps that map one orthonormal basis to another.  
-        These are the isometries (inner-product preserving maps) of $\C^n$ which can be identified as $U(n)$, the 
-        set of $n \times n$ \emph{unitary} matrices.
-
-        \begin{definition}
-            A matrix $U$ is said to be unitary if its conjugate transpose is equal to its inverse. That is often 
-            written as $U^\dagger = U$.
-        \end{definition}
-        
-        Quantum computation is the manipulation of qubits by these unitary matrices.
-
-        \begin{definition}
-            An $n$-qubit \emph{quantum gate} is a $2^n$ by $2^n$ unitary matrix.
-        \end{definition}
-        
-
         \begin{example}
-            An important single qubit gate is the Hadamard gate defined by 
+            A very important single qubit gate is the \emph{Hadamard} gate. The Hadamard gate, denoted $H$, can be 
+            defined in terms of its action on the standard basis as
+            \begin{align*}
+                \ket{0} &\mapsto \frac{1}{\sqrt{2}}\left(\ket{0} + \ket{1}\right) \\
+                \ket{1} &\mapsto \frac{1}{\sqrt{2}}\left(\ket{0} - \ket{1}\right)
+            \end{align*}
+            These states appear frequently and so it is common to give them their own notation.
+            We define
             \[
-                H := \frac{1}{\sqrt{2}} \rmat{1}{1}{1}{-1}
-            \]
-            It has the nice property that it is it's own inverse, i.e. $H^2 = I$.
-
-            The Hadamard sends
-            \[
-                \ket{0} = \rvec{1}{0}  \longmapsto \frac{1}{\sqrt{2}}\left(\ket{0} + \ket{1}\right)  = 
-                \frac{1}{\sqrt{2}} \rvec{1}{1}
+                \ket{+} := \frac{1}{\sqrt{2}}\left(\ket{0} + \ket{1}\right)
             \]
             and
             \[
-                \ket{1} = \rvec{0}{1} \longmapsto \frac{1}{\sqrt{2}}\left( \ket{0} - \ket{1} \right) = 
-                \frac{1}{\sqrt{2}} \rvec{1}{-1}
+                \ket{-} := \frac{1}{\sqrt{2}}\left(\ket{0} - \ket{1}\right)
             \]
-            %\TODO{Unit circle diagram}
 
+            The Hadamard gate has matrix representation
+            \[
+                H := \frac{1}{\sqrt{2}} \rmat{1}{1}{1}{-1}
+            \]
         \end{example}
-        
-       %\TODO{Introduce Generators of U2?}
 
-        %\TODO{Introduce other gates that we need}
-
-        
-        \subsection{(Possibly) Relevant Theorems about Quantum Circuits}
-
-        \begin{theorem}
-            No cloning? 
-        \end{theorem}
-
-        \begin{definition}
-            idk
-        \end{definition}
-
-        \begin{theorem}
-                Measurements can be made at the end
-        \end{theorem}
-        
         
 \subsection{Quantum Circuits}
+        
+        Much like in classical computation, it is convenient to represent manipulations of qubits as circuits.
+        A \emph{quantum circuit} is made up of qubits, wires, and gates. It is perhaps easiest to define by giving 
+        examples. 
+
+        Consider the following very simple circuit
+        \[\Qcircuit @C=1.5em @R=.7em {
+                \lstick{\ket{0}} & \qw & \gate{X} & \gate{H} & \qw & \qw & \ket{-}
+        }\]
+
+        This circuit depicts a single qubit starting in state $\ket{0}$. As it travels through the wire left to 
+        right, $X$ takes it to $\ket{1}$ and then $H$ takes $\ket{1}$ to $\ket{-}$. This circuit represents the 
+        equation
+        \[
+            \ket{-} =  HX \ket{0}       
+        \]
+        Of course by associativity, we could have used a single gate $HX$.
+        
+        We allow for one special gate that is not unitary to denote measurement. The measurement gate is depicted 
+        \[
+            \Qcircuit @C=1em @R=.7em {
+               & \qw & \meter & \cw 
+       }\]
+        The two parallel lines indicate that the wire is carrying classical information.
 
 
-        Much like classical circuits, a quantum circuit is made up of wires and gates. 
+\subsection{Multiple qubits} 
+
+        Up until this point we have only considered single-qubit systems. However, computation is not very 
+        interesting if we're only restricted to a single qubit. 
+
+        Consider a string of two bits. This string has four possible values: 00, 01, 10, 11. Much like in the 
+        single bit case, while a string of two bits has four possible states, a string of two qubits has four basis 
+        states. Keeping with the analogy from before, we number these basis vectors in binary and call them $ 
+        \ket{00}, \ket{01}, \ket{10}, \ket{11}$ which represent $(1,0,0,0), (0,1,0,0), (0,0,1,0),$ and $(0,0,0,1)$ 
+        respectively.
+
+        Formally, we think of the state space of a pair of qubits as being $\C^2 \otimes \C^2$, where $\otimes$ 
+        denotes the tensor product of two vector spaces. The tensor product is a complicated construction and 
+        defining it in full generality here would take us beyond the scope of this thesis. Luckily, all of the 
+        spaces we are working with are finite and we have already chosen bases, so we don't need to worry about 
+        this. For the purposes of quantum computing the following definition is sufficient.
+
+        \begin{definition}
+            Let $V$ and $W$ be vector spaces with bases $\{v_1,...v_n\}$ and $\{w_1, ...w_m\}$ respectively.
+            Define $B$ to be the set of all formal pairs $v_i \otimes w_j$. 
+
+            The tensor product $V \otimes W$ is given by $\span B$.
+        \end{definition}
+
+        In general the state space of an $n$-qubit system is $\C^{\otimes 2n}$.
+
+
+        
+ 
+We can have circuits with multiple qubits
+
+        \[\Qcircuit @C=1em @R=.7em {
+                \lstick{\ket{0}} & \qw & \gate{H} & \qw & \qw & \ket{+}\\
+        \lstick{\ket{0}} & \gate{Z} & \gate{H} & \qw & \qw & \ket{-}
+        }\]
         
         
-        
 
-
-        \begin{example}
+        Let \begin{example}
             Deutsch-Josza
             $$
             \Qcircuit @C=1em @R=.7em {
