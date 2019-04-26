@@ -178,7 +178,7 @@
 
         The following definitions will give a complete description of a model of quantum computing. These can all 
         be derived from the postulates of quantum mechanics.
-       
+        
       \begin{definition}
             Formally, a \emph{qubit} is unit vector in $\C^2$. That is a pair of complex numbers
             \[
@@ -191,11 +191,8 @@
             We consider the state space $\C^2$ to be equipped with the standard inner-product.
         \end{definition}
         
-    
         It is very hard to picture qubits because they live on the unit sphere in $\C^2$. However, if we naively 
         think of them as vectors in $\R^2$ we can generate some limited geometric intuition. 
-        
-        
         
         \begin{figure}[ht]
             \centering
@@ -334,6 +331,8 @@
         Much like classical circuits, a quantum circuit is made up of wires and gates. 
         
         
+        
+
 
         \begin{example}
             Deutsch-Josza
@@ -347,25 +346,25 @@
 
         The Deutsch-Josza Algorithm 
     
-        \begin{example}
-            The Bernstein-Vazirani Algorithm
-
-            Let $s \in \{0, 1\}^m$ be a hidden $m$-bit binary string and let $b \in \{0, 1\}$ be a hidden bit.  
-            Given oracle access to a function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ defined by
-            $f(\vec{x}) = \vec{x} \cdot \vec{s} + b \ (\text{mod } 2)$, how many queries are required to determine 
-            the values of $\vec{s}$ and $b$?
-
-
-
-            We initialize our state to
+            \subsection{The Bernstein-Vazirani Algorithm}
             
+            \begin{problem}
+                Let $s \in \{0, 1\}^m$ be a hidden $m$-bit binary string and let $b \in \{0, 1\}$ be a hidden bit.  
+                Given oracle access to a function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ defined by
+                $f(\vec{x}) = \vec{x} \cdot \vec{s} + b \ (\text{mod } 2)$, how many queries are required to determine 
+                the values of $\vec{s}$ and $b$?
+            \end{problem}
 
-
+            \textbf{The Bernstein Vazirani Algorithm}
 
             
+            Define a circuit with state space $\C^{\otimes 2n} \otimes \C^2$. We initialize the system by setting 
+            the first $n$ qubits to $\ket{1}$ and the response qubit to $\ket{0}$.
 
+            The key to this problem will be to utilize a technique sometimes known as the \emph{phase-kickback 
+            trick}. 
             
-
+            
             \[
                 \Qcircuit @C=1em @R=1em {
                \lstick{\ket{1}} & \qw &
@@ -398,7 +397,6 @@
                && 0 &  &  & 1 &  &  &2  & &
             }
            \]
-     \end{example}    
            
 
 
