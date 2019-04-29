@@ -1,0 +1,84 @@
+
+
+\chapter{Constructions of the Quantum Base Size}
+
+
+
+
+
+\section{Character Table of the Dihedral Group}
+
+
+The \emph{dihedral group} of order $2n$ is given by
+\[
+    D_{2n} := \langle a,b \mid a^n = b^2 = 1,\ bab = a^{-1} \rangle
+\]
+It occurs naturally as the planar symmetries of the $n$-gon. For this reason, elements of the form $a^i$ are often 
+referred to as rotations and elements of the form $a^ib$ are referred to as reflections.
+
+
+\subsection{Conjugacy Classes of $D_{2n}$}
+
+Another writeup of this can be found in chapter 12 of \cite{James&Liebeck}
+The conjugacy classes will be slightly different if $n$ is even or odd. We first give the case for $n$ even. 
+
+Suppose $n = 2k$ (we are considering the Dihedral group of order $4k$)
+
+The center of $D_8$ is given by
+\[
+    \mathbf{Z}(D_8) = \{1, a^\}
+\]
+
+Thus $[1]$ and $[a^k]$ are both of size 1.
+
+
+Let $a^i$ be a rotation. Then $ba^ib^{-1} = a^{-1}$
+
+
+
+\subsection{Irreducible Characters of $D_8$}
+
+Again, this will be different depending on whether $n$ is even or odd. 
+
+First we give the even case, for $D_{4k}$.
+
+\subsubsection{Linear Characters}
+The linear characters are the homomorphisms $\chi : D_8 \rightarrow \C^\times$. Since any group homomorphism is 
+determined by its action on the generators, this is routine to check. Since $b^2 = 1$, we must have $\varphi(b)^2 = 
+1$. Hence $\varphi(b) = 1$ or $\varphi(b) = -1$ 
+
+Similarly, $\varphi(a) = \pm 1$ \TODO{Expand this}
+
+
+
+The linear characters are precisely the homomorphisms $\lambda : D_{2n} \rightarrow \C^\times$. We can compute all 
+such homomorphisms by looking at how they act on the generators. 
+
+Let $\lambda : D_{2n} \rightarrow \C^\times$ be a homomorphism. Since $b^2 = 1$ we must have $\lambda(b)^2 = 1$, 
+hence the only possible values for $\lambda(b)$ are $1$ and $-1$. Since we have the relation $abab = 1$, then $1 = 
+\lambda(abab) = \lambda(a)\lambda(b)\lambda(a)\lambda(b) = \lambda(a)^2$. Thus $\lambda(a)$ must also be either $1$ 
+or $-1$.
+
+
+The degree 2 irreducible representations of $D_{2n}$ are $\rho_j$ given by
+\[
+    a \mapsto \rmat{\zeta_n^j}{0}{0}{\zeta_n^{-j}}, \quad \ \ b \mapsto \rmat{0}{1}{1}{0}
+\]
+and thus the irreducible characters of degree 2 are given by
+\begin{align*}
+    &\chi_j(a^i) = \zeta_n^j + \zeta_n^{-j} \\
+    &\chi_j(a^ib) = 0
+\end{align*}
+
+\TODO{Finish this}
+
+
+\section{Quantum Base Size of the Dihedral Group}
+
+Here we compute the quantum base size for the standard action of the Dihedral group of order $2n$ on the vertices 
+of the $n$-gon.
+
+\subsubsection{Permutation Representation}
+
+
+Let $G = D_{4k}$
