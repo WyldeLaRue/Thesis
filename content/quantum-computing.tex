@@ -5,8 +5,8 @@
 \subsection{A Motivating Example}
 
 
-        Suppose you're involved in a simple card game: A dealer places two cards\footnote{Assume that the cards are
-        either red or black, with equal probability of each occurring}  face down on a table. You win the game and a
+Suppose you're involved in a simple card game: A dealer places two cards (you can assume that the cards are
+            either red or black, with equal probability of occurring)  face down on a table. You win the game and a
         substantial prize if you can guess whether the two face-down cards share the same color. You're allowed to
         ask the dealer to reveal cards to you, but for each card revealed your potential prize gets smaller.
 
@@ -38,146 +38,153 @@
         \end{example}
 
         
-        \TODO{rewrite this example}
+        %\TODO{rewrite this example}
 
-        Phrasing problems in terms of oracles is an extremely useful tool. It provides an approach for using 
-        information theoretic arguments to provide algorithmic lower bounds. We know of very few tools to show that 
-        there is no way to possible solve something quickly.
+        %Phrasing problems in terms of oracles is an extremely useful tool. It provides an approach for using 
+        %information theoretic arguments to provide algorithmic lower bounds. We know of very few tools to show that 
+        %there is no way to possible solve something quickly.
 
-        \begin{example}
-            \TODO{Example 2?} 
-        \end{example}
+        %\begin{example}
+            %\TODO{Example 2?} 
+        %\end{example}
 
 
         
 
-\section{Classical Computing}
-        \subsection{History, Bits, Information Theory}
-        Before we delve into  \emph{quantum computation}, we first briefly give an overview of the relevant 
-        concepts from the study of \emph{classical} computation. Although we will not need information theory for 
-        any of the arguments we will make, it will be used frequently as a source of intuition.
+%\section{Classical Computing}
+        %\subsection{History, Bits, Information Theory}
+        %Before we delve into  \emph{quantum computation}, we first briefly give an overview of the relevant 
+        %concepts from the study of \emph{classical} computation. Although we will not need information theory for 
+        %any of the arguments we will make, it will be used frequently as a source of intuition.
 
-        The fundamental idea of information theory is that any the amount of information that an object contains is 
-        related to the number of possible states it could have been in. In this way, the bit, which can be in 
-        exactly one of two possible states is the most basic unit of information.
+        %The fundamental idea of information theory is that any the amount of information that an object contains is 
+        %related to the number of possible states it could have been in. In this way, the bit, which can be in 
+        %exactly one of two possible states is the most basic unit of information.
 
 
-        In the 16th and 18th centuries mathematicians and logicians worked to convert formal systems of logic into 
-        algebra and arithmetic. One of the most prominent successes of these attempts was by George Boole who 
-        managed to faithfully encode propositional logic in the language of arithmetic and algebra. The idea was to 
-        let 1 and 0 represent true and false respectively. Then, by interpreting addition and multiplication as mod 
-        2, one obtains exactly the logical operations \texttt{AND} and  \texttt{XOR}. In modern terms, we recognize 
-        this as the structure of the field $\F_2$. \TODO{remove this paragraph}
+        %In the 16th and 18th centuries mathematicians and logicians worked to convert formal systems of logic into 
+        %algebra and arithmetic. One of the most prominent successes of these attempts was by George Boole who 
+        %managed to faithfully encode propositional logic in the language of arithmetic and algebra. The idea was to 
+        %let 1 and 0 represent true and false respectively. Then, by interpreting addition and multiplication as mod 
+        %2, one obtains exactly the logical operations \texttt{AND} and  \texttt{XOR}. In modern terms, we recognize 
+        %this as the structure of the field $\F_2$. \TODO{remove this paragraph}
         
-        \TODO{\textit{These next two paragraphs just repeat the previous two paragraphs, clean this up}}
+        %\TODO{\textit{These next two paragraphs just repeat the previous two paragraphs, clean this up}}
 
-        We define a bit as an element of $\Z/2\Z = \{0,1\}$. It also can be useful to think of bits as representing 
-        a true or false value. This relationship gives a direct correspondence between classical computation and 
-        propositional logic. We write the state space of a bit as $\Z/2\Z$ to emphasize that it has a natural 
-        additive operation given by mod 2 addition.  Alluding to propositional logic, this operation is called 
-        exclusive-or, usually written as \texttt{XOR} or $\oplus$, although we will oftentimes just write $+$.
+        %We define a bit as an element of $\Z/2\Z = \{0,1\}$. It also can be useful to think of bits as representing 
+        %a true or false value. This relationship gives a direct correspondence between classical computation and 
+        %propositional logic. We write the state space of a bit as $\Z/2\Z$ to emphasize that it has a natural 
+        %additive operation given by mod 2 addition.  Alluding to propositional logic, this operation is called 
+        %exclusive-or, usually written as \texttt{XOR} or $\oplus$, although we will oftentimes just write $+$.
 
-        Of course having just one bit, is not particularly interesting. As a reference, it is common today to 
-        measure memory in terms of \emph{gigabytes}. One gigabyte is equivalent to eight billion bits. We most 
-        often work with \emph{strings of bits}. A string of 2 bits has four possible states, each described by an 
-        element of $\Z/2\Z \times \Z/2\Z$. Analogously, an $n$ bit string has state space $(\Z/2\Z)^n$. The group 
-        addition readily extends to $n$ bit strings giving it the operation that is commonly known as bitwise XOR.
+        %Of course having just one bit, is not particularly interesting. As a reference, it is common today to 
+        %measure memory in terms of \emph{gigabytes}. One gigabyte is equivalent to eight billion bits. We most 
+        %often work with \emph{strings of bits}. A string of 2 bits has four possible states, each described by an 
+        %element of $\Z/2\Z \times \Z/2\Z$. Analogously, an $n$ bit string has state space $(\Z/2\Z)^n$. The group 
+        %addition readily extends to $n$ bit strings giving it the operation that is commonly known as bitwise XOR.
 
 
-        Thus any function $f :  \{0, 1\}^m \rightarrow \{0, 1\}^n$ can be expressed by some sequence of logical 
-        operations and each sequence of logical operations corresponds to a function. 
+        %Thus any function $f :  \{0, 1\}^m \rightarrow \{0, 1\}^n$ can be expressed by some sequence of logical 
+        %operations and each sequence of logical operations corresponds to a function. 
         
-        \subsection{Circuits and Logic Gates}
+        %\subsection{Circuits and Logic Gates}
 
-        \begin{definition}
-            [Nielsen and Chuang, pg 129]
-            A \emph{circuit} is made up of wires and gates, which carry information around, and perform simple 
-            computational tasks, respectively.
-        \end{definition}
+        %\begin{definition}
+            %[Nielsen and Chuang, pg 129]
+            %A \emph{circuit} is made up of wires and gates, which carry information around, and perform simple 
+            %computational tasks, respectively.
+        %\end{definition}
 
-        \begin{definition}
-            [Nielsen and Chuang, pg 129]
-            A \emph{logic gate} is a function $f : \{0, 1\}^k \rightarrow \{0, 1\}^\ell$ from some fixed number $k$ 
-            of input bits to some fixed number $\ell$ of output bits.
-        \end{definition}
+        %\begin{definition}
+            %[Nielsen and Chuang, pg 129]
+            %A \emph{logic gate} is a function $f : \{0, 1\}^k \rightarrow \{0, 1\}^\ell$ from some fixed number $k$ 
+            %of input bits to some fixed number $\ell$ of output bits.
+        %\end{definition}
 
-        \begin{example}
-         Here is an example of a logic gate
+        %\begin{example}
+         %Here is an example of a logic gate
 
-         \begin{figure}[ht]
-            \centering
-            \placeholderfig
-            \caption{ The logic gates \texttt{AND} and \texttt{XOR} }
-        \end{figure}
-        \end{example}
+         %\begin{figure}[ht]
+            %\centering
+            %\placeholderfig
+            %\caption{ The logic gates \texttt{AND} and \texttt{XOR} }
+        %\end{figure}
+        %\end{example}
 
-        \bigskip
+        %\bigskip
 
-        \begin{example}
-            Here is an example of a circuit
+        %\begin{example}
+            %Here is an example of a circuit
 
-            \begin{figure}[ht]
-                \centering
-                    \placeholderfig
-                \caption{An example of a basic circuit, maybe make it match whatever example I use for a circuit 
-                family}
-            \end{figure}
+            %\begin{figure}[ht]
+                %\centering
+                    %\placeholderfig
+                %\caption{An example of a basic circuit, maybe make it match whatever example I use for a circuit 
+                %family}
+            %\end{figure}
 
     
-        \end{example}
+        %\end{example}
 
-        We state the following important result without proof.
-        \begin{theorem}
-            The set of gates $\{ \texttt{AND},\ \texttt{NOT},\ \texttt{OR} \}$ are \emph{universal}. That is any 
-            function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ can be represented by circuit a consisting of only 
-            \texttt{AND}, \texttt{NOT}, and \texttt{OR} gates.
-        \end{theorem}
+        %We state the following important result without proof.
+        %\begin{theorem}
+            %The set of gates $\{ \texttt{AND},\ \texttt{NOT},\ \texttt{OR} \}$ are \emph{universal}. That is any 
+            %function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ can be represented by circuit a consisting of only 
+            %\texttt{AND}, \texttt{NOT}, and \texttt{OR} gates.
+        %\end{theorem}
         
-        %{\textcolor{red}{\bfseries I don't know how to fill the rest of this circuit part in}}
+        %%{\textcolor{red}{\bfseries I don't know how to fill the rest of this circuit part in}}
         
 
-        \subsection{Circuits as Algorithms}
+        %\subsection{Circuits as Algorithms}
         
-        \begin{definition}
-            [verbatim from Sipser -- cleanup]
-                 A \emph{circuit family} is an infinite list of circuits $(C_0, C_1, C_2, ...)$, where $C_n$ has 
-                 $n$ input bits.
-        \end{definition}
+        %\begin{definition}
+            %[verbatim from Sipser -- cleanup]
+                 %A \emph{circuit family} is an infinite list of circuits $(C_0, C_1, C_2, ...)$, where $C_n$ has 
+                 %$n$ input bits.
+        %\end{definition}
 
-        \begin{definition}
-            The circuit complexity of a function is the size complexity of a minimal circuit family for that 
-            language. 
-        \end{definition}
+        %\begin{definition}
+            %The circuit complexity of a function is the size complexity of a minimal circuit family for that 
+            %language. 
+        %\end{definition}
 
-        \begin{example}
-            Example circuit family to compute something. Maybe how many input bits are odd.  
-            \begin{figure}[ht]
-                \centering
-                    \placeholderfig
-                \caption{}
-            \end{figure}
-        \end{example}
+        %\begin{example}
+            %Example circuit family to compute something. Maybe how many input bits are odd.  
+            %\begin{figure}[ht]
+                %\centering
+                    %\placeholderfig
+                %\caption{}
+            %\end{figure}
+        %\end{example}
         
-        \subsection{Introduce controlled gate notation}
+        %\subsection{Introduce controlled gate notation}
         
-        Just example of Toffoli gate or whatever
+        %Just example of Toffoli gate or whatever
 
-        \subsection{Circuits with Oracles}
+        %\subsection{Circuits with Oracles}
 
-        We can consider circuits with oracle access.  Give example from original motivating problem.
+        %We can consider circuits with oracle access.  Give example from original motivating problem.
 
 
 
 \section{Quantum Computing}
         Now we introduce the concepts required for quantum computation. In the quantum world, the \emph{qubit} is 
-        the fundamental unit of information. In the same way that we could express any classical algorithm as a 
+        the fundamental unit of information. In the same way that we can express any classical algorithm as a 
         circuit of logical operations on bits, we can express any quantum operation as a sequence of \emph{unitary} 
         operations on \emph{qubits}.
        
    \subsection{Qubits}
 
-        The following definitions will give a complete description of a model of quantum computing. These can all 
-        be derived from the postulates of quantum mechanics.
+   The following treatment of quantum computing is largely taken from \cite{Nielsen&Chuang} and \cite{QC}. The goal 
+   of this chapter is to introduce a minimal model of quantum computing that is sufficient for the tasks we will 
+   need in chapters 2 and 3. It can be hard to follow quantum computing if one is not already familiar with it as 
+   there is a lot of notation and formal definitions. Moreover, since quantum mechanics has a reputation for being 
+   unintuitive, it is often hard to feel like the intuitions one has are correct.  However, I think that quantum 
+   circuits do a very good job of capturing the intuition from classical computing and so I have tried to include 
+   many simple examples of circuits. For a very detailed and gentle introduction to the subject, I strongly 
+   recommend reading $\cite{QC}$. For a much more expansive view of the entire subject of quantum computing and 
+   topics not covered here, I would refer to Nielsen and Chuang's text \cite{Nielsen&Chuang}.  
         
         Whereas the state of a bit has \emph{two} possible values---either 0 or 1---the state of a qubit is a unit
         vector in complex vector space spanned by \emph{two} basis states. We give the following precise definition
@@ -363,51 +370,140 @@
 
         Consider a string of two bits. This string has four possible values: 00, 01, 10, 11. Much like in the 
         single bit case, while a string of two bits has four possible states, a string of two qubits has four basis 
-        states. Keeping with the analogy from before, we number these basis vectors in binary and call them $ 
-        \ket{00}, \ket{01}, \ket{10}, \ket{11}$ which represent $(1,0,0,0), (0,1,0,0), (0,0,1,0),$ and $(0,0,0,1)$ 
-        respectively.
-
-        Formally, we think of the state space of a pair of qubits as being $\C^2 \otimes \C^2$, where $\otimes$ 
-        denotes the tensor product of two vector spaces. The tensor product is a complicated construction and 
-        defining it in full generality here would take us beyond the scope of this thesis. Luckily, all of the 
-        spaces we are working with are finite and we have already chosen bases, so we don't need to worry about 
-        this. For the purposes of quantum computing the following definition is sufficient.
+        states. Keeping with the analogy to bits from before, we number these basis vectors in binary and call them 
+        $ \ket{00}, \ket{01}, \ket{10}, \ket{11}$ which represent $(1,0,0,0), (0,1,0,0), (0,0,1,0),$ and 
+        $(0,0,0,1)$ respectively.
+        
+        Formally, the state space of two qubits is given by $\C^2 \otimes \C^2$, where $\otimes$  denotes the 
+        \emph{tensor product}  of two vector spaces. If $\psi$ and $\varphi$ are two qubits with states 
+        $\ket{\psi}$ and $\ket{\varphi}$ respectively, then we denote their combined state $\ket{\psi}\ket\varphi 
+        := \ket{\psi} \otimes \ket{\varphi}$. It is also common to write $\ket{\psi\varphi}$.
 
         \begin{definition}
             Let $V$ and $W$ be vector spaces with bases $\{v_1,...v_n\}$ and $\{w_1, ...w_m\}$ respectively.
-            Define $B$ to be the set of all formal pairs $v_i \otimes w_j$. 
+            Let $B$ be the set of all formal pairs $v_i \otimes w_j$ (read $v_i$ tensor $v_j$) for each $1 \leq i 
+            \leq n$ and $1 \leq j \leq m$.
 
-            The tensor product $V \otimes W$ is given by $\text{span} B$.
-        \end{definition}
-
-        In general the state space of an $n$-qubit system is $\C^{\otimes 2n}$.
-
-
+            The \emph{tensor product space} $V \otimes W$ is defined to be the vector space spanned by the basis 
+        $B$.  \end{definition}
         
- 
-We can have circuits with multiple qubits
+        The tensor product is a complicated construction and defining it in full generality here would take us 
+        beyond the scope of this thesis. Luckily, all of the spaces we are working with are finite and we have 
+        already chosen bases, so we don't need to worry about this. For the purposes of quantum computing this 
+        definition is sufficient. 
 
-        \[\Qcircuit @C=1em @R=.7em {
-                \lstick{\ket{0}} & \qw & \gate{H} & \qw & \qw & \ket{+}\\
-        \lstick{\ket{0}} & \gate{Z} & \gate{H} & \qw & \qw & \ket{-}
+        In general, the combined state space of two quantum systems is given by their tensor product. The state 
+        space of an $n$-qubit system is $\C^{2\otimes n} = \C^2 \otimes \C^2 ... \otimes \C^2$ ($n$ times). A 
+        useful way to think about this is that the tensor product combines the two states without adding any 
+        relationship between the 2 qubits.
+
+        This construction naturally allows us to extend our circuit diagrams to multiple qubits. Consider the 
+        following two qubit circuit
+            \[\Qcircuit @C=1em @R=.7em {
+                    \lstick{\ket{0}} & \qw & \gate{H} & \qw & \qw &  \\
+                    \lstick{\ket{0}} & \qw & \gate{X}  & \qw & \qw & }
+            \]
+        This circuit starts in state $\ket{00}.$ The first qubit gets mapped by the Hadamard to $\ket{+}$ and the 
+        second qubit is mapped by the $X$ gate to $\ket{1}$. Thus it returns $\ket{+}\ket{1}$. Algebraically, this 
+        expresses the equation
+        \[
+            (H \otimes X)(\ket{00}) = \ket{+}\ket{1}
+        \]
+        This example could have really just been two single qubit circuits. The two wires run entirely in parallel 
+        here. However, most quantum circuits are not like this. Most of the two qubit gates cannot be split up as a 
+        product of single qubit gates.
+
+        Consider the \texttt{Controlled-NOT} gate defined as
+        \[
+            \Qcircuit @C=1.4em @R=1.2em { \lstick{\ket{x}}  & \ctrl{1} &  \qw \quad \ \  \ \ket{x} \\
+                \lstick{\ket{y}}  & \targ{0} &  \qw \quad \quad \quad \quad \ket{x \oplus y} &
         }\]
+        It has the following action on the standard basis: If the top register is $\ket{0}$, then the bottom 
+        register is unchanged.  If the top register is a $\ket{1}$, then it acts as a not gate on the bottom 
+        register. Thus it has matrix representation \[
+            \texttt{CNOT} :=
+             \begin{bmatrix}
+                1 & 0 & 0 & 0 \\
+                0 & 1 & 0 & 0 \\
+                0 & 0 & 0 & 1 \\
+                0 & 0 & 1 & 0
+              \end{bmatrix}
+         \]
+         As an example consider the circuit
+        \[\Qcircuit @C=1.4em @R=1.2em {
+                \lstick{\ket{0}}  & \gate{H} & \ctrl{1} &  \qw \quad \ \  \ \ket{x} \\
+                \lstick{\ket{0}}  & \qw & \targ{0} &  \qw \quad \quad \quad \quad {\ket{x \oplus y}}
+        }\]
+        This circuit starts in state $\ket{00}$. The first timestep applies a Hadamard to the top wire and the 
+        identity to the bottom wire, thus it changes the state to $\ket{+}\ket{0}$. To compute the action of the 
+        \texttt{Controlled-NOT} notice that
+        \[
+            \ket{+}\ket{0} = \frac{1}{\sqrt{2}}\bigl(\ket{0} + \ket{1}\bigr)\ket{0}= 
+            \frac{1}{\sqrt{2}}\bigl(\ket{0}\ket{0}+\ket{1}\ket{0}\bigr) = 
+            \frac{1}{\sqrt{2}}\bigl(\ket{00}+\ket{10}\bigr)
+        \]
+        Thus,
+        \[
+            \texttt{CNOT} \ket{+}\ket{0} = \texttt{CNOT}\frac{1}{\sqrt{2}}\bigl(\ket{00}+\ket{10}\bigr) =
+            \frac{1}{\sqrt{2}}\bigl(\ket{00} + \ket{11}\bigr)
+        \]
+
+        Therefore this circuit sends $\ket{0}\ket{0}$ to $\frac{1}{\sqrt{2}}\bigl(\ket{00} + \ket{11}\bigr)$.
+
+
+        This state is an example of another important property of quantum systems that cannot be seen with only one 
+        qubit. It is what is referred to as an \emph{entangled state} meaning that it has no representation as the 
+        product of single qubit states.
         
+        \subsection{Quantum Oracles}
+        The majority of the problems in quantum computing will be phrased as oracle problems. The motivation for 
+        this is that oracle problems are easy to express and of importance classically, yet extend very naturally 
+        to analogous problems in the quantum setting. 
+
+        The way that we give circuits for oracle problems is by adding an extra black-box gate to our collection.  
+        The issue here is that the black-box functions in most oracle problems are not unitary and thus not 
+        realizable on a quantum computer. The way to fix this, is to encode the oracle function $f$ as a unitary 
+        matrix in a fashion similar to the \texttt{Controlled-NOT} gate.
+
+        Given a function $f : \{0, 1\}^n \rightarrow \{0, 1\}^m$, let $U_f : \C^{2 \otimes n} \bigotimes \C^{2 
+        \otimes m} \rightarrow \C^{2 \otimes n} \bigotimes \C^{2 \otimes m}$ be the unitary map defined by
+        \[
+            \ket{x}\otimes \ket{y} \mapsto \ket{x} \otimes \ket{x \oplus y}
+        \]
+        In a circuit we write this as 
+        
+        \[\Qcircuit @C=1em @R=1.3em {
+                \lstick{\ket{x}}  & \multigate{1}{U_f} & \qw & \ket{x} \\
+        \lstick{\ket{y}} & \ghost{U_f} & \qw & \quad \quad \ \quad\ket{y \oplus f(x)} }\]
+        
+        In this context, the wires labeled $\ket{x}$ and $\ket{y}$ represent the states of potentially multiple 
+        qubits and are referred to as \emph{registers}.  
+
+        \subsection{Quantum Algorithms}
+
+        We now present examples of oracle problems that have efficient quantum algorithms. 
+        
+        \subsubsection{Deutsch's Algorithm}
+        First, let's revisit the problem given in the beginning this chapter in Example 1. Recall we had the 
+        following problem:
+        
+        \begin{problem} Given oracle access to a function $f: \{a, b\} \rightarrow \{0, 1\}$. What is the minimum 
+            number of
+            queries required to determine $f(a) \oplus f(b)$ where $\oplus$ denotes addition mod 2?
+        \end{problem}
         
 
-        Let \begin{example}
-            Deutsch-Josza
-            $$
-            \Qcircuit @C=1em @R=.7em {
-                & \gate{H} & \gate{Z} & \gate{H} & \qw \\
-                & \qw & \gate{X} & \qw & \qw
-            }
-            $$
-        \end{example}
+        The following quantum circuit is known as \emph{Deutsch's Algorithm}.
 
-        The Deutsch-Josza Algorithm 
-    
-            \subsection{The Bernstein-Vazirani Algorithm}
-            
+
+        \[\Qcircuit @C=1em @R=1.3em {
+                \lstick{\ket{0}}  & \qw & \gate{H} & \multigate{1}{U_f} & \gate{H} & \qw & \meter \\
+        \lstick{\ket{0}} & \gate{X} & \gate{H} & \ghost{U_f} &  \qw & \qw &\qw  }\]
+
+        
+    \subsubsection{The Bernstein-Vazirani Algorithm}
+
+
             \begin{problem}
                 Let $s \in \{0, 1\}^m$ be a hidden $m$-bit binary string and let $b \in \{0, 1\}$ be a hidden bit.  
                 Given oracle access to a function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ defined by
@@ -415,47 +511,52 @@ We can have circuits with multiple qubits
                 the values of $\vec{s}$ and $b$?
             \end{problem}
 
-            \textbf{The Bernstein Vazirani Algorithm}
+        The trick to this problem is to utilize a technique sometimes referred to as \emph{Fourier sampling}.
 
-            
+        
+        Note that writing $\ket{+}^{\otimes n}$ in the standard basis yields
+        \[
+            \ket{+}^{\otimes n} = \frac{1}{\sqrt{2^n}}\left( \ket{0} + \ket{1} \right)^{\otimes n} = 
+            \frac{1}{\sqrt{2^n}}\sum_{x\in\{0,1\}^n} \ket{x}
+        \]
+        Where $\{0,1\}^n$ is the set of all $n$ length binary strings. Thus one can think of the state 
+        $\ket{+}^{\otimes n}$ as the generalization of the $\ket{+}$ state to multiple qubits. It is an evenly 
+        weighted sum of each of the qubits corresponding to length $n$ binary strings. 
+        
+
+        
+
             Define a circuit with state space $\C^{\otimes 2n} \otimes \C^2$. We initialize the system by setting 
             the first $n$ qubits to $\ket{1}$ and the response qubit to $\ket{0}$.
-
-            The key to this problem will be to utilize a technique sometimes known as the \emph{phase-kickback 
-            trick}. 
-            
+        
+        
             
             \[
                 \Qcircuit @C=1em @R=1em {
                \lstick{\ket{1}} & \qw &
-               \qw \ar@{.}[]+<-0em,1em>;[d]+<-0em,-6.3em>&
                      \gate{H} & \qw &
-                     \qw \ar@{.}[]+<-0em,1em>;[d]+<-0em,-6.5em>&
-                    \ctrl{1} & \qw &
-                    \qw \ar@{.}[]+<-0em,1em>;[d]+<-0em,-6em>&
+                     \multigate{3}{U_f} & \qw &
                     \gate{H} & \qw &
                     \meter 
                     \\
-                \lstick{\ket{1}} & \qw &\qw &
-                    \gate{H} & \qw &\qw &
-                    \ctrl{1} & \qw &\qw &
+                \lstick{\ket{1}} & \qw &
+                    \gate{H} & \qw &
+                    \ghost{U_f} & \qw &
                     \gate{H} & \qw &
                     \meter 
                       \\
-                \lstick{\ket{1}} & \qw &\qw &
-                    \gate{H} & \qw &\qw &
-                    \ctrl{1} & \qw &\qw &
+                \lstick{\ket{1}} & \qw &
+                    \gate{H} & \qw &
+                    \ghost{U_f} & \qw &
                     \gate{H} & \qw &
                     \meter 
                       \\
-                 \frac{1}{\sqrt{2}} &  \qw &\qw &
-                     \qw &\qw &
-                     \qw &                
-                     \gate{U} & \qw &
+                    \lstick{\ket{0}} &  \qw &
+                     \qw &
+                     \qw &
+                     \ghost{U_f} &
                      \qw &  \qw &
-                     \qw \frac{1}{\sqrt{2}} \\
-               && 0 &  &  & 1 &  &  &2  & &
-            }
+                 \qw \qw \qw & \qw \qw &}
            \]
            
 
