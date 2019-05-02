@@ -241,17 +241,61 @@ The conjugacy classes of $\GL(2,q)$ can be classified into four families.
 \begin{enumerate}
     \item Scalar multiples of the identity i.e. matrices of the form
         \[
-            \rmat{a}{0}{0}{a} 
+           aI =  \rmat{a}{0}{0}{a}
         \]
-        for some $a \in \F_q$. Denote this family of matrices $aI$.
-    \item Upper Triangle 
+        for some $a \in \F_q$. Each $aI$ is in the center of $\GL(2,q)$ and so $|\cl(aI)| = 1$ for all $a \in 
+        \F_q$.
+
+    \item Upper triangle matrices. These are the matrices of the form
+    \[
+        u_a = \rmat{a}{1}{0}{a}
+    \]
+    for some $a \in F_q$. For each $a$, there are 
+    \item Diagonal matrices. 
+
+
+    \item Eigenvalue not in the field
 \end{enumerate}
 
 
+\begin{center}
+\begin{tabular}{r|cccc}
+    Family & \vphantom{\Bigg|} $aI$ & $u_a$ & $d_{a,b}$ & $v_a$  \\
+    \vphantom{\Bigg|}Representatives & $ \rmat{a}{0}{0}{a}$ & $ \rmat{a}{1}{0}{a}$ & $ \rmat{a}{0}{0}{b} $ & $ 
+    \rmat{0}{1}{-a^{q+1}}{a + a^q}$ \\
+\# Classes in Family & \vphantom{\Bigg|}$q-1$ & $q-1$ & $\frac{1}{2}(q-1)(q-2)$ & $\frac{1}{2}(q^2 -q)$ \\
+\vphantom{\Bigg|} Size of Each Class & 1 & $q^2 - 1$ & $q(q+1)$ & $q(q-1)$
+\end{tabular}
+\end{center}
 
 
 
 
+\section{Query Complexity for the General Linear Group}
+
+Let $\pi$ be the permutation character of the action of $\GL(2, q)$ on $(\F_q)^2$ by left multiplication. Consider 
+an arbitrary element $g \in GL(2,q)$. It is of the form
+\[
+    g = \rmat{a}{b}{c}{d}
+\]
+for some $a,b,c,d \in \F_q$ such that $ab \neq cd$. The action of $g$ on a vector $(x,y) \in (\F_q)^2$.
+\[
+    g\cdot(x,y) = \rmat{a}{b}{c}{d} \rvec{x}{y} = \rvec{ax + by}{cx + dy}
+\]
+
+\TODO{Don't do this, we only need to worry about the conjugacy classes}
+    
+\subsubsection{Permutation Character}
+
+
+
+
+\begin{itemize}
+    \item Permutation Character
+    \item Big Character Table
+    \item pi -1
+    \item THere's a lot more to do here.
+\end{itemize}
 
 
 
