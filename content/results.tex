@@ -282,9 +282,42 @@ for some $a,b,c,d \in \F_q$ such that $ab \neq cd$. The action of $g$ on a vecto
 \[
     g\cdot(x,y) = \rmat{a}{b}{c}{d} \rvec{x}{y} = \rvec{ax + by}{cx + dy}
 \]
+However, every matrix is conjugate to one that is upper-triangular. Thus it suffices to consider only $g$ of the 
+form
+\[
+    g = \rmat{a}{b}{0}{d}
+\]
+for some $a,b,c,d \in \F_q$ such that $ab \neq cd$. The action of $g$ on a vector $(x,y) \in (\F_q)^2$.
+\[
+    g\cdot(x,y) = \rmat{a}{b}{c}{d} \rvec{x}{y} = \rvec{ax + by}{dy}
+\]
+The only $g \in G$ that fix $v \in V$ other than $(0,0)$ are the identity
 
-\TODO{Don't do this, we only need to worry about the conjugacy classes}
-    
+
+Thus the permutation character
+\begin{center}
+\begin{tabular}{c|cccc}
+    \vphantom{\Bigg|} $g$ & $ \bmat{1}{0}{0}{1}$ & $\bmat{1}{1}{0}{1}$ &
+    $\bmat{1}{0}{0}{b}$ \\ \hline
+\vphantom{\Bigg|} $|\cl(g)|$ & $1$ & $1$ & $q-2$ \\
+\vphantom{\Bigg|} $\pi(g)$ & $q^2$ & $q$ & $q$
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{c|cccc}
+    \vphantom{\Bigg|} $g$ & $ \bmat{1}{0}{0}{1}$ & $\bmat{1}{1}{0}{1}$ &
+    $\bmat{1}{0}{0}{b}$ \\ \hline
+\vphantom{\Bigg|} $|\cl(g)|$ & $1$ & $1$ & $q-2$ \\
+\vphantom{\Bigg|} $\pi(g)$ & $q^2$ & $q$ & $q$
+\end{tabular}
+\end{center}
+
+
+
+
+
 \subsubsection{Permutation Character}
 
 
