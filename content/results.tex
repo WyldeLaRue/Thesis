@@ -2,22 +2,32 @@
 
 \chapter{Constructions of the Quantum Base Size}
 
+This chapter gives explicit computations of the \emph{quantum base size} defined in Chapter 3. We prove the number 
+of queries required for exact and bounded error learning for the dihedral groups $D_{4k}$ and the general linear 
+groups $\GL(2, q)$.
+
+We work through the example of the dihedral groups in much detail to illustrate how one might go about computing 
+these bounds for more families of groups.
+
 
 
 
 
 \section{Character Table of the Dihedral Group}
 
-
 The \emph{dihedral group} of order $2n$ is given by
 \[
     D_{2n} := \langle a,b \mid a^n = b^2 = 1,\ bab = a^{-1} \rangle
 \]
-It occurs naturally as the planar symmetries of the $n$-gon. For this reason, elements of the form $a^i$ are often 
+It arises naturally as the planar symmetries of the $n$-gon. For this reason, elements of the form $a^i$ are often 
 referred to as rotations and elements of the form $a^ib$ are referred to as reflections.
 
+The character table for the case when $n$ is even is slightly different from the case when $n$ is odd. To keep 
+things as clear as possible and to avoid too much repetition, we will do everything only for the case where $n$ is 
+even. The results for the odd case readily follow from the exact same approach, only there are fewer conjugacy 
+classes and thus fewer cases to check.
 
-\subsection{Conjugacy Classes of $D_{2n}$}
+\subsection{Conjugacy Classes of $D_{4k}$}
 
 Another writeup of this can be found in chapter 12 of \cite{James&Liebeck}
 The conjugacy classes will be slightly different if $n$ is even or odd. We first give the case for $n$ even. 
@@ -28,7 +38,6 @@ The center of $D_8$ is given by
 \[
     \mathbf{Z}(D_8) = \{1, a^\}
 \]
-
 Thus $[1]$ and $[a^k]$ are both of size 1.
 
 
@@ -43,42 +52,213 @@ Again, this will be different depending on whether $n$ is even or odd.
 First we give the even case, for $D_{4k}$.
 
 \subsubsection{Linear Characters}
-The linear characters are the homomorphisms $\chi : D_8 \rightarrow \C^\times$. Since any group homomorphism is 
-determined by its action on the generators, this is routine to check. Since $b^2 = 1$, we must have $\varphi(b)^2 = 
-1$. Hence $\varphi(b) = 1$ or $\varphi(b) = -1$ 
+The linear characters are precisely the homomorphisms $\lambda : D_{4k} \rightarrow \C^\times$. We can compute all 
+such homomorphisms by looking at how they must act on the generators. 
 
-Similarly, $\varphi(a) = \pm 1$ \TODO{Expand this}
-
-
-
-The linear characters are precisely the homomorphisms $\lambda : D_{2n} \rightarrow \C^\times$. We can compute all 
-such homomorphisms by looking at how they act on the generators. 
-
-Let $\lambda : D_{2n} \rightarrow \C^\times$ be a homomorphism. Since $b^2 = 1$ we must have $\lambda(b)^2 = 1$, 
+Let $\lambda : D_{4k} \rightarrow \C^\times$ be a homomorphism. Since $b^2 = 1$ we must have $\lambda(b)^2 = 1$, 
 hence the only possible values for $\lambda(b)$ are $1$ and $-1$. Since we have the relation $abab = 1$, then $1 = 
 \lambda(abab) = \lambda(a)\lambda(b)\lambda(a)\lambda(b) = \lambda(a)^2$. Thus $\lambda(a)$ must also be either $1$ 
-or $-1$.
+or $-1$. This leaves us with four possible choices, each of which is a linear character of $D_{4k}$
 
+The following table gives the four linear characters of $D_{4k}$
+\begin{center}
+\begin{tabular}{c|ccccc}
+    $g$ &$1$ & $a^k$ & $a^i$ & $b$ & $ab$ \\ \hline
+    $\lambda_1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+    $\lambda_2$ & $1$ & $1$ & $1$ & $-1$ & $-1$ \\
+    $\lambda_3$ & $1$ & $(-1)^k$ & $(-1)^i$ & $1$ & $-1$ \\
+    $\lambda_4$ & $1$ & $(-1)^k$ & $(-1)^i$ & $-1$ & $1$ \\
+\end{tabular}
+\end{center}
 
-The degree 2 irreducible representations of $D_{2n}$ are $\rho_j$ given by
+\subsubsection{The Other Irreducible Characters}
+Consider the family of representations $\{\rho_j\}$ given by parameter $1 \leq j \leq k-1$ defined by
 \[
-    a \mapsto \rmat{\zeta_n^j}{0}{0}{\zeta_n^{-j}}, \quad \ \ b \mapsto \rmat{0}{1}{1}{0}
+    a \mapsto \rmat{\zeta_{2z}^j}{0}{0}{\zeta_{2k}^{-j}}, \quad \ \ b \mapsto \rmat{0}{1}{1}{0}
 \]
-and thus the irreducible characters of degree 2 are given by
+
+Let $\psi_j$ denote the character of the representation $\rho_j$. Taking the trace gives us
 \begin{align*}
-    &\chi_j(a^i) = \zeta_n^j + \zeta_n^{-j} \\
-    &\chi_j(a^ib) = 0
+    &\psi_j(a^nb^m) = \begin{cases}
+        \zeta_n^j + \zeta_n^{-j}, &\text{if } b = 0 \\
+        0,                &\text{if } b =1
+                    \end{cases}
 \end{align*}
+In terms of the conjugacy classes this is
+\begin{center}
+\begin{tabular}{c|ccccc}
+    $g$ &$1$ & $a^k$ & $a^i$ & $b$ & $ab$ \\ \hline
+    $\psi_j$ & $ \ \ 2 \ \ $ & $\ 2(-1)^j\ $ & $\zeta_{2k}^{ij} + \zeta_{2k}^{-ij}$ & $\ \ 0 \ \ $ & $ \ \ 0 \ \ $
+\end{tabular}
+\end{center}
 
-\TODO{Finish this}
+In order to show $\psi_j$ is irreducible we compute $\langle \psi_j, \psi_j \rangle$.
+\begin{align*}
+    \langle \psi_j, \psi_j \rangle &= \frac{1}{|G|}\sum_{g \in G} \psi_j(g) \overline{\psi_j(g)} \\
+                           &= \frac{1}{4k}\left[2^2 + \bigl(2(-1)^j\bigr)^2 + 
+                               2\sum_{i=1}^{k-1}\left(\zeta_{2k}^{ij} + 
+                               \zeta_{2k}^{-ij}\right)\left(\overline{\zeta_{2k}^{ij} + 
+                       \zeta_{2k}^{-ij}}\right)\right] \\
+%                             
+               &= \frac{1}{4k}\left[ 4 + 4 + 2\sum_{i=1}^{k-1}\left(\zeta_{2k}^{ij} + \zeta_{2k}^{-ij}\right)^2 
+               \right] \\
+               &= \frac{1}{4k}(8 + 2(4)(k-1)) \\
+               &= 4k \end{align*}
 
+Thus by Theorem 2.7, $\psi_j$ is an irreducible character. 
+
+We have found 4 irreducible linear characters and $k-1$ irreducible characters of degree 2. We have shown $D_{4k}$ 
+has $k+3$ conjugacy classes and so this must be a complete set of characters. Hence the character table of $D_{4k}$ 
+is 
+
+\begin{center}
+\begin{tabular}{c|ccccc}
+    $g$ &$1$ & $a^k$ & $a^i$ & $b$ & $ab$ \\ \hline
+    $\lambda_1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+    $\lambda_2$ & $1$ & $1$ & $1$ & $-1$ & $-1$ \\
+    $\lambda_3$ & $1$ & $(-1)^k$ & $(-1)^i$ & $1$ & $-1$ \\
+    $\lambda_4$ & $1$ & $(-1)^k$ & $(-1)^i$ & $-1$ & $1$ \\
+    $\psi_j$ & $2$ & $2(-1)^j$ & $\zeta_{2k}^{ij} + \zeta_{2k}^{-ij}$ & $0$ & $0$
+\end{tabular}
+\end{center}
 
 \section{Quantum Base Size of the Dihedral Group}
 
 Here we compute the quantum base size for the standard action of the Dihedral group of order $2n$ on the vertices 
 of the $n$-gon.
 
-\subsubsection{Permutation Representation}
+
+We will go through the even case in detail and then summarize the results for the odd case.
 
 
-Let $G = D_{4k}$
+
+
+\subsection{Permutation Character}
+
+
+
+Let $G = D_{4k}$. Consider the natural action of $D_{4k}$ on the vertices of the $2k$-gon. We want to compute 
+$\text{Fix}(g)$ for each conjugacy class.
+
+
+Every rotation (excluding the identity) will fix no points. Similarly an odd number of rotations and then a flip 
+will never yield any fixed points.  The only elements that will fix anything will be the identity (which will fix 
+all $2k$ vertices) and the primitive reflections, which will each fix exactly the two vertices that lie in the axis 
+of reflection. Thus the permutation character $\pi(g) = \text{fix}(g)$ is given by
+\begin{center}
+\begin{tabular}{c|ccccc}
+    $g$ &$1$ & $a^k$ & $a^i$ & $b$ & $ab$ \\ \hline
+    $\pi(g)$ & $2k$ & $0$ & $0$ & $2$ & $0$ \\
+\end{tabular}
+\end{center}
+for all $1 \leq i \leq k-1$.
+
+\subsection{Queries for Exact Learning}
+
+We want to determine $\gamma(D_{4k})$. In order to do this, we look at the irreducible constituents of the tensor 
+powers of the permutation character. We need to find the smallest integer $t$ such that $\pi^t$, the $t$th tensor 
+power of pi, contains every irreducible character as a constituent. That is, the smallest $t$ such that $\langle 
+\pi^t, \chi \rangle \neq 0$ for all irreducible characters $\chi$.
+
+
+We summarize the information we have computed so far about the characters of $D_{4k}$
+
+\def\cl{\text{cl}}
+\begin{center}
+\begin{tabular}{c|ccccc}
+    $g$ &$1$ & $a^k$ & $a^i$ & $b$ & $ab$ \\ \hline
+    $|\cl(g)|$ & $1$ & $1$ & $2$ & $k$ & $k$ \\ \hline
+%
+    $\lambda_1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+    $\lambda_2$ & $1$ & $1$ & $1$ & $-1$ & $-1$ \\
+    $\lambda_3$ & $1$ & $(-1)^k$ & $(-1)^i$ & $1$ & $-1$ \\
+    $\lambda_4$ & $1$ & $(-1)^k$ & $(-1)^i$ & $-1$ & $1$ \\
+    $\psi_j$ & $2$ & $2(-1)^j$ & $\zeta_{2k}^{ij} + \zeta_{2k}^{-ij}$ & $0$ & $0$ \\ \hline
+    $\pi$ & $2k$ & $0$ & $0$ & $2$ & $0$ 
+\end{tabular}
+\end{center}
+where $\psi_j$ is a family of representations, one for each $1 \leq j \leq k-1$ and $a^i$ is a unique conjugacy 
+classes for each $1 \leq i \leq k-1$.
+
+To determine which irreducible characters are constituents of $\pi$, we compute $\langle \pi, \chi\rangle$ for each 
+irreducible $\chi$.  Since $\pi$ is nonzero only on the classes $1$ and $b$ we omit these terms.
+\begin{align*}
+    \langle \pi, \lambda_1 \rangle &= \frac{1}{|G|}\bigg( (1)(1)(2k) + (2)(1)(k) \bigg)  = \frac{1}{4k}(2k + 2k) = 
+    1 \\
+%
+    \langle \pi, \lambda_2 \rangle &= \frac{1}{|G|}\bigg( (1)(1)(2k) + (2)(-1)(k) \bigg)  = \frac{1}{4k}(2k - 2k) = 
+    0 \\
+%
+    \langle \pi, \lambda_3 \rangle &= \frac{1}{|G|}\bigg( (1)(1)(2k) + (2)(1)(k) \bigg)  = \frac{1}{4k}(2k - 2k) = 
+    1 \\
+%
+    \langle \pi, \lambda_4 \rangle &= \frac{1}{|G|}\bigg( (1)(1)(2k) + (2)(-1)(k) \bigg)  = \frac{1}{4k}(2k - 2k) = 
+    0 \\
+    \langle \pi, \psi_j \rangle &= \frac{1}{2n}(2n) = 1 
+\end{align*}
+
+Thus, the decomposition of $\pi$ into irreducibles is given by
+\[
+    \pi = \lambda_1 + \lambda_3 + \sum_{j=1}^{k-1} \psi_j
+\]
+Hence, the irreducibles $\lambda_2$ and $\lambda_4$ are not constituents of $\pi$ and so $\gamma(D_{4k})$ must be 
+greater than one. By Theorem \ref{Burnside-Brauer}, every irreducible must appear in the decomposition of $\pi^t$ 
+for some $t \leq 2$, thus we know without any further computation that $\gamma(D_{4k}) = 2$.
+
+
+
+\subsection{Queries for bounded probability of learning}
+Although this means a quantum oracle does not help you solve the problem exactly with fewer queries, it is better 
+when you allow for finding a solution with high probability.
+
+As given in chapter 3, the number of queries needed to succeed with probability greater than 2/3 is the smallest 
+positive integer $t$ such that
+\[
+    \frac{1}{|G|} \sum_{\chi \in N^{\otimes t}} \chi(e)^2  \ \geq\  \frac{2}{3}
+\]
+
+We can find this value using what we computed in section 4.2.2.  The constituent irreducibles of $\pi$ are 
+$\lambda_1, \lambda_3,$ and $\psi_j$ for each $1 \leq j \leq k-1$. These are 2 characters of degree 1 and $k-1$ 
+characters of degree 2. Thus
+\[
+    \frac{1}{|D_{4k}|} \sum_{\chi \in N^{\otimes t}} \chi(e)^2 = \frac{1}{4k}\bigl( 2(1^2) + (k-1)(2^2) \bigr) = 
+    \frac{1}{4k}(2 + 4k - 4) = 1 - \frac{1}{2k}
+\]
+
+Therefore one can succeed using only one query with probability $1 - \frac{1}{2k}$, which is bounded above 2/3 for 
+every dihedral group of order $4k$.
+
+\section{The General Linear Group GL(2,q)}
+
+Here we present the analogous results for $\GL(2, q)$, the group of $2 \times 2$ invertible matrices over the 
+finite field with $q$ elements. 
+
+
+
+\subsection{Conjugacy Classes}
+
+The conjugacy classes of $\GL(2,q)$ can be classified into four families.
+\begin{enumerate}
+    \item Scalar multiples of the identity i.e. matrices of the form
+        \[
+            \rmat{a}{0}{0}{a} 
+        \]
+        for some $a \in \F_q$. Denote this family of matrices $aI$.
+    \item Upper Triangle 
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+%# Move to chapter 3
+%For a fixed group, this process is purely mechanical. For each irreducible character $\chi$, we compute the 
+%projection of $\pi$ onto $\lambda$ by taking the inner-product $\langle \pi, \lambda \rangle$. If this 
+%inner-product is zero for any $\chi$, then it is not a constituent of $\pi$. We repeat this process for each 
+ 
+
+
