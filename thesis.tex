@@ -18,10 +18,18 @@
 \theoremstyle{definition}\newtheorem{problem}{Problem}
 \theoremstyle{plain}\newtheorem{postulate}{Postulate}
 \theoremstyle{plain}\newtheorem{theorem}{Theorem}[chapter]
+\theoremstyle{plain}\newtheorem{corollary}{Corollary}[chapter]
 \theoremstyle{plain}\newtheorem{lemma}{Lenna}[chapter]
 \theoremstyle{plain}\newtheorem{proposition}{Proposition}[chapter]
 \usetikzlibrary{arrows, shapes.gates.logic.US, calc}
 \usepackage{qcircuit}
+\def\cl{\text{cl}}
+\renewcommand{\bmat}[4]{
+    \begin{bmatrix}
+        #1 & #2 \\
+        #3 & #4
+    \end{bmatrix}
+}
 
 % Editing/Debugging
 \newcommand{\TODO}[1]{{ \color{red} \textbf{TODO}: {#1}}}
@@ -42,10 +50,10 @@
 \includeonly{
      %content/preamble,
      %content/introduction,
-     content/quantum-computing,
-%      content/representation-theory,
-%     content/symmetric-oracles,
-%     content/results,
+     %content/quantum-computing,
+    %content/representation-theory,
+     %content/symmetric-oracles,
+     content/results,
 }
 
 \listfiles
