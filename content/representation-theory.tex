@@ -20,7 +20,8 @@ instead leave the reader to refer to \cite{James&Liebeck}
 Although there are many analogues of the results given here for fields other than $\C$ and for infinite groups, we 
 will not express them in their full generality. The representations that will arise in our study of quantum oracle 
 problems will be of finite groups and over $\C$. Moreover, many proofs in representation theory are substantially 
-simpler and more elegant when the underlying field is restricted to $\C$.
+simpler and more elegant when the underlying field is restricted to $\C$ since it is algebraically closed. This 
+means that $\C$ is often the prototypical field to first study representation theory in.
 
 \section{Representations}
 
@@ -51,8 +52,8 @@ and symmetry inherent in the structure of groups, arising from conjugation.
     provides the most concrete language for working with representations.
     
     First we must define an object called the \emph{group algebra} that is naturally associated to every group.
-    \footnote{The terms \emph{group algebra} and \emph{group ring} are often used synonymously.} One can view the 
-    group algebra as an encoding of a group into the structure of polynomial arithmetic.
+    \footnote{The terms \emph{group algebra} and \emph{group ring} are often used synonymously in the literature.} 
+    One can view the group algebra as an encoding of a group into the structure of polynomial arithmetic.
 
 
 \begin{definition}
@@ -87,22 +88,33 @@ defined by $\rho(g) = \varphi(1g)$. This establishes a correspondence between re
 \section{The structure of representations}
 
 
+The Jordan canonical form is one of the most powerful results in classical linear algebra. Indeed, many 
+undergraduate linear algebra courses culminate in proving the structure theorem that every linear operator admits a 
+Jordan canonical form. \TODO{?}
+
+
+In the same way that much of linear algebra can be thought of as finding vector subspaces that are invariant under 
+the action of a linear map, we study representations by studying the subspaces that are invariant under the action 
+of the group.
 \begin{definition}
     Let $\rho$ be a representation of a group $G$ on a vector space $V$. A \emph{subrepresentation} is a vector 
     subspace $W \subset V$ that is invariant under the action of $G$. That is, for all $g\cdot w \in W$ for all $g 
-    \in G$, $v \in W$. 
-    
+    \in G$, $v \in W$.
+ 
+
     A representation is said to be irreducible if it has no nontrivial subrepresentations (the only $G$-invariant 
     subspaces of $V$ are $\{ 0 \}$ and $V$ itself).
 \end{definition}
 
 
-The next two results are fundamental to the study of representations.
+There are two major theorems in the representation theory of finite groups th
 
 
 \begin{theorem}[Maschke's Theorem]
     Let $G$ be a finite group and $V$ a representation of $G$ over $\C$. If $W$ is a subrepresentation of $V$, then 
-there is a subrepresentation $W'$ such that $V = W \oplus W'$.  \end{theorem}
+there is a subrepresentation $W'$ such that $V = W \oplus W'$. (Here and throughout this chapter, we use $\oplus$ 
+to denote the direct sum of vector spaces).
+\end{theorem}
 
 
 \begin{proof}
@@ -114,6 +126,23 @@ there is a subrepresentation $W'$ such that $V = W \oplus W'$.  \end{theorem}
     \[
         \pi_G(v) = \frac{1}{|G|}\sum_{g \in G} g \cdot \pi(v) \cdot g^{-1}
     \]
+    
+\end{proof}
+
+
+
+\begin{theorem}
+    Every representation over $\C$ decomposes into irreducible subrepresentations. i.e.
+    If $(\rho, V)$ is a representation of group $G$ over $\C$, then there exist irreducible subrepresentations 
+    $W_1, ...  W_n$ such that $V = W_1 \oplus W_2 \oplus ... \oplus W_n$.
+\end{theorem}
+
+\begin{proof}
+    If $V$ is irreducible, then we are done. Otherwise, it must have some subrepresentation $W$. By Maschke's 
+    Theorem, there is a subrepresentation $U$ such that $V = U \oplus W$. Now, if $U$ and $W$ are irreducible, we 
+    are done. Otherwise, they admit subrepresentations by Maschke's Theorem. We repeat this process inductively 
+    until each subrepresentation is irreducible. This is guaranteed to terminate in a finite number of iterations 
+    because $\dim(V)$ is finite.
 \end{proof}
 
 
@@ -122,6 +151,7 @@ there is a subrepresentation $W'$ such that $V = W \oplus W'$.  \end{theorem}
     linear transformation that commutes with the action of the group, then $\varphi$ is either an isomorphism or 
     the $0$ map.
 \end{theorem}
+
 
 %\begin{theorem}[Schur's Lemma]
     %Let $V$ and $W$ be irreducible \CG-modules.
@@ -143,10 +173,7 @@ there is a subrepresentation $W'$ such that $V = W \oplus W'$.  \end{theorem}
 \section{Character Theory}
 
 
-
-
-
-%Recall from linear algebra that the trace can be equivalently defined as the sum of the eigenvalues of a matrix. 
+%Recall from linear algebra that the trace can be equivalently defined as the sum of the eigenvalues of a matrix.  
 %This result makes it clear that the trace, and thus characters, are invariant under change of basis. This is the 
 %key part of the remarkable properties that the trace seems to have, one might think of it as, the simplest 
 %invariant of linear maps (depending on how simple you find its cousin, the determinant to be).
@@ -162,10 +189,137 @@ there is a subrepresentation $W'$ such that $V = W \oplus W'$.  \end{theorem}
 %All of this prose was just written in like 30 seconds. I have no actual idea if any of this is readable or at all 
 %true. Anyways, back to the math.
 
+\def\Tr{\text{Tr}\,}
+
+\begin{definition}
+    Let $M$ be an $n \times n$ matrix. The \emph{trace} of $M$ is defined to be the sum of the diagonal entries of 
+    $M$ i.e.
+    \[
+        \Tr(M) := \sum_{i=1}^n M_{ii}
+    \]
+    Alternatively, some authors define the trace to be the sum of the eigenvalues of $M$. As it turns out, these 
+    two values are always equivalent. This result is not at all trivial and can be seen as a consequence of the 
+    Jordan canonical form.
+\end{definition}
+
 \begin{definition}
     Let $\rho : G \rightarrow V$ be a representation. The map $\chi : G \rightarrow \C$ given by $\chi(g) = 
-    \text{Tr}\,\rho(g)$ is called the \emph{character} of $V$.
+    \text{Tr}\,\rho(g)$ is called the \emph{character} of the representation $V$.
 \end{definition}
+
+At first glance, it doesn't seem like characters should be very useful at all. A character only associates a single 
+complex number to each $g \in G$ while a representation associates an entire matrix of complex numbers. Why are we 
+throwing all of this information away?
+
+Surprisingly, the characters encode almost all of the information we need about the group. This is maybe the dream 
+of every student taking their first linear algebra course. Many students complain about having to row reduce or 
+write out determinants for $4 \times 4$ matrices, but very few complain about at being asked to add up the four 
+numbers on the diagonal.  Many of the results on characters seem too good to be true.
+
+Although it seems crazy at first to take the trace and throw everything else away, the fact that this works isn't 
+actually so surprising upon further inspection.
+
+%\begin{definition}
+    %A \emph{class function} of a group $G$ is a function $\varphi : G \rightarrow \C$ that is constant on the 
+    %conjugacy classes of $G$. As we have already seen, the characters of a group are always class functions.
+    
+    %The set of class functions on a group $G$ form a vector space under pointwise addition. This space has an 
+    %inner-product given by
+    %\[
+        %\langle \varphi, \psi \rangle := \frac{1}{|G|} \sum_{g \in G} \varphi(g)\overline{\psi(g)}
+    %\]
+%\end{definition}
+
+%The trace can be thought of in some sense as the simplest map from $\GL(n, \C) \rightarrow \C$ that is invariant 
+%under change of basis.
+
+%\begin{theorem}
+    %The characters of a group $G$ are constant on the conjugacy classes of $G$. That is, for all $g,h \in G$, 
+    %$\varphi(g) = \varphi(hgh^{-1})$
+%\end{theorem}
+
+%\begin{proof}
+    %Let $\chi$ be a character of $G$ arising from the representation $\rho$. Let $g, h \in G$. Recall from linear 
+    %algebra that the trace of a matrix is equivalent to the sum of its eigenvalues.  Thus the trace is invariant 
+    %under change of basis. Therefore
+    %\[
+        %\chi(hgh^{1}) = \Tr \rho(hgh^{-1}) = \Tr \rho(h) \rho(g)\rho(h^{-1}) = \Tr \rho(g) = \chi(g)
+    %\]
+%\end{proof}
+
+
+
+The study of linear algebra can be largely viewed as the study of invariants of linear maps. 
+\begin{definition}
+    A \emph{class function} of a group $G$ is a function $\varphi : G \rightarrow \C$ that is constant on the 
+    conjugacy classes of $G$. That is, for all $g,h \in G$, $\varphi(g) = \varphi(hgh^{-1})$.
+    
+    The set of class functions on a group $G$ form a vector space under pointwise addition. This space has an 
+    inner-product given by
+    \[
+        \langle \varphi, \psi \rangle := \frac{1}{|G|} \sum_{g \in G} \varphi(g)\overline{\psi(g)}
+    \]
+\end{definition}
+
+
+Is is often convenient to write explicit class functions as tables of the form 
+
+\begin{center}
+\begin{tabular}{c|ccccc}
+    $g$ & $g_1$ & $g_2$ & $\cdots$ & $g_n$  \\ \hline
+    $\varphi(g)$ & $\varphi(g_1)$ & $\varphi(g_2)$ & $\cdots$ & $\varphi(g_n)$
+\end{tabular}
+\end{center}
+where $g_1, ... g_n$ are representatives from each of the $n$ distinct conjugacy classes of $G$.
+
+
+
+
+\begin{theorem}
+    The characters of a group $G$ are class functions from $G \rightarrow \C$.
+\end{theorem}
+
+\begin{proof}
+    Let $\chi$ be a character of $G$ arising from the representation $\rho$. Let $g, h \in G$. Recall from linear 
+    algebra that the trace of a matrix is equivalent to the sum of its eigenvalues.  Thus the trace is invariant 
+    under change of basis. Therefore
+    \[
+        \chi(hgh^{1}) = \Tr \rho(hgh^{-1}) = \Tr \rho(h) \rho(g)\rho(h^{-1}) = \Tr \rho(g) = \chi(g)
+    \]
+\end{proof}
+
+This result reveals some of the intuition behind why the trace becomes so useful. The trace can be thought of in 
+some sense as the simplest map from $\GL(n, \C) \rightarrow \C$ that is invariant under change of basis. 
+
+\begin{example}
+    Let $\rho : D_8 \rightarrow \GL(n, \C)$ be the representation defined in example 1. The associated character 
+    $\chi_\rho$ is given by
+    \TODO{!}
+\end{example}
+
+
+\begin{proposition}
+    Let $\chi$ be a character of a group $G$. Suppose $g \in G$ and $g$ has order $m$. Then
+    \begin{enumerate}
+        \item $\chi(1) = \dim V$.
+        \item $\chi(g)$ is a sum of $m$th roots of unity.
+        \item $\chi(g^{-1}) = \overline{\chi(g)}$.
+        \item $\chi(g)$ is a real number if $g$ is conjugate  to $g^{-1}$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    By definition of a character, $\chi(g)$ is given by $\Tr \rho(g)$ for some representation $\rho : G \rightarrow 
+    \GL(n, \C)$.
+    (1) $\chi(1) = \Tr I$
+
+    \TODO{Finish or remove this}
+\end{proof}
+
+
+
+
+\subsection{Irreducible Characters}
 
 \begin{definition}
     Let $G$ be a group. We say that $\chi$ is a character of $G$ if it is the character of some representation of 
@@ -175,67 +329,13 @@ there is a subrepresentation $W'$ such that $V = W \oplus W'$.  \end{theorem}
     \emph{irreducible character of} $G$.
 \end{definition}
 
-
-
-We give a few basic properties of characters.
+The irreducible characters are particularly special class functions.
 \begin{theorem}
-    Let $\chi$ be a character of a group $G$. Suppose $g \in G$ and $g$ has order $m$. Then
-    \begin{enumerate}
-        \item $\chi(1) = \dim V$.
-        \item $\chi(g)$ is a sum of $m$th roots of unity.
-        \item $\chi(g^{-1}) = \overline{\chi(g)}$.
-        \item $\chi(g)$ is a real number if $g$ is conjugate  to $g^{-1}$
-    \end{enumerate}
+    The set of distinct irreducible characters of a group $G$ form an orthonormal basis for the space of class 
+    functions on $G$.
 \end{theorem}
 
-
-
-
-\subsection{Character Tables}
-    
-
-
-\begin{theorem}
-    The number of irreducible characters of $G$ is equal to the number of conjugacy classes of $G$.
-\end{theorem}
-
-\begin{theorem}
-    The characters of a group $G$ are constant on the conjugacy classes of $G$. That is, for all $g,h \in G$, 
-    $\varphi(g) = \varphi(h)$ if and only if $h = kgk^{-1}$ for some $k \in G$.
-\end{theorem}
-
-%I can give short proofs of these two.
-
-    Writing the information of the characters of a group into a table, gives us an extremely compact way write down 
-    the important information associated to a group.
-    
-
-\begin{definition}
-    A character table of a group $G$ is of the form 
-    
-
-\end{definition}
-
-
-
-\subsection{Properties of Irreducible Characters}
-
-\begin{definition}
-    A \emph{class function} of a group $G$ is a function $\varphi : G \rightarrow \C$ that is constant on the 
-    conjugacy classes of $G$. As we have already seen, the characters of a group are always class functions.
-    
-    The set of class functions on a group $G$ form a vector space under pointwise addition. This space has an inner 
-    product given by
-    \[
-        \langle \varphi, \psi \rangle := \frac{1}{|G|} \sum_{g \in G} \varphi(g)\overline{\psi(g)}
-    \]
-\end{definition}
-
-
-\begin{theorem}
-    The set of irreducible characters of a group $G$ form an orthonormal basis for the space of class functions on 
-    $G$.
-\end{theorem}
+Refer to Liebeck 153
 
 \begin{theorem}
     Let $V$ be a representation of a group $G$ and let $\psi$ be its associated character.  $V$ is irreducible if 
@@ -248,32 +348,84 @@ We give a few basic properties of characters.
 
 
 
+\begin{corollary}
+    The number of irreducible characters of $G$ is equal to the number of conjugacy classes of $G$.
+\end{corollary}
+\begin{proof}
+    Let $C_1, C_2, ..., C_n$ be the conjugacy classes of $G$. For each $1 \leq i \leq n$ define $\varphi : G 
+    \rightarrow \C$ by
+    \[
+        \varphi_i(G) =
+        \begin{cases}
+            1 &\text{if } g \in C_i \\
+            0 &\text{if } g \not\in C_i
+        \end{cases}
+    \]
+    The set $\{\varphi_1, ..., \varphi_n \}$ forms an orthonormal basis for the space of class functions from $G$ 
+    to $\C$. In fact, one might consider this to be the standard basis on this space. By the previous theorem, the 
+    set of irreducible characters also form a basis for the space of class functions, so they must be the same 
+    size.
+\end{proof}
+
+    
+\begin{corollary}
+    Let $\chi_1, ..., \chi_n$ be the irreducible characters of a group $G$. Let $\varphi : G \rightarrow \C$ be a 
+    class function on $G$. Then $\varphi$ decomposes as 
+    \[
+       \varphi = m_1 \chi_1 + ... + m_n \chi_n
+    \]
+    where $m_i = \langle \varphi, \chi_i \rangle$.
+\end{corollary}
+\begin{proof}
+    This follows straightforwardly from the properties of inner-products.
+\end{proof}
+
+\begin{theorem}
+    In the special case that $\varphi$ is a character, then the coefficients $m_1, ..., m_n$ in the decomposition 
+    are guaranteed to be integers.
+\end{theorem}
+
+\begin{proof}
+    Let $(\rho, V)$ be a representation of $G$ and $\chi$ the character of $\rho$. By Theorem 2.3, there exist 
+irreducibles $W_1, ..., W_n$ such that $V = W_1 \oplus \cdots W_n$. Let $\psi_1, ..., \psi_n$ denote the characters 
+of $W_1, ..., W_n$ respectively.
+
+Then 
+\end{proof}
+
+
+\begin{theorem}
+    Let $\chi_1, ..., \chi_n$ be the irreducible characters of a group $G$. Let $\varphi$ be any character of $G$.  
+    Then $\varphi$ decomposes as an integral combination of irreducible characters.  
+\end{theorem}
+
+\begin{lemma}
+    Let $(\varphi, V)$ be a representation of group $G$ with subrepresentations $U$ and $W$ such that $V = U \oplus 
+    W$. Let $\chi_V, \chi_U, \chi_W$ be the characters of $V, U,$ and $W$ respectively.
+
+    Then $\chi_V = \chi_U + \chi_W$.
+\end{lemma}
+
+
+
+    Writing the information of the characters of a group into a table, gives us an extremely compact way write down 
+    the important information associated to a group.
+
+\begin{definition}
+    A character table of a group $G$ is of the form 
+    
+
+\end{definition}
+
 
 \subsection{More Results on Characters}
 
-\begin{theorem}
-    Let $\chi_1, ..., \chi_n$ be the irreducible characters of a group $G$. If $\psi$ is any character of $G$, then 
-    \[
-        \psi = d_1\chi_1 + ... + d_k\chi_k.
-    \]
-    for some non-negative integers $d_1, ..., d_k$. Moreover, these coefficients count the number of times each 
-    irreducible character appears:
-    \[
-        d_i = \langle \psi, \chi_i \rangle
-    \]
-    and
-    \[
-        \langle \psi, \psi \rangle = \sum_{i=1}^k d_i^2
-    \]
-\end{theorem}
-
-This is redundant with orthonormal basis theorem, but I should introduce the combinatorial interpretation.
 
 \begin{definition}
     Suppose that $\psi$ is a character of $G$, and that $\chi$ is an irreducible character of $G$. We say that 
-    $\chi$ is a \emph{constituent} character of $\psi$ if $\langle \psi, \chi \rangle \neq 0$. Thus, the 
-    constituents of $\psi$ are the irreducible characters $\chi_i$ of $G$ for which the integer $d_i$ in the 
-    expression $\psi = d_1\chi_1 + ... + d_k\chi_k$ is nonzero.
+    $\chi$ is a \emph{constituent} character of $\psi$ if $\langle \psi, \chi \rangle > 0$. Thus, the constituents 
+    of $\psi$ are the irreducible characters $\chi_i$ of $G$ for which the integer $d_i$ in the expression $\psi = 
+    d_1\chi_1 + ... + d_k\chi_k$ is nonzero.
 \end{definition}
 
 
