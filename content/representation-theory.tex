@@ -21,7 +21,7 @@ Although there are many analogues of the results given here for fields other tha
 will not express them in their full generality. The representations that will arise in our study of quantum oracle 
 problems will be of finite groups and over $\C$. Moreover, many proofs in representation theory are substantially 
 simpler and more elegant when the underlying field is restricted to $\C$ since it is algebraically closed. This 
-means that $\C$ is often the prototypical field to first study representation theory in.
+means that $\C$ is often the prototypical field to study representations in.
 
 \section{Representations}
 
@@ -78,7 +78,7 @@ and symmetry inherent in the structure of groups, arising from conjugation.
 
 A representation $\rho : G \rightarrow \Aut(V)$ defines a $\C G$-module structure on $V$ by the action
 \[
-    (\alpha_1g_1 + ... \alpha_ng_n) \dot v := \alpha_1\rho(g_1)v + ...+ \alpha_n\rho(g_n)v
+    (\alpha_1g_1 + ... + \alpha_ng_n) \dot v := \alpha_1\rho(g_1)v + ...+ \alpha_n\rho(g_n)v
 \]
 Conversely, a $\C G$-module with action $\varphi : \C G \times V \rightarrow V$ determines a representation $\rho$ 
 defined by $\rho(g) = \varphi(1g)$. This establishes a correspondence between representations of $G$ and 
@@ -90,12 +90,17 @@ defined by $\rho(g) = \varphi(1g)$. This establishes a correspondence between re
 
 The Jordan canonical form is one of the most powerful results in classical linear algebra. Indeed, many 
 undergraduate linear algebra courses culminate in proving the structure theorem that every linear operator admits a 
-Jordan canonical form. \TODO{?}
+Jordan canonical form. 
 
 
-In the same way that much of linear algebra can be thought of as finding vector subspaces that are invariant under 
-the action of a linear map, we study representations by studying the subspaces that are invariant under the action 
-of the group.
+In linear algebra one studies linear maps looking at the subspaces that are invariant under them. The big result in 
+linear algebra is that of the Jordan canonical form which says that a linear map is determined entirely by its 
+invariant subspaces. The methods for studying representations should feel analogous to the methods used for 
+studying linear maps. 
+
+Instead of considering the subspaces invariant under just one linear map, we want the subspaces that are invariant 
+under the action of the entire group. 
+
 \begin{definition}
     Let $\rho$ be a representation of a group $G$ on a vector space $V$. A \emph{subrepresentation} is a vector 
     subspace $W \subset V$ that is invariant under the action of $G$. That is, for all $g\cdot w \in W$ for all $g 
@@ -105,10 +110,6 @@ of the group.
     A representation is said to be irreducible if it has no nontrivial subrepresentations (the only $G$-invariant 
     subspaces of $V$ are $\{ 0 \}$ and $V$ itself).
 \end{definition}
-
-
-There are two major theorems in the representation theory of finite groups th
-
 
 \begin{theorem}[Maschke's Theorem]
     Let $G$ be a finite group and $V$ a representation of $G$ over $\C$. If $W$ is a subrepresentation of $V$, then 
@@ -126,7 +127,6 @@ to denote the direct sum of vector spaces).
     \[
         \pi_G(v) = \frac{1}{|G|}\sum_{g \in G} g \cdot \pi(v) \cdot g^{-1}
     \]
-    
 \end{proof}
 
 
@@ -144,8 +144,13 @@ to denote the direct sum of vector spaces).
     until each subrepresentation is irreducible. This is guaranteed to terminate in a finite number of iterations 
     because $\dim(V)$ is finite.
 \end{proof}
-
-
+This result establishes the basic philosophy of representation theory: the set of irreducible representations of a 
+group tells us almost everything about the group.  Indeed, the representation theory of finite groups was one of 
+the key developments that lead to the classification of finite simple groups.  Much of the rest of this chapter 
+will be devoted to developing tools that help us find the set of irreducible representations. However, there is one 
+caveat though, we do not as of yet know this decomposition into irreducible subrepresentations is unique. With the 
+addition of a bit more machinery, we will show that this is indeed the case.
+ 
 \begin{theorem}[Schur's Lemma]
     If M and N are two finite-dimensional irreducible representations of a group $G$, and $\varphi:M \to N$ is a 
     linear transformation that commutes with the action of the group, then $\varphi$ is either an isomorphism or 
@@ -248,8 +253,8 @@ actually so surprising upon further inspection.
 %\end{proof}
 
 
+I
 
-The study of linear algebra can be largely viewed as the study of invariants of linear maps. 
 \begin{definition}
     A \emph{class function} of a group $G$ is a function $\varphi : G \rightarrow \C$ that is constant on the 
     conjugacy classes of $G$. That is, for all $g,h \in G$, $\varphi(g) = \varphi(hgh^{-1})$.
@@ -291,30 +296,30 @@ where $g_1, ... g_n$ are representatives from each of the $n$ distinct conjugacy
 This result reveals some of the intuition behind why the trace becomes so useful. The trace can be thought of in 
 some sense as the simplest map from $\GL(n, \C) \rightarrow \C$ that is invariant under change of basis. 
 
-\begin{example}
-    Let $\rho : D_8 \rightarrow \GL(n, \C)$ be the representation defined in example 1. The associated character 
-    $\chi_\rho$ is given by
-    \TODO{!}
-\end{example}
+%\begin{example}
+    %Let $\rho : D_8 \rightarrow \GL(n, \C)$ be the representation defined in example 1. The associated character 
+    %$\chi_\rho$ is given by
+    %\TODO{!}
+%\end{example}
 
 
-\begin{proposition}
-    Let $\chi$ be a character of a group $G$. Suppose $g \in G$ and $g$ has order $m$. Then
-    \begin{enumerate}
-        \item $\chi(1) = \dim V$.
-        \item $\chi(g)$ is a sum of $m$th roots of unity.
-        \item $\chi(g^{-1}) = \overline{\chi(g)}$.
-        \item $\chi(g)$ is a real number if $g$ is conjugate  to $g^{-1}$
-    \end{enumerate}
-\end{proposition}
+%\begin{proposition}
+    %Let $\chi$ be a character of a group $G$. Suppose $g \in G$ and $g$ has order $m$. Then
+    %\begin{enumerate}
+        %\item $\chi(1) = \dim V$.
+        %\item $\chi(g)$ is a sum of $m$th roots of unity.
+        %\item $\chi(g^{-1}) = \overline{\chi(g)}$.
+        %\item $\chi(g)$ is a real number if $g$ is conjugate  to $g^{-1}$
+    %\end{enumerate}
+%\end{proposition}
 
-\begin{proof}
-    By definition of a character, $\chi(g)$ is given by $\Tr \rho(g)$ for some representation $\rho : G \rightarrow 
-    \GL(n, \C)$.
-    (1) $\chi(1) = \Tr I$
+%\begin{proof}
+    %By definition of a character, $\chi(g)$ is given by $\Tr \rho(g)$ for some representation $\rho : G \rightarrow 
+    %\GL(n, \C)$.
+    %(1) $\chi(1) = \Tr I$
 
-    \TODO{Finish or remove this}
-\end{proof}
+    %\TODO{Finish or remove this}
+%\end{proof}
 
 
 
@@ -335,7 +340,7 @@ The irreducible characters are particularly special class functions.
     functions on $G$.
 \end{theorem}
 
-Refer to Liebeck 153
+
 
 \begin{theorem}
     Let $V$ be a representation of a group $G$ and let $\psi$ be its associated character.  $V$ is irreducible if 
@@ -343,8 +348,9 @@ Refer to Liebeck 153
 \end{theorem}
 
 \begin{proof}
-    For now, just refer to James and Liebeck.
+    See \cite{James&Liebeck} Chapter 14
 \end{proof}
+
 
 
 
@@ -372,32 +378,13 @@ Refer to Liebeck 153
     Let $\chi_1, ..., \chi_n$ be the irreducible characters of a group $G$. Let $\varphi : G \rightarrow \C$ be a 
     class function on $G$. Then $\varphi$ decomposes as 
     \[
-       \varphi = m_1 \chi_1 + ... + m_n \chi_n
+       \varphi = \alpha_1 \chi_1 + ... + \alpha_n \chi_n
     \]
-    where $m_i = \langle \varphi, \chi_i \rangle$.
+    where $\alpha_i = \langle \varphi, \chi_i \rangle$.
 \end{corollary}
 \begin{proof}
     This follows straightforwardly from the properties of inner-products.
 \end{proof}
-
-\begin{theorem}
-    In the special case that $\varphi$ is a character, then the coefficients $m_1, ..., m_n$ in the decomposition 
-    are guaranteed to be integers.
-\end{theorem}
-
-\begin{proof}
-    Let $(\rho, V)$ be a representation of $G$ and $\chi$ the character of $\rho$. By Theorem 2.3, there exist 
-irreducibles $W_1, ..., W_n$ such that $V = W_1 \oplus \cdots W_n$. Let $\psi_1, ..., \psi_n$ denote the characters 
-of $W_1, ..., W_n$ respectively.
-
-Then 
-\end{proof}
-
-
-\begin{theorem}
-    Let $\chi_1, ..., \chi_n$ be the irreducible characters of a group $G$. Let $\varphi$ be any character of $G$.  
-    Then $\varphi$ decomposes as an integral combination of irreducible characters.  
-\end{theorem}
 
 \begin{lemma}
     Let $(\varphi, V)$ be a representation of group $G$ with subrepresentations $U$ and $W$ such that $V = U \oplus 
@@ -406,19 +393,26 @@ Then
     Then $\chi_V = \chi_U + \chi_W$.
 \end{lemma}
 
+\begin{theorem}
+    In the special case that $\varphi$ is a character, then its decomposition into irreducibles given by
+    \[
+        \varphi = m_1\chi_1 + m_2 \chi_2 + ... + m_n \chi_n
+    \]
+    is guaranteed to have non-negative integral coefficients. That is, each $m_1,...,m_n$ must be a nonnegative 
+    integer.
+\end{theorem}
 
+\begin{proof}
+    Let $(\rho, V)$ be a representation of $G$ and $\chi$ the character of $\rho$. By Theorem 2.3, there exist 
+irreducibles $W_1, ..., W_n$ such that $V = W_1 \oplus \cdots W_n$. Let $\psi_1, ..., \psi_n$ denote the characters 
+of $W_1, ..., W_n$ respectively. Note that these characters need not necessarily be distinct.
 
-    Writing the information of the characters of a group into a table, gives us an extremely compact way write down 
-    the important information associated to a group.
+Let $\psi_{a_i}$
+By the previous lemma, $chi = \psi_1 + ... +  \psi_n$.  
 
-\begin{definition}
-    A character table of a group $G$ is of the form 
-    
+\end{proof}
 
-\end{definition}
-
-
-\subsection{More Results on Characters}
+This tells us that for any representation $(\rho, V)$, 
 
 
 \begin{definition}
@@ -427,6 +421,22 @@ Then
     of $\psi$ are the irreducible characters $\chi_i$ of $G$ for which the integer $d_i$ in the expression $\psi = 
     d_1\chi_1 + ... + d_k\chi_k$ is nonzero.
 \end{definition}
+
+
+
+    Writing the information of the characters of a group into a table, gives us an extremely compact way write down 
+    the important information associated to a group.
+
+\begin{definition}
+    A character table of a group $G$ is a table with entries 
+    
+
+
+\end{definition}
+
+
+
+
 
 
 
@@ -459,14 +469,7 @@ Then
     powers $\chi^0, \chi^1, ... , \chi^{r-1}$
 \end{theorem}
 
-\begin{proof}
-    TODO: Prove this one. The proof is not hard and it is very relevant.
-\end{proof}
 
 
 
 
-\subsection{If there is time}
-
-
-Frobenius Reciprocity and Induced Subgroups

@@ -17,7 +17,7 @@ these bounds for more families of groups.
 
 The \emph{dihedral group} of order $2n$ is given by
 \[
-    D_{2n} := \langle a,b \mid a^n = b^2 = 1,\ bab = a^{-1} \rangle
+    D_{2n} := \langle a,b \mid a^n = b^2 = 1,\ bab^{-1} = a^{-1} \rangle
 \]
 It arises naturally as the planar symmetries of the $n$-gon. For this reason, elements of the form $a^i$ are often 
 referred to as rotations and elements of the form $a^ib$ are referred to as reflections.
@@ -27,21 +27,22 @@ things as clear as possible and to avoid too much repetition, we will do everyth
 even. The results for the odd case readily follow from the exact same approach, only there are fewer conjugacy 
 classes and thus fewer cases to check.
 
-\subsection{Conjugacy Classes of $D_{4k}$}
+%\subsection{Conjugacy Classes of $D_{4k}$}
 
-Another writeup of this can be found in chapter 12 of \cite{James&Liebeck}
-The conjugacy classes will be slightly different if $n$ is even or odd. We first give the case for $n$ even. 
+%The center of $D_8$ is given by
+%\[
+    %\mathbf{Z}(D_8) = \{1, a^{2k}\}
+%\]
+%Thus $\cl(1)$ and $\cl(a^k)$ are both of size 1. From the relation we know that for each $1 \leq i \leq k-1$  that 
+%$a^i$ is conjugate to $a^{-1}$. 
 
-Suppose $n = 2k$ (we are considering the Dihedral group of order $4k$)
-
-The center of $D_8$ is given by
-\[
-    \mathbf{Z}(D_8) = \{1, a^\}
-\]
-Thus $[1]$ and $[a^k]$ are both of size 1.
+%Furthermore note the rewriting the second relation gives
+%\[
+    %ab = ba^{-1}
+%\]
+%Thus
 
 
-Let $a^i$ be a rotation. Then $ba^ib^{-1} = a^{-1}$
 
 
 
@@ -250,11 +251,17 @@ The conjugacy classes of $\GL(2,q)$ can be classified into four families.
     \[
         u_a = \rmat{a}{1}{0}{a}
     \]
-    for some $a \in F_q$. For each $a$, there are 
-    \item Diagonal matrices. 
+    for some $a \in F_q$. 
 
-
-    \item Eigenvalue not in the field
+\item Diagonal matrices.  These are of the form
+    \[
+        d_{a,b} = \rmat{a}{0}{0}{b}
+    \]
+\item Eigenvalue not in the field.
+    \[
+        \rmat{0}{1}{-a^{q+1}}{a+a^q}
+    \]
+    where $a$ is in a quadratic extension of $\F_q$ but not in $\F_q$.
 \end{enumerate}
 
 
@@ -282,28 +289,8 @@ for some $a,b,c,d \in \F_q$ such that $ab \neq cd$. The action of $g$ on a vecto
 \[
     g\cdot(x,y) = \rmat{a}{b}{c}{d} \rvec{x}{y} = \rvec{ax + by}{cx + dy}
 \]
-However, every matrix is conjugate to one that is upper-triangular. Thus it suffices to consider only $g$ of the 
-form
-\[
-    g = \rmat{a}{b}{0}{d}
-\]
-for some $a,b,c,d \in \F_q$ such that $ab \neq cd$. The action of $g$ on a vector $(x,y) \in (\F_q)^2$.
-\[
-    g\cdot(x,y) = \rmat{a}{b}{c}{d} \rvec{x}{y} = \rvec{ax + by}{dy}
-\]
-The only $g \in G$ that fix $v \in V$ other than $(0,0)$ are the identity
 
-
-Thus the permutation character
-\begin{center}
-\begin{tabular}{c|cccc}
-    \vphantom{\Bigg|} $g$ & $ \bmat{1}{0}{0}{1}$ & $\bmat{1}{1}{0}{1}$ &
-    $\bmat{1}{0}{0}{b}$ \\ \hline
-\vphantom{\Bigg|} $|\cl(g)|$ & $1$ & $1$ & $q-2$ \\
-\vphantom{\Bigg|} $\pi(g)$ & $q^2$ & $q$ & $q$
-\end{tabular}
-\end{center}
-
+Considering the action of the permutation character 
 
 \begin{center}
 \begin{tabular}{c|cccc}
@@ -315,20 +302,30 @@ Thus the permutation character
 \end{center}
 
 
+%\begin{center}
+%\begin{tabular}{c|cccc}
+    %\vphantom{\Bigg|} $g$ & $ \bmat{1}{0}{0}{1}$ & $\bmat{1}{1}{0}{1}$ &
+    %$\bmat{1}{0}{0}{b}$ \\ \hline
+%\vphantom{\Bigg|} $|\cl(g)|$ & $1$ & $1$ & $q-2$ \\
+%\vphantom{\Bigg|} $\pi(g)$ & $q^2$ & $q$ & $q$
+%\end{tabular}
+%\end{center}
 
 
 
-\subsubsection{Permutation Character}
+
+
+%\subsubsection{Permutation Character}
 
 
 
 
-\begin{itemize}
-    \item Permutation Character
-    \item Big Character Table
-    \item pi -1
-    \item THere's a lot more to do here.
-\end{itemize}
+%\begin{itemize}
+    %\item Permutation Character
+    %\item Big Character Table
+    %\item pi -1
+    %\item THere's a lot more to do here.
+%\end{itemize}
 
 
 
