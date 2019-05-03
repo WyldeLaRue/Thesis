@@ -2,7 +2,119 @@
 \chapter{Symmetric Oracle Problems}
 
 
-test
+
+In this chapter, we introduce a specific class of oracle problems in which the hidden information is sampled from a 
+group $G$. We then summarize the results of a recent paper \cite{jamie} of Pommersheim and Copeland that show the 
+optimal query complexity of such problems is determined entirely by the character theory of $G$. 
 
 
-\subsection{het}
+
+
+
+\section{Symmetric Oracle Problems}
+This follows the approach taken in \cite{jamie}.
+
+
+\subsection{Classical learning}
+
+Let $G$ be a finite group that acts on a finite set $\Omega$. Denote the action of $g \in G$ on $x \in \Omega$ as 
+$g \cdot x$. Suppose an element $g \in G$ is selected uniformly at random and hidden. A leaner is given oracle 
+access to the action of $g$ as the function $f : \Omega \rightarrow \Omega$ given by $f(x) = g \cdot x$. That is, 
+the learner can input elements of $\Omega$ as queries and see how $g$ acts on them. The learner's goal is to 
+determine $g$ in as few queries as possible.
+
+Consider the example of the action of the symmetric group $S_n$ on $\{1, ..., n\}$.
+\begin{example}
+    Suppose a permutation $\sigma$ is chosen uniformly at random from the set of permutations on $\{1, ..., n\}$ 
+    and hidden. We are given access to an oracle that takes an $x \in \{1,...,n\}$ as input and returns 
+    $\sigma(x)$. How many queries do we need to determine $\sigma$?
+\end{example}
+
+This task requires $n-1$ queries in the worst case. To see this, suppose $\sigma$ were chosen to be the identity 
+permutation.  Even after seeing that $\sigma$ fixes all but $2$ elements of $\{1,...,n\}$, we still cannot 
+distinguish whether $\sigma$ is the identity or the transposition of the last two elements.
+
+
+
+\bigskip
+
+This problem turns out historically to have been important to computational group theory and the efficient 
+implementation of permutation groups in computer algebra systems. Storing groups in memory as permutations is very 
+cumbersome and so instead one expresses the group by its action on a \emph{base}, which is defined a sequence
+\[
+    B = [\beta_1, \beta_2, ... \beta_k]
+\]
+of $k$ distinct elements for which the only $g\in G$ that fixes every $\beta_i \in B$ is the identity. The size of 
+the smallest base of a permutation group is exactly the worst-case number of queries that would be needed to 
+identify a permutation in this group with oracle access to its action. A very good resource on this is the text 
+\cite{seress} of Seress. 
+
+
+\subsection{Quantum Learning}
+
+This problem naturally extends to the quantum setting. Let $\pi : G \rightarrow \Aut(\Omega)$ an action of $G$ on a 
+set $\Omega$. Let $V$ be a vector space with orthornormal basis $\Omega$. Then the action $\pi : G \rightarrow 
+\Aut(\Omega)$ defines a permutation of basis vectors and thus linearly extends to a unitary representation 
+$\rho_\pi : G \rightarrow U(V)$. Here $U(V)$ denotes the group of unitary transformations of $V$.
+
+It is helpful to think of this representation as a \CG-module. 
+
+
+
+\subsection{Query complexity of quantum symmetric learning}
+Finding the classical query complexity of such a problem is relatively straightforward and there are many 
+well-known algorithms for determining it. However, in the quantum case, it is less obvious how to determine the 
+optimal number of queries.
+
+Theorem 4.2 of \cite{jamie} reduces this problem entirely to a problem of representation theory.
+    
+\begin{theorem}
+    Suppose $G$ is a finite group and $\pi : G \rightarrow U(V)$ is a unitary representation of $G$. Then an 
+    optimal $t$-query algorithm to solve symmetric oracle discrimination succeeds with probability
+    \[
+        P_{opt} = \frac{d_v}{|G|}
+    \]
+    where
+    \[
+        d_v = \sum_{\chi \in I(V)^{\otimes t}} \chi(e)^2
+    \]
+    where $I(V)$ denotes the set of irreducible characters of $V$.
+\end{theorem}
+
+The proof given in the paper is very detailed so we will not reproduce it here. Instead, we give a brief sketch of 
+the key ideas and then focus on giving examples and how this might be thought about as a representation theoretic 
+problem.
+
+
+Naturally, in any learning problem one could either prepare all of the questions up front and ask the same set of 
+questions regardless of what the response to the previous queries is or one could ask a question and then adapt the 
+next question based on the response to the first one. In the context of algorithms for oracle problems, we call the 
+latter approach \emph{adaptive} and the former approach \emph{non-adaptive}.
+
+
+
+We state Theorem 2.1 from the paper
+\begin{theorem}
+Suppose $(G,V,f)$ describes an instance of coset identification. Then there exists a $t$-query quantum algorithm to 
+determine $f(a)$ if and only if there exists a $t$-query nonadaptive algorithm which does the same.
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

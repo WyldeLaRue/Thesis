@@ -25,19 +25,19 @@ means that $\C$ is often the prototypical field to study representations in.
 
 \section{Representations}
 
-A representation of a group $G$ is an encoding of $G$ as a set of linear maps on some vector space $V$. When a 
-basis of $V$ is specified, this yields an explicit representation of each $g \in G$ as a matrix. Looking at the 
-possible ways of representing $G$ as a matrix group uncovers much information about the structure of $G$ that may 
-have been hidden otherwise. In particular, any encoding of $G$ into a set of matrices will be unique only up to a 
-change of basis. This exposes a deep connection between the symmetry arising in vector spaces by change of basis 
-and symmetry inherent in the structure of groups, arising from conjugation.
+Loosely speaking, a representation of a group $G$ is an encoding of $G$ as a set of linear maps on some vector 
+space $V$.  When a basis of $V$ is specified, this yields an explicit representation of each $g \in G$ as a matrix.  
+Looking at the possible ways of representing $G$ as a matrix group uncovers much information about the structure of 
+$G$ that may have been hidden otherwise. In particular, any encoding of $G$ into a set of matrices will be unique 
+only up to a change of basis. This exposes a connection between the symmetry arising in vector spaces by change of 
+basis and symmetry inherent in the structure of groups, arising from conjugation.
 
 
 \begin{definition}
     Let $G$ be a group and $V$ be a vector space over a field $F$. A \emph{representation} of $G$ is a homomorphism 
-    $\rho : G \rightarrow \Aut(V)$, where $\Aut(V)$ denotes the group of linear maps from $V$ to itself. Although, 
-    the representation is defined by the homomorphism $\rho$, it is common instead to refer to it by the vector 
-    space it is acting on.
+    $\rho : G \rightarrow \Aut(V)$, where $\Aut(V)$ denotes the group of invertible linear maps from $V$ to itself.  
+    Although, the representation is defined by the homomorphism $\rho$, it is common instead to refer to the 
+    representation by the vector space $V$ it is acting on.
     
     Equivalently, a representation can be characterized as an action of a group $G$ on a vector space $V$. In this 
     case, the action is required to be compatible with the vector space structure on $V$. That is, in addition to 
@@ -75,36 +75,42 @@ and symmetry inherent in the structure of groups, arising from conjugation.
     g_2$ in $G$. In particular, this means $\C[G]$ is a commutative ring if and only if $G$ is abelian.
 \end{definition}
 
+The connection between the group algebra and representations is made clear using the theory of modules. For a 
+comprehensive treatment of modules, refer to Dummit and Foote \cite{foote} chapter 10.
+
+    \begin{definition}
+        Let $R$ be a ring. An $R$-module is a pair $(M, \cdot)$ where $M$ is an abelian group and an action of $R$ 
+        on $M$, that is a map $R \times M \rightarrow M$ that is associative and distributes over addition in $R$.
+
+        One might think of an $R$-module as the ring analogy to a $G$-set. Although the action is in some sense the 
+        most defining part of an $R$-module, the object $M$ being acted on is referred to as the $R$-module
+     \end{definition}
 
 A representation $\rho : G \rightarrow \Aut(V)$ defines a $\C G$-module structure on $V$ by the action
 \[
-    (\alpha_1g_1 + ... + \alpha_ng_n) \dot v := \alpha_1\rho(g_1)v + ...+ \alpha_n\rho(g_n)v
+    (\alpha_1g_1 + ... + \alpha_ng_n) v := \alpha_1\rho(g_1)v + ...+ \alpha_n\rho(g_n)v
 \]
 Conversely, a $\C G$-module with action $\varphi : \C G \times V \rightarrow V$ determines a representation $\rho$ 
 defined by $\rho(g) = \varphi(1g)$. This establishes a correspondence between representations of $G$ and 
 \CG-modules.
 
 
-\section{The structure of representations}
+\section{The Structure of Representations}
 
 
-The Jordan canonical form is one of the most powerful results in classical linear algebra. Indeed, many 
-undergraduate linear algebra courses culminate in proving the structure theorem that every linear operator admits a 
-Jordan canonical form. 
 
 
 In linear algebra one studies linear maps looking at the subspaces that are invariant under them. The big result in 
-linear algebra is that of the Jordan canonical form which says that a linear map is determined entirely by its 
-invariant subspaces. The methods for studying representations should feel analogous to the methods used for 
-studying linear maps. 
+linear algebra is that a linear map is determined entirely by its invariant subspaces. The methods for studying 
+representations should feel analogous to the methods used for studying linear maps. 
 
 Instead of considering the subspaces invariant under just one linear map, we want the subspaces that are invariant 
 under the action of the entire group. 
 
 \begin{definition}
     Let $\rho$ be a representation of a group $G$ on a vector space $V$. A \emph{subrepresentation} is a vector 
-    subspace $W \subset V$ that is invariant under the action of $G$. That is, for all $g\cdot w \in W$ for all $g 
-    \in G$, $v \in W$.
+    subspace $W \subset V$ that is invariant under the action of $G$. That is, $g\cdot w \in W$ for all $g \in G$, 
+    $v \in W$.
  
 
     A representation is said to be irreducible if it has no nontrivial subrepresentations (the only $G$-invariant 
@@ -127,6 +133,11 @@ to denote the direct sum of vector spaces).
     \[
         \pi_G(v) = \frac{1}{|G|}\sum_{g \in G} g \cdot \pi(v) \cdot g^{-1}
     \]
+    Let $g \in G$ and $u \in \ker \pi_G$.
+    \[
+        g \cdot u =
+    \]
+    \TODO{!}
 \end{proof}
 
 
@@ -203,8 +214,7 @@ addition of a bit more machinery, we will show that this is indeed the case.
         \Tr(M) := \sum_{i=1}^n M_{ii}
     \]
     Alternatively, some authors define the trace to be the sum of the eigenvalues of $M$. As it turns out, these 
-    two values are always equivalent. This result is not at all trivial and can be seen as a consequence of the 
-    Jordan canonical form.
+    two values are always equivalent. This result can be seen as a consequence of the Jordan canonical form.
 \end{definition}
 
 \begin{definition}
@@ -340,8 +350,6 @@ The irreducible characters are particularly special class functions.
     functions on $G$.
 \end{theorem}
 
-
-
 \begin{theorem}
     Let $V$ be a representation of a group $G$ and let $\psi$ be its associated character.  $V$ is irreducible if 
     and only if and only if $\langle \psi, \psi \rangle = 1$ .
@@ -399,39 +407,46 @@ The irreducible characters are particularly special class functions.
         \varphi = m_1\chi_1 + m_2 \chi_2 + ... + m_n \chi_n
     \]
     is guaranteed to have non-negative integral coefficients. That is, each $m_1,...,m_n$ must be a nonnegative 
-    integer.
+    integer. These integers count the multiplicity of the associated irreducible subrepresentations appearing in 
+    the decomposition of the associated representation of $\psi$.
 \end{theorem}
 
 \begin{proof}
     Let $(\rho, V)$ be a representation of $G$ and $\chi$ the character of $\rho$. By Theorem 2.3, there exist 
-irreducibles $W_1, ..., W_n$ such that $V = W_1 \oplus \cdots W_n$. Let $\psi_1, ..., \psi_n$ denote the characters 
-of $W_1, ..., W_n$ respectively. Note that these characters need not necessarily be distinct.
+    irreducibles $W_1, ..., W_n$ such that $V = W_1 \oplus \cdots \oplus W_n$. Let $\psi_1, ..., \psi_n$ denote the 
+    characters of $W_1, ..., W_n$ respectively. Note that these characters need not necessarily be distinct.
 
-Let $\psi_{a_i}$
-By the previous lemma, $chi = \psi_1 + ... +  \psi_n$.  
-
+Let $\psi_{k_i}$ be the set of unique characters in $\psi_1, ..., \psi_n$. This must be the set of irreducible 
+characters, therefore we know that $\chi$ decomposes as $\chi = \alpha_1\psi_{k_1} + ... + \alpha_n\psi_{k_n}$.  
+However, by the previous lemma, we also have $\chi = \psi_1 + ... +  \psi_n$. Therefore $\alpha_i$ must be exactly 
+the multiplicity that the character $\psi_{k_i}$ appears in $\psi_1, ..., \psi_m$.
 \end{proof}
 
-This tells us that for any representation $(\rho, V)$, 
 
+\begin{proposition}
+    Let $\chi$ be the character of a representation $(\rho, V)$ of group $G$. As is common in representation theory 
+    literature, let $1$ denote the identity of $G$. Then
+    \[
+        \chi(1) = \dim(V)
+    \]
+    The value of $\chi(1)$ is referred to as the degree of the $\chi$.
+\end{proposition}
+
+\begin{proof}
+    By definition $\chi(1) = \Tr(\rho(1)) = \Tr(I_V) =  \dim(V)$.
+\end{proof}
 
 \begin{definition}
-    Suppose that $\psi$ is a character of $G$, and that $\chi$ is an irreducible character of $G$. We say that 
-    $\chi$ is a \emph{constituent} character of $\psi$ if $\langle \psi, \chi \rangle > 0$. Thus, the constituents 
-    of $\psi$ are the irreducible characters $\chi_i$ of $G$ for which the integer $d_i$ in the expression $\psi = 
-    d_1\chi_1 + ... + d_k\chi_k$ is nonzero.
+    The characters of degree $1$ are referred to as the \emph{linear characters}. They can equivalently be thought 
+    of as the homomorphisms from $G$ into $\C\setminus \{0\}$.
 \end{definition}
 
-
-
+    
     Writing the information of the characters of a group into a table, gives us an extremely compact way write down 
     the important information associated to a group.
 
 \begin{definition}
     A character table of a group $G$ is a table with entries 
-    
-
-
 \end{definition}
 
 
@@ -444,9 +459,10 @@ This tells us that for any representation $(\rho, V)$,
 
 \subsection{Products of Characters}
 
-\begin{definition}
-    Tensor product of representations
-\end{definition}
+These results will be about the tensor product of representations. Just as in Chapter 1, giving a rigorous 
+definition of the tensor product is probably outside the scope of this thesis. A good treatment of the tensor 
+product can be found in chapter 10 of Dummit and Foote \cite{foote} and a treatment of what is relevant for 
+representation theory can be found in chapter 19 of \cite{James&Liebeck}.
 
 \begin{definition}
     Let $G$ be a group. Define a product on the space of class functions of $G$ by pointwise multiplication. i.e.
@@ -454,8 +470,13 @@ This tells us that for any representation $(\rho, V)$,
     \[
         \chi\psi(g) = \chi(g)\psi(g) \text{ for all } g \in G
     \]
+    This is sometimes referred to as the \emph{tensor product} of characters.
 \end{definition}
 
+If one uses purely character theoretic arguments, the tensor product is actually not needed. In fact, Steinberg's 
+text \cite{steinberg} proves the major results in the representation theory of finite groups without invoking the 
+tensor product. We take the same approach, however as we need to connect product characters to tensor products of 
+quantum state spaces, we will have to take the following result as given.
 
 \begin{proposition}
     Let $G$ be a group. Let $V$ and $W$ be representations of with characters $\chi$ and $\psi$ respectively. Then 
@@ -468,8 +489,4 @@ This tells us that for any representation $(\rho, V)$,
     $g$ varies over all the elements of $G$. Then every irreducible character of $G$ is a constituent of one of the 
     powers $\chi^0, \chi^1, ... , \chi^{r-1}$
 \end{theorem}
-
-
-
-
-
+\cite{James&Liebeck} chapter 19.
