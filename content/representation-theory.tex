@@ -52,21 +52,20 @@ basis and symmetry inherent in the structure of groups, arising from conjugation
     provides the most concrete language for working with representations.
     
     First we must define an object called the \emph{group algebra} that is naturally associated to every group.
-    \footnote{The terms \emph{group algebra} and \emph{group ring} are often used synonymously in the literature.} 
     One can view the group algebra as an encoding of a group into the structure of polynomial arithmetic.
 
 
 \begin{definition}
     Let $G$ be a finite group of order $n$. The \emph{group algebra} of $G$, denoted $\C[G]$ or \CG, is defined as 
-    a polynomial ring over $\C$ with one indeterminant for every $g \in G$. Thus every element of $\C[G]$ is of the 
+    the vector space of $\C$ with one basis element for every $g \in G$. Thus every element of $\C[G]$ is of the 
     form
     \[
         \alpha_1 g_1 + \alpha_2 g_2 + ... + \alpha_n g_n
     \]
     where $\alpha_1, ..., \alpha_n \in \C$ and $\{g_1, ..., g_n\} = G$.
     
-    The operations of addition, multiplication, and scalar-multiplication are inherited from the properties of 
-    polynomial rings, except we define the multiplication of monomials to follow the group structure.
+    The operations of addition, and scalar-multiplication are inherited from the properties of vector spaces.  
+    except we define the multiplication of monomials to follow the group structure.
     For any $\alpha_1, \alpha_2 \in \C$ and $g_1, g_2 \in G$ we define
     \[
         (\alpha_1g_1)(\alpha_2g_2) = (\alpha_1\alpha_2)(g_1g_2)
@@ -78,13 +77,13 @@ basis and symmetry inherent in the structure of groups, arising from conjugation
 The connection between the group algebra and representations is made clear using the theory of modules. For a 
 comprehensive treatment of modules, refer to Dummit and Foote \cite{foote} chapter 10.
 
-    \begin{definition}
-        Let $R$ be a ring. An $R$-module is a pair $(M, \cdot)$ where $M$ is an abelian group and an action of $R$ 
-        on $M$, that is a map $R \times M \rightarrow M$ that is associative and distributes over addition in $R$.
+\begin{definition}
+    Let $R$ be a ring. An $R$-module is a pair $(M, \cdot)$ where $M$ is an abelian group and an action of $R$ 
+    on $M$, that is a map $R \times M \rightarrow M$ that is associative and distributes over addition in $R$.
 
-        One might think of an $R$-module as the ring analogy to a $G$-set. Although the action is in some sense the 
-        most defining part of an $R$-module, the object $M$ being acted on is referred to as the $R$-module
-     \end{definition}
+    One might think of an $R$-module as the ring analogy to a $G$-set. Although the action is in some sense the 
+    most defining part of an $R$-module, the object $M$ being acted on is referred to as the $R$-module
+ \end{definition}
 
 A representation $\rho : G \rightarrow \Aut(V)$ defines a $\C G$-module structure on $V$ by the action
 \[
@@ -96,9 +95,6 @@ defined by $\rho(g) = \varphi(1g)$. This establishes a correspondence between re
 
 
 \section{The Structure of Representations}
-
-
-
 
 In linear algebra one studies linear maps looking at the subspaces that are invariant under them. The big result in 
 linear algebra is that a linear map is determined entirely by its invariant subspaces. The methods for studying 
@@ -131,13 +127,16 @@ to denote the direct sum of vector spaces).
 
     We construct a new function $\pi_G : V \rightarrow W$ by averaging over $G$. Define it by
     \[
-        \pi_G(v) = \frac{1}{|G|}\sum_{g \in G} g \cdot \pi(v) \cdot g^{-1}
-    \]
-    Let $g \in G$ and $u \in \ker \pi_G$.
+        \pi_G(v) = \frac{1}{|G|}\sum_{g \in G} g \cdot \pi(g \cdot v) \]
+    Now let $h \in G$ and $u \in V$.
     \[
-        g \cdot u =
+        h \cdot \pi_G(u) = \frac{1}{|G|} \sum_{g \in G} hg \cdot \pi(g \cdot v)
     \]
-    \TODO{!}
+    We can reindex our sum to get
+    \[
+        h \cdot \pi_G (u) = \frac{1}{|H|} \sum_{g \in G} g \cdot \pi(h^{-1}g \cdot v)
+    \]
+    
 \end{proof}
 
 
@@ -162,13 +161,15 @@ will be devoted to developing tools that help us find the set of irreducible rep
 caveat though, we do not as of yet know this decomposition into irreducible subrepresentations is unique. With the 
 addition of a bit more machinery, we will show that this is indeed the case.
  
-\begin{theorem}[Schur's Lemma]
-    If M and N are two finite-dimensional irreducible representations of a group $G$, and $\varphi:M \to N$ is a 
-    linear transformation that commutes with the action of the group, then $\varphi$ is either an isomorphism or 
-    the $0$ map.
-\end{theorem}
+%\begin{theorem}[Schur's Lemma]
+    %If M and N are two finite-dimensional irreducible representations of a group $G$, and $\varphi:M \to N$ is a 
+    %linear transformation that commutes with the action of the group, then $\varphi$ is either an isomorphism or 
+    %the $0$ map.
+%\end{theorem}
 
-
+%\begin{proof}
+    %See \cite{steinberg} chapter 4.
+%\end{proof}
 %\begin{theorem}[Schur's Lemma]
     %Let $V$ and $W$ be irreducible \CG-modules.
 
@@ -422,7 +423,6 @@ However, by the previous lemma, we also have $\chi = \psi_1 + ... +  \psi_n$. Th
 the multiplicity that the character $\psi_{k_i}$ appears in $\psi_1, ..., \psi_m$.
 \end{proof}
 
-
 \begin{proposition}
     Let $\chi$ be the character of a representation $(\rho, V)$ of group $G$. As is common in representation theory 
     literature, let $1$ denote the identity of $G$. Then
@@ -436,6 +436,14 @@ the multiplicity that the character $\psi_{k_i}$ appears in $\psi_1, ..., \psi_m
     By definition $\chi(1) = \Tr(\rho(1)) = \Tr(I_V) =  \dim(V)$.
 \end{proof}
 
+\begin{theorem}
+    Let $\chi_1, ... ,\chi_n$ be the irreducible characters of $G$. Then
+
+    \[
+        |G| = \chi_1(1)^2 + ... + \chi_n(n)^2
+    \]
+\end{theorem}
+
 \begin{definition}
     The characters of degree $1$ are referred to as the \emph{linear characters}. They can equivalently be thought 
     of as the homomorphisms from $G$ into $\C\setminus \{0\}$.
@@ -448,14 +456,6 @@ the multiplicity that the character $\psi_{k_i}$ appears in $\psi_1, ..., \psi_m
 \begin{definition}
     A character table of a group $G$ is a table with entries 
 \end{definition}
-
-
-
-
-
-
-
-
 
 \subsection{Products of Characters}
 
@@ -489,4 +489,5 @@ quantum state spaces, we will have to take the following result as given.
     $g$ varies over all the elements of $G$. Then every irreducible character of $G$ is a constituent of one of the 
     powers $\chi^0, \chi^1, ... , \chi^{r-1}$
 \end{theorem}
-\cite{James&Liebeck} chapter 19.
+See James and Liebeck \cite{James&Liebeck}, chapter 19.
+

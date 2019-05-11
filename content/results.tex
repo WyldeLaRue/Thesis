@@ -1,17 +1,11 @@
 
-
 \chapter{Constructions of the Quantum Base Size}
 
 This chapter gives explicit computations of the \emph{quantum base size} defined in Chapter 3. We prove the number 
-of queries required for exact and bounded error learning for the dihedral groups $D_{4k}$ and the general linear 
-groups $\GL(2, q)$.
+of queries required for exact and bounded error learning for the dihedral groups $D_{4k}$.
 
 We work through the example of the dihedral groups in much detail to illustrate how one might go about computing 
 these bounds for more families of groups.
-
-
-
-
 
 \section{Character Table of the Dihedral Group}
 
@@ -46,7 +40,7 @@ classes and thus fewer cases to check.
 
 
 
-\subsection{Irreducible Characters of $D_8$}
+\subsection{Irreducible Characters of $D_{4k}$}
 
 Again, this will be different depending on whether $n$ is even or odd. 
 
@@ -104,7 +98,7 @@ In order to show $\psi_j$ is irreducible we compute $\langle \psi_j, \psi_j \ran
                &= \frac{1}{4k}\left[ 4 + 4 + 2\sum_{i=1}^{k-1}\left(\zeta_{2k}^{ij} + \zeta_{2k}^{-ij}\right)^2 
                \right] \\
                &= \frac{1}{4k}(8 + 2(4)(k-1)) \\
-               &= 4k \end{align*}
+               &= 1 \end{align*}
 
 Thus by Theorem 2.7, $\psi_j$ is an irreducible character. 
 
@@ -127,9 +121,6 @@ is
 
 Here we compute the quantum base size for the standard action of the Dihedral group of order $2n$ on the vertices 
 of the $n$-gon.
-
-
-We will go through the even case in detail and then summarize the results for the odd case.
 
 
 
@@ -203,10 +194,8 @@ Thus, the decomposition of $\pi$ into irreducibles is given by
     \pi = \lambda_1 + \lambda_3 + \sum_{j=1}^{k-1} \psi_j
 \]
 Hence, the irreducibles $\lambda_2$ and $\lambda_4$ are not constituents of $\pi$ and so $\gamma(D_{4k})$ must be 
-greater than one. By Theorem \ref{Burnside-Brauer}, every irreducible must appear in the decomposition of $\pi^t$ 
-for some $t \leq 2$, thus we know without any further computation that $\gamma(D_{4k}) = 2$.
-
-
+greater than one. By Theorem 2.8, every irreducible must appear in the decomposition of $\pi^t$ for some $t \leq 
+2$, thus we know without any further computation that $\gamma(D_{4k}) = 2$.
 
 \subsection{Queries for bounded probability of learning}
 Although this means a quantum oracle does not help you solve the problem exactly with fewer queries, it is better 
@@ -229,78 +218,119 @@ characters of degree 2. Thus
 Therefore one can succeed using only one query with probability $1 - \frac{1}{2k}$, which is bounded above 2/3 for 
 every dihedral group of order $4k$.
 
-\section{The General Linear Group GL(2,q)}
+%\section{The General Linear Group $GL(2,q)$}
 
-Here we present the analogous results for $\GL(2, q)$, the group of $2 \times 2$ invertible matrices over the 
-finite field with $q$ elements. 
+%Here we present the analogous results for $\GL(2, q)$, the group of $2 \times 2$ invertible matrices over the 
+%finite field with $q$ elements. 
 
+%\subsection{Conjugacy Classes}
 
+%The conjugacy classes of $\GL(2,q)$ can be classified into four families.
+%\begin{enumerate}
+    %\item Scalar multiples of the identity i.e. matrices of the form
+        %\[
+           %aI =  \rmat{a}{0}{0}{a}
+        %\]
+        %for some $a \in \F_q$. Each $aI$ is in the center of $\GL(2,q)$ and so $|\cl(aI)| = 1$ for all $a \in 
+        %\F_q$.
 
-\subsection{Conjugacy Classes}
+    %\item Upper triangle matrices. These are the matrices of the form
+    %\[
+        %u_a = \rmat{a}{1}{0}{a}
+    %\]
+    %for some $a \in F_q$. 
 
-The conjugacy classes of $\GL(2,q)$ can be classified into four families.
-\begin{enumerate}
-    \item Scalar multiples of the identity i.e. matrices of the form
-        \[
-           aI =  \rmat{a}{0}{0}{a}
-        \]
-        for some $a \in \F_q$. Each $aI$ is in the center of $\GL(2,q)$ and so $|\cl(aI)| = 1$ for all $a \in 
-        \F_q$.
-
-    \item Upper triangle matrices. These are the matrices of the form
-    \[
-        u_a = \rmat{a}{1}{0}{a}
-    \]
-    for some $a \in F_q$. 
-
-\item Diagonal matrices.  These are of the form
-    \[
-        d_{a,b} = \rmat{a}{0}{0}{b}
-    \]
-\item Eigenvalue not in the field.
-    \[
-        \rmat{0}{1}{-a^{q+1}}{a+a^q}
-    \]
-    where $a$ is in a quadratic extension of $\F_q$ but not in $\F_q$.
-\end{enumerate}
+%\item Diagonal matrices.  These are of the form
+    %\[
+        %d_{a,b} = \rmat{a}{0}{0}{b}
+    %\]
+%\item Matrices with eigenvalues not in the field
+    %\[
+        %\rmat{0}{1}{-a^{q+1}}{a+a^q}
+    %\]
+    %where $a$ is in $\F_{q^2}$ but not in $\F_q$.
+%\end{enumerate}
 
 
-\begin{center}
-\begin{tabular}{r|cccc}
-    Family & \vphantom{\Bigg|} $aI$ & $u_a$ & $d_{a,b}$ & $v_a$  \\
-    \vphantom{\Bigg|}Representatives & $ \rmat{a}{0}{0}{a}$ & $ \rmat{a}{1}{0}{a}$ & $ \rmat{a}{0}{0}{b} $ & $ 
-    \rmat{0}{1}{-a^{q+1}}{a + a^q}$ \\
-\# Classes in Family & \vphantom{\Bigg|}$q-1$ & $q-1$ & $\frac{1}{2}(q-1)(q-2)$ & $\frac{1}{2}(q^2 -q)$ \\
-\vphantom{\Bigg|} Size of Each Class & 1 & $q^2 - 1$ & $q(q+1)$ & $q(q-1)$
-\end{tabular}
-\end{center}
+%\begin{center}
+%\begin{tabular}{r|cccc}
+    %Family & \vphantom{\Bigg|} $aI$ & $u_a$ & $d_{a,b}$ & $v_a$  \\
+%Parameters & \vphantom{\Bigg|} $a \in \F_q$ & $a \in \F_q$ & $a,b \in \F_q \setminus{0}, a\neq b$ & $a \in \F_q$  
+%\\
+    %\vphantom{\Bigg|}Representatives & $ \rmat{a}{0}{0}{a}$ & $ \rmat{a}{1}{0}{a}$ & $ \rmat{a}{0}{0}{b} $ & $ 
+    %\rmat{0}{1}{-a^{q+1}}{a + a^q}$ \\
+%\# Classes in Family & \vphantom{\Bigg|}$q-1$ & $q-1$ & $\frac{1}{2}(q-1)(q-2)$ & $\frac{1}{2}(q^2 -q)$ \\
+%\vphantom{\Bigg|} Size of Each Class & 1 & $q^2 - 1$ & $q(q+1)$ & $q(q-1)$
+%\end{tabular}
+%\end{center}
+
+%\subsection{Character Table}
+
+%The character table of $\GL(2,q)$ is given by
+
+%\begin{center}
+%\begin{tabular}{r|cccc}
+    %$g$ & $\vphantom{\Bigg|}$ $aI$ & $u_a$ & $d_{a,b}$ & $v_a$  \\ \hline
+    %$\lambda_i$ & \vphantom{\Bigg|} $a \in \F_q$ & $a \in \F_q$ & $a,b \in \F_q \setminus{0}, a\neq b$ & $a \in $
+    %$\psi_i$ & \vphantom{\Bigg|} $a \in \F_q$ & $a \in \F_q$ & $a,b \in \F_q \setminus{0}, a\neq b$ & $a \in $
+    %$\varphi_{i,j}$ & \vphantom{\Bigg|} $a \in \F_q$ & $a \in \F_q$ & $a,b \in \F_q \setminus{0}, a\neq b$ & $a \in 
+    %$\chi_i$ & \vphantom{\Bigg|} $a \in \F_q$ & $a \in \F_q$ & $a,b \in \F_q \setminus{0}, a\neq b$ & $a \in $
+%\# Classes in Family & \vphantom{\Bigg|}$q-1$ & $q-1$ & $\frac{1}{2}(q-1)(q-2)$ & $\frac{1}{2}(q^2 -q)$ \\
+%\vphantom{\Bigg|} Size of Each Class & 1 & $q^2 - 1$ & $q(q+1)$ & $q(q-1)$
+%\end{tabular}
+%\end{center}
 
 
+%\section{Query Complexity for the General Linear Group}
+%Classically, the query complexity is 2. Any single query will only give at best a column or equivalent amount of 
+%information.
 
+%Let $\pi$ be the permutation character of the action of $\GL(2, q)$ on $(\F_q)^2$ by left multiplication. Consider 
+%an arbitrary element $g \in GL(2,q)$. It is of the form
+%\[
+    %g = \rmat{a}{b}{c}{d}
+%\]
+%for some $a,b,c,d \in \F_q$ such that $ab \neq cd$. The action of $g$ on a vector $(x,y) \in (\F_q)^2$.
+%\[
+    %g\cdot(x,y) = \rmat{a}{b}{c}{d} \rvec{x}{y} = \rvec{ax + by}{cx + dy}
+%\]
+%Checking this action on the conjugacy classes as given before we can compute the value of the permutation character 
+%to be given by
 
-\section{Query Complexity for the General Linear Group}
+%\begin{center}
+%\begin{tabular}{c|cccc}
+    %\vphantom{\Bigg|} $g$ & $ \bmat{1}{0}{0}{1}$ & $\bmat{1}{1}{0}{1}$ &
+    %$\bmat{1}{0}{0}{b}$ & Else   \\ \hline
+    %\vphantom{\Bigg|} $|\cl(g)|$ & $1$ & $1$ & $q-2$ & \ \\
+    %\vphantom{\Bigg|} $\pi(g)$ & $q^2$ & $q$ & $q$ & $1$
+%\end{tabular}
+%\end{center}
 
-Let $\pi$ be the permutation character of the action of $\GL(2, q)$ on $(\F_q)^2$ by left multiplication. Consider 
-an arbitrary element $g \in GL(2,q)$. It is of the form
-\[
-    g = \rmat{a}{b}{c}{d}
-\]
-for some $a,b,c,d \in \F_q$ such that $ab \neq cd$. The action of $g$ on a vector $(x,y) \in (\F_q)^2$.
-\[
-    g\cdot(x,y) = \rmat{a}{b}{c}{d} \rvec{x}{y} = \rvec{ax + by}{cx + dy}
-\]
+%We can simplify the computation by noticing that $\pi -1$ is a character. In particular, it is the character 
+%arising from the same action by left multiplication but instead on $(\F_q)^2 \setminus \{(0,0\}$. It has character 
+%table given by
+%\begin{center}
+%\begin{tabular}{c|cccc}
+    %\vphantom{\Bigg|} $g$ & $ \bmat{1}{0}{0}{1}$ & $\bmat{1}{1}{0}{1}$ &
+    %$\bmat{1}{0}{0}{b}$ & Else   \\ \hline
+    %\vphantom{\Bigg|} $|\cl(g)|$ & $1$ & $1$ & $q-2$ & \ \\
+    %\vphantom{\Bigg|} $(\pi-1)$ & $q^2 - 1$ & $q -1$ & $q -1 $ & $0$
+%\end{tabular}
+%\end{center}
+%Now let $\chi$ be an irreducible character of $G$. Then 
 
-Considering the action of the permutation character 
+%\[
+    %\langle \pi, \chi \rangle = \langle \pi -1, \chi \rangle + \langle 1, \chi \rangle
+%\]
+%where 1 is the character of the trivial representation. Since $1$ is an irreducible representation $\langle 1, \chi 
+%\rangle = 0$ as long as $\chi \neq 1$. Thus it is sufficient for us to compute $\pi -1$.
 
-\begin{center}
-\begin{tabular}{c|cccc}
-    \vphantom{\Bigg|} $g$ & $ \bmat{1}{0}{0}{1}$ & $\bmat{1}{1}{0}{1}$ &
-    $\bmat{1}{0}{0}{b}$ \\ \hline
-\vphantom{\Bigg|} $|\cl(g)|$ & $1$ & $1$ & $q-2$ \\
-\vphantom{\Bigg|} $\pi(g)$ & $q^2$ & $q$ & $q$
-\end{tabular}
-\end{center}
-
+%Then we compute $\langle \pi -1, \chi \rangle$ for each representation.
+%\begin{align*}
+    %\langle \pi - 1 ,  \lambda_i \rangle = \sum  & 
+    
+    
+    %\end{align*}
 
 %\begin{center}
 %\begin{tabular}{c|cccc}

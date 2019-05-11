@@ -37,7 +37,9 @@ Suppose you're involved in a simple card game: A dealer places two cards (you ca
             queries required to determine $f(a) \oplus f(b)$ where $\oplus$ denotes addition mod 2?
         \end{example}
 
-        
+        For the reasons above, you can not do it fewer than two queries. We call the minimum number of queries you 
+        need to make in order to solve the problem the \emph{query complexity} of the problem. In this case, the 
+        query complexity is 2.
         %\TODO{rewrite this example}
 
         %Phrasing problems in terms of oracles is an extremely useful tool. It provides an approach for using 
@@ -176,15 +178,16 @@ Suppose you're involved in a simple card game: A dealer places two cards (you ca
        
    \subsection{Qubits}
 
-   The following treatment of quantum computing is largely taken from \cite{Nielsen&Chuang} and \cite{QC}. The goal 
-   of this chapter is to introduce a minimal model of quantum computing that is sufficient for the tasks we will 
-   need in chapters 2 and 3. It can be hard to follow quantum computing if one is not already familiar with it as 
-   there is a lot of notation and formal definitions. Moreover, since quantum mechanics has a reputation for being 
-   unintuitive, it is often hard to feel like the intuitions one has are correct.  However, I think that quantum 
-   circuits do a very good job of capturing the intuition from classical computing and so I have tried to include 
-   many simple examples of circuits. For a very detailed and gentle introduction to the subject, I strongly 
-   recommend reading $\cite{QC}$. For a much more expansive view of the entire subject of quantum computing and 
-   topics not covered here, I would refer to Nielsen and Chuang's text \cite{Nielsen&Chuang}.  
+   The following treatment of quantum computing is largely taken from Nielsen and Chuang \cite{Nielsen&Chuang} and 
+   Nielsen's more recent article \cite{QC}.  The goal of this chapter is to introduce a minimal model of quantum 
+   computing that is sufficient for the tasks we will need in chapters 2 and 3. It can be hard to follow quantum 
+   computing if one is not already familiar with it as there is a lot of notation and formal definitions. Moreover, 
+   since quantum mechanics has a reputation for being unintuitive, it is often hard to feel like the intuitions one 
+   has are correct.  However, I think that quantum circuits do a very good job of capturing the intuition from 
+   classical computing and so I have tried to include many simple examples of circuits. For a very detailed and 
+   gentle introduction to the subject, I strongly recommend reading the article \cite{QC}. For a much more 
+   expansive view of the entire subject of quantum computing and topics not covered here, I would refer to Nielsen 
+   and Chuang's text \cite{Nielsen&Chuang}.  
         
         Whereas the state of a bit has \emph{two} possible values---either 0 or 1---the state of a qubit is a unit
         vector in complex vector space spanned by \emph{two} basis states. We give the following precise definition
@@ -270,7 +273,7 @@ Suppose you're involved in a simple card game: A dealer places two cards (you ca
     \end{postulate}
 
     The unitary transformations on $\C^n$ are exactly the \emph{isometries} of $\C^n$, that is, the ones that 
-    preserve the inner-product. This is, perhaps not too surprising, given that preserving the metric is necessary 
+    preserve the inner product. This is, perhaps not too surprising, given that preserving the metric is necessary 
     condition to ensure that the probabilities sum to one. 
 
     \begin{definition}
@@ -393,7 +396,7 @@ Suppose you're involved in a simple card game: A dealer places two cards (you ca
         definition is sufficient. 
 
         In general, the combined state space of two quantum systems is given by their tensor product. The state 
-        space of an $n$-qubit system is $\C^{2\otimes n} = \C^2 \otimes \C^2 ... \otimes \C^2$ ($n$ times). A 
+        space of an $n$-qubit system is $(\C^2)^{\otimes n} = \C^2 \otimes \C^2 ... \otimes \C^2$ ($n$ times). A 
         useful way to think about this is that the tensor product combines the two states without adding any 
         relationship between the 2 qubits.
 
@@ -465,8 +468,8 @@ Suppose you're involved in a simple card game: A dealer places two cards (you ca
         realizable on a quantum computer. The way to fix this, is to encode the oracle function $f$ as a unitary 
         matrix in a fashion similar to the \texttt{Controlled-NOT} gate.
 
-        Given a function $f : \{0, 1\}^n \rightarrow \{0, 1\}^m$, let $U_f : \C^{2 \otimes n} \bigotimes \C^{2 
-        \otimes m} \rightarrow \C^{2 \otimes n} \bigotimes \C^{2 \otimes m}$ be the unitary map defined by
+        Given a function $f : \{0, 1\}^n \rightarrow \{0, 1\}^m$, let $U_f : (\C^2)^{\otimes n} \bigotimes (\C^2)^{ 
+        \otimes m} \rightarrow (\C^2)^{\otimes n}\bigotimes \C^{2 \otimes m}$ be the unitary map defined by
         \[
             \ket{x}\otimes \ket{y} \mapsto \ket{x} \otimes \ket{x \oplus y}
         \]
@@ -478,7 +481,7 @@ Suppose you're involved in a simple card game: A dealer places two cards (you ca
         
         In this context, the wires labeled $\ket{x}$ and $\ket{y}$ represent the states of potentially multiple 
         qubits and are referred to as \emph{registers}.  
-
+        
         \subsection{Quantum Algorithms}
 
         We now present examples of oracle problems that have efficient quantum algorithms. 
@@ -487,77 +490,104 @@ Suppose you're involved in a simple card game: A dealer places two cards (you ca
         First, let's revisit the problem given in the beginning this chapter in Example 1. Recall we had the 
         following problem:
         
-        \begin{problem} Given oracle access to a function $f: \{a, b\} \rightarrow \{0, 1\}$. What is the minimum 
+        \begin{problem} Given oracle access to a function $f: \{0,1\} \rightarrow \{0, 1\}$. What is the minimum 
             number of
-            queries required to determine $f(a) \oplus f(b)$ where $\oplus$ denotes addition mod 2?
+            queries required to determine $f(0) \oplus f(1)$ where $\oplus$ denotes addition mod 2?
         \end{problem}
         
-
-        The following quantum circuit is known as \emph{Deutsch's Algorithm}.
-
-
+        Consider the following circuit
         \[\Qcircuit @C=1em @R=1.3em {
                 \lstick{\ket{0}}  & \qw & \gate{H} & \multigate{1}{U_f} & \gate{H} & \qw & \meter \\
         \lstick{\ket{0}} & \gate{X} & \gate{H} & \ghost{U_f} &  \qw & \qw &\qw  }\]
-
         
-    \subsubsection{The Bernstein-Vazirani Algorithm}
-
-
-            \begin{problem}
-                Let $s \in \{0, 1\}^m$ be a hidden $m$-bit binary string and let $b \in \{0, 1\}$ be a hidden bit.  
-                Given oracle access to a function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ defined by
-                $f(\vec{x}) = \vec{x} \cdot \vec{s} + b \ (\text{mod } 2)$, how many queries are required to determine 
-                the values of $\vec{s}$ and $b$?
-            \end{problem}
-
-        The trick to this problem is to utilize a technique sometimes referred to as \emph{Fourier sampling}.
-
-        
-        Note that writing $\ket{+}^{\otimes n}$ in the standard basis yields
+        The circuit starts in state $\ket{00}$, then the $X$ gate on the bottom wire takes it to $\ket{01}$. The 
+        two Hadamard gates take $\ket{01}$ to $\ket{+}\ket{-}$. We rewrite this state in the standard basis
         \[
-            \ket{+}^{\otimes n} = \frac{1}{\sqrt{2^n}}\left( \ket{0} + \ket{1} \right)^{\otimes n} = 
-            \frac{1}{\sqrt{2^n}}\sum_{x\in\{0,1\}^n} \ket{x}
+            \ket{+}\ket{-} = \frac{1}{2}\bigl(\ket{0} + \ket{1}\bigr)\bigl(\ket{0} - \ket{1}\bigr) = 
+            \frac{1}{2}\bigl(\ket{00} - \ket{01} + \ket{10} - \ket{11}\bigr)
         \]
-        Where $\{0,1\}^n$ is the set of all $n$ length binary strings. Thus one can think of the state 
-        $\ket{+}^{\otimes n}$ as the generalization of the $\ket{+}$ state to multiple qubits. It is an evenly 
-        weighted sum of each of the qubits corresponding to length $n$ binary strings. 
+        \begin{align*}
+            U_f\bigl(\ket{+}\ket{-}\bigr) &= \frac{1}{2} U_f\bigl(\ket{00} - \ket{01} + \ket{10} - \ket{11}\bigr) 
+            \\
+                                          &= \frac{1}{2} \bigl( U_f\ket{00} - U_f\ket{01} + U_f\ket{10} - 
+                                          U_f\ket{11} \bigr) \\
+                                          &= \frac{1}{2}\bigl( \ket{0}\ket{0 \oplus f(1)} - \ket{0}\ket{1 \oplus 
+                                          f(0)} + \ket{1}\ket{0 \oplus f(1)} - \ket{1}\ket{1 \oplus f(1)}\bigr) \\
+        \end{align*}
+
+        Now applying the Hadamard to the top gate takes this state to
+
+        \begin{align*}
+            \frac{1}{2}\bigl( \ket{+}\ket{0 \oplus f(1)} - \ket{+}\ket{1 \oplus f(0)} + \ket{-}\ket{0 \oplus f(1)} 
+        - \ket{-}\ket{1 \oplus f(1)}\bigr)
+        \end{align*}
+       which expands to
+       \[
+           \frac{1}{4}\big[ \ket{0}\ket{0 \oplus f(1)} + \ket{1}\ket{0 \oplus f(1)} + ... - \ket{0}\ket{1 \oplus 
+           f(1)} + \ket{1}\ket{1 \oplus f(1)} \big]
+       \]
+       If $f(0) \neq f(1)$, then $\ket{0}\ket{0 \oplus f(1)} = \ket{0}\ket{1 \oplus f(1)}$ and so those will cancel 
+       in the above sum. Writing this out for all the states, one obtains that the first qubit is $\ket{1}$ if and 
+       only if $f(0) = f(1)$.
+
+        
+    %\subsubsection{The Bernstein-Vazirani Algorithm}
+
+
+            %\begin{problem}
+                %Let $s \in \{0, 1\}^m$ be a hidden $m$-bit binary string and let $b \in \{0, 1\}$ be a hidden bit.  
+                %Given oracle access to a function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ defined by
+                %$f(\vec{x}) = \vec{x} \cdot \vec{s} + b \ (\text{mod } 2)$, how many queries are required to determine 
+                %the values of $\vec{s}$ and $b$?
+            %\end{problem}
+
+        %The trick to this problem is to utilize a technique sometimes referred to as \emph{Fourier sampling}.
+
+        
+        %Note that writing $\ket{+}^{\otimes n}$ in the standard basis yields
+        %\[
+            %\ket{+}^{\otimes n} = \frac{1}{\sqrt{2^n}}\left( \ket{0} + \ket{1} \right)^{\otimes n} = 
+            %\frac{1}{\sqrt{2^n}}\sum_{x\in\{0,1\}^n} \ket{x}
+        %\]
+        %Where $\{0,1\}^n$ is the set of all $n$ length binary strings. Thus one can think of the state 
+        %$\ket{+}^{\otimes n}$ as the generalization of the $\ket{+}$ state to multiple qubits. It is an evenly 
+        %weighted sum of each of the qubits corresponding to length $n$ binary strings. 
         
 
         
 
-            Define a circuit with state space $\C^{\otimes 2n} \otimes \C^2$. We initialize the system by setting 
-            the first $n$ qubits to $\ket{1}$ and the response qubit to $\ket{0}$.
+            %Define a circuit with state space $\C^{\otimes 2n} \otimes \C^2$. We initialize the system by setting 
+            %the first $n$ qubits to $\ket{1}$ and the response qubit to $\ket{0}$.
         
         
             
-            \[
-                \Qcircuit @C=1em @R=1em {
-               \lstick{\ket{1}} & \qw &
-                     \gate{H} & \qw &
-                     \multigate{3}{U_f} & \qw &
-                    \gate{H} & \qw &
-                    \meter 
-                    \\
-                \lstick{\ket{1}} & \qw &
-                    \gate{H} & \qw &
-                    \ghost{U_f} & \qw &
-                    \gate{H} & \qw &
-                    \meter 
-                      \\
-                \lstick{\ket{1}} & \qw &
-                    \gate{H} & \qw &
-                    \ghost{U_f} & \qw &
-                    \gate{H} & \qw &
-                    \meter 
-                      \\
-                    \lstick{\ket{0}} &  \qw &
-                     \qw &
-                     \qw &
-                     \ghost{U_f} &
-                     \qw &  \qw &
-                 \qw \qw \qw & \qw \qw &}
-           \]
+            %\[
+                %\Qcircuit @C=1em @R=1em {
+               %\lstick{\ket{1}} & \qw &
+                     %\gate{H} & \qw &
+                     %\multigate{3}{U_f} & \qw &
+                    %\gate{H} & \qw &
+                    %\meter 
+                    %\\
+                %\lstick{\ket{1}} & \qw &
+                    %\gate{H} & \qw &
+                    %\ghost{U_f} & \qw &
+                    %\gate{H} & \qw &
+                    %\meter 
+                      %\\
+                %\lstick{\ket{1}} & \qw &
+                    %\gate{H} & \qw &
+                    %\ghost{U_f} & \qw &
+                    %\gate{H} & \qw &
+                    %\meter 
+                      %\\
+                    %\lstick{\ket{0}} &  \qw &
+                     %\qw &
+                     %\qw &
+                     %\ghost{U_f} &
+                     %\qw &  \qw &
+                 %\qw \qw \qw & \qw \qw &}
+           %\]
            
 
 
