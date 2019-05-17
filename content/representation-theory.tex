@@ -14,8 +14,9 @@ The purpose of this chapter will be to introduce the terminology and results fro
 will need to investigate symmetric oracle problems in chapters 3 and 4. A reader familiar with the basic results of 
 the representation theory of finite groups can skip ahead to chapter 3. 
 
-This treatment of representation theory largely follows \cite{James&Liebeck}. I have omitted many proofs here and 
-instead leave the reader to refer to \cite{James&Liebeck}
+This treatment of representation theory largely follows James and Liebeck \cite{Jamies&Liebeck}. We cannot hope to 
+give more insightful proofs than the ones found there, so we omit many proofs here and instead leave the reader to 
+refer to \cite{James&Liebeck}.
 
 Although there are many analogues of the results given here for fields other than $\C$ and for infinite groups, we 
 will not express them in their full generality. The representations that will arise in our study of quantum oracle 
@@ -51,21 +52,22 @@ basis and symmetry inherent in the structure of groups, arising from conjugation
     There is yet a third way to express the information of a representation. Although this is the most abstract, it 
     provides the most concrete language for working with representations.
     
-    First we must define an object called the \emph{group algebra} that is naturally associated to every group.
+   
     One can view the group algebra as an encoding of a group into the structure of polynomial arithmetic.
 
 
 \begin{definition}
     Let $G$ be a finite group of order $n$. The \emph{group algebra} of $G$, denoted $\C[G]$ or \CG, is defined as 
-    the vector space of $\C$ with one basis element for every $g \in G$. Thus every element of $\C[G]$ is of the 
+    the vector space over $\C$ with one basis element for every $g \in G$. Thus every element of $\C[G]$ is of the 
     form
     \[
         \alpha_1 g_1 + \alpha_2 g_2 + ... + \alpha_n g_n
     \]
     where $\alpha_1, ..., \alpha_n \in \C$ and $\{g_1, ..., g_n\} = G$.
     
-    The operations of addition, and scalar-multiplication are inherited from the properties of vector spaces.  
-    except we define the multiplication of monomials to follow the group structure.
+    The operations of addition, and scalar-multiplication are inherited from the properties of vector spaces.  In 
+    addition we define multiplication first and monomials and then extend it distributively. The multiplication of 
+    monomials is defined to follow the group structure, that is
     For any $\alpha_1, \alpha_2 \in \C$ and $g_1, g_2 \in G$ we define
     \[
         (\alpha_1g_1)(\alpha_2g_2) = (\alpha_1\alpha_2)(g_1g_2)
@@ -134,9 +136,10 @@ to denote the direct sum of vector spaces).
     \]
     We can reindex our sum to get
     \[
-        h \cdot \pi_G (u) = \frac{1}{|H|} \sum_{g \in G} g \cdot \pi(h^{-1}g \cdot v)
+        h \cdot \pi_G (u) = \frac{1}{|G|} \sum_{g \in G} g \cdot \pi(h^{-1}g \cdot v)
     \]
-    
+    Checking this shows that it is indeed fixed under the action of $h$ and so $ker \pi$ must be a 
+    subrepresentation.
 \end{proof}
 
 
@@ -264,8 +267,6 @@ actually so surprising upon further inspection.
 %\end{proof}
 
 
-I
-
 \begin{definition}
     A \emph{class function} of a group $G$ is a function $\varphi : G \rightarrow \C$ that is constant on the 
     conjugacy classes of $G$. That is, for all $g,h \in G$, $\varphi(g) = \varphi(hgh^{-1})$.
@@ -300,7 +301,7 @@ where $g_1, ... g_n$ are representatives from each of the $n$ distinct conjugacy
     algebra that the trace of a matrix is equivalent to the sum of its eigenvalues.  Thus the trace is invariant 
     under change of basis. Therefore
     \[
-        \chi(hgh^{1}) = \Tr \rho(hgh^{-1}) = \Tr \rho(h) \rho(g)\rho(h^{-1}) = \Tr \rho(g) = \chi(g)
+        \chi(hgh^{-1}) = \Tr \rho(hgh^{-1}) = \Tr \rho(h) \rho(g)\rho(h^{-1}) = \Tr \rho(g) = \chi(g)
     \]
 \end{proof}
 
@@ -350,7 +351,7 @@ The irreducible characters are particularly special class functions.
     The set of distinct irreducible characters of a group $G$ form an orthonormal basis for the space of class 
     functions on $G$.
 \end{theorem}
-
+Refer to \cite{James&Liebeck} Chapter 14
 \begin{theorem}
     Let $V$ be a representation of a group $G$ and let $\psi$ be its associated character.  $V$ is irreducible if 
     and only if and only if $\langle \psi, \psi \rangle = 1$ .
@@ -417,10 +418,10 @@ The irreducible characters are particularly special class functions.
     irreducibles $W_1, ..., W_n$ such that $V = W_1 \oplus \cdots \oplus W_n$. Let $\psi_1, ..., \psi_n$ denote the 
     characters of $W_1, ..., W_n$ respectively. Note that these characters need not necessarily be distinct.
 
-Let $\psi_{k_i}$ be the set of unique characters in $\psi_1, ..., \psi_n$. This must be the set of irreducible 
-characters, therefore we know that $\chi$ decomposes as $\chi = \alpha_1\psi_{k_1} + ... + \alpha_n\psi_{k_n}$.  
-However, by the previous lemma, we also have $\chi = \psi_1 + ... +  \psi_n$. Therefore $\alpha_i$ must be exactly 
-the multiplicity that the character $\psi_{k_i}$ appears in $\psi_1, ..., \psi_m$.
+Let $\{\psi_k\}_i$ be a subset of all of the unique characters in $\psi_1, ..., \psi_n$. This must be the set of 
+irreducible characters, therefore we know that $\chi$ decomposes as $\chi = \alpha_1\psi_{k_1} + ... + 
+\alpha_n\psi_{k_n}$.  However, by the previous lemma, we also have $\chi = \psi_1 + ... +  \psi_n$. Therefore 
+$\alpha_i$ must be exactly the multiplicity that the character $\psi_{k_i}$ appears in $\psi_1, ..., \psi_m$.
 \end{proof}
 
 \begin{proposition}
@@ -440,7 +441,7 @@ the multiplicity that the character $\psi_{k_i}$ appears in $\psi_1, ..., \psi_m
     Let $\chi_1, ... ,\chi_n$ be the irreducible characters of $G$. Then
 
     \[
-        |G| = \chi_1(1)^2 + ... + \chi_n(n)^2
+        |G| = \chi_1(1)^2 + ... + \chi_n(1)^2
     \]
 \end{theorem}
 
@@ -453,9 +454,6 @@ the multiplicity that the character $\psi_{k_i}$ appears in $\psi_1, ..., \psi_m
     Writing the information of the characters of a group into a table, gives us an extremely compact way write down 
     the important information associated to a group.
 
-\begin{definition}
-    A character table of a group $G$ is a table with entries 
-\end{definition}
 
 \subsection{Products of Characters}
 
@@ -476,7 +474,8 @@ representation theory can be found in chapter 19 of \cite{James&Liebeck}.
 If one uses purely character theoretic arguments, the tensor product is actually not needed. In fact, Steinberg's 
 text \cite{steinberg} proves the major results in the representation theory of finite groups without invoking the 
 tensor product. We take the same approach, however as we need to connect product characters to tensor products of 
-quantum state spaces, we will have to take the following result as given.
+quantum state spaces, we will have to take the following result as given. Proofs can be found in 
+\cite{James&Liebeck}, chapter 19.
 
 \begin{proposition}
     Let $G$ be a group. Let $V$ and $W$ be representations of with characters $\chi$ and $\psi$ respectively. Then 
@@ -485,9 +484,8 @@ quantum state spaces, we will have to take the following result as given.
 
 
 \begin{theorem}\label{thm:Burnside_Brauer}(Burnside-Brauer)
-    Let $\chi$ be a faithful character of $G$, and suppose that $\chi(g)$ takes precisely $r$ different values as 
-    $g$ varies over all the elements of $G$. Then every irreducible character of $G$ is a constituent of one of the 
-    powers $\chi^0, \chi^1, ... , \chi^{r-1}$
+    Let $\chi$ be a character of a faithful representation of $G$, and suppose that $\chi(g)$ takes precisely $r$ 
+    different values as $g$ varies over all the elements of $G$. Then every irreducible character of $G$ is a 
+    constituent of one of the powers $\chi^0, \chi^1, ... , \chi^{r-1}$
 \end{theorem}
-See James and Liebeck \cite{James&Liebeck}, chapter 19.
 

@@ -18,7 +18,7 @@ This follows the approach taken in \cite{jamie}.
 \subsection{Classical learning}
 
 Let $G$ be a finite group that acts on a finite set $\Omega$. Denote the action of $g \in G$ on $x \in \Omega$ as 
-$g \cdot x$. Suppose an element $g \in G$ is selected uniformly at random and hidden. A leaner is given oracle 
+$g \cdot x$. Suppose an element $g \in G$ is selected uniformly at random and hidden. A learner is given oracle 
 access to the action of $g$ as the function $f : \Omega \rightarrow \Omega$ given by $f(x) = g \cdot x$. That is, 
 the learner can input elements of $\Omega$ as queries and see how $g$ acts on them. The learner's goal is to 
 determine $g$ in as few queries as possible.
@@ -40,7 +40,7 @@ distinguish whether $\sigma$ is the identity or the transposition of the last tw
 
 This problem turns out historically to have been important to computational group theory and the efficient 
 implementation of permutation groups in computer algebra systems. Storing groups in memory as permutations is very 
-cumbersome and so instead one expresses the group by its action on a \emph{base}, which is defined a sequence
+cumbersome and so instead one expresses the group by its action on a \emph{base}, which is defined as a sequence
 \[
     B = [\beta_1, \beta_2, ... \beta_k]
 \]
@@ -57,15 +57,27 @@ set $\Omega$. Let $V$ be a vector space with orthornormal basis $\Omega$. Then t
 \Aut(\Omega)$ defines a permutation of basis vectors and thus linearly extends to a unitary representation 
 $\rho_\pi : G \rightarrow U(V)$. Here $U(V)$ denotes the group of unitary transformations of $V$.
 
+This construction of a representation from a group action on a set is common in representation theory. It is common 
+to refer to the character associated to this representation as the \emph{permutation character} often denoted 
+$\chi_\pi$ or just $\pi$. Since $\rho_\pi$ assigns a permutation matrix to each $g$ in $G$, the trace of 
+$\rho_pi(g)$ for any $g \in G$ is exactly the number of points that $g$ fixes under the action. 
 
-
+\begin{definition}
+    The permutation character $\chi_\pi$ of an action $\pi: G \rightarrow \Aut(\Omega)$, commonly just written 
+    $\pi$, is given by
+    \[
+        \chi_\pi(g) := \text{Fix}(g)
+    \]
+    where $\text{Fix}(g)$ is the number of elements in $\Omega$ fixed by the action of $G$.
+\end{definition}
 
 \subsection{Query complexity of quantum symmetric learning}
 Finding the classical query complexity of such a problem is relatively straightforward and there are many 
 well-known algorithms for determining it. However, in the quantum case, it is less obvious how to determine the 
 optimal number of queries.
 
-Theorem 4.2 of \cite{jamie} reduces this problem entirely to a problem of representation theory.
+A recent result of Pommersheim and Copeland \cite{jamie} reduces this problem entirely to a problem of 
+representation theory. We state theorem 4.2 from their paper
     
 \begin{theorem}
     Suppose $G$ is a finite group and $\pi : G \rightarrow U(V)$ is a unitary representation of $G$. Then an 
@@ -80,7 +92,29 @@ Theorem 4.2 of \cite{jamie} reduces this problem entirely to a problem of repres
     where $I(V)$ denotes the set of irreducible characters of $V$.
 \end{theorem}
 
-The proof given in the paper is very detailed so we will not reproduce it here. 
+\begin{proof}
+    For the proof of this fact, we refer to the paper itself.
+\end{proof}
+
+
+As mentioned before, the optimal number of queries to solve this problem classically for any permutation group is 
+known as the \emph{base size}. Since every permutation group also has an analogous learning problem in the quantum 
+setting, we might call minimal number of queries needed for exact learning the \emph{quantum base size} and the 
+number of queries needed for learning with sufficiently high probability the \emph{bounded quantum base size}.
+Using Theorem 3.1 we can define these terms in entirely in group theoretic language.
+\begin{definition}
+    Let $G$ be a finite group acting on a finite set $\Omega$. Let $\pi$ be the permutation character of this 
+    action. The \emph{quantum base size of} $G$, denoted $\gamma (G)$, is the smallest $t$ such that every 
+    irreducible character of appears in $\pi^{\otimes t}$.
+
+    The \emph{bounded quantum base size of } $G$, denoted $\gamma_\text{bdd}(G)$, is the smallest $t$ such that
+    \[
+        \sum_{\chi \in I(V^{\otimes t})} \chi(e)^2 \geq \frac{2}{3}
+    \]
+
+\end{definition}
+
+
 
 
 

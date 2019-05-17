@@ -18,8 +18,8 @@ referred to as rotations and elements of the form $a^ib$ are referred to as refl
 
 The character table for the case when $n$ is even is slightly different from the case when $n$ is odd. To keep 
 things as clear as possible and to avoid too much repetition, we will do everything only for the case where $n$ is 
-even. The results for the odd case readily follow from the exact same approach, only there are fewer conjugacy 
-classes and thus fewer cases to check.
+even, i.e. for the dihedral group of order $4k$ for some integer $k$. The results for the odd case readily follow 
+from the exact same approach, only there are fewer conjugacy classes and thus fewer cases to check.
 
 %\subsection{Conjugacy Classes of $D_{4k}$}
 
@@ -41,10 +41,6 @@ classes and thus fewer cases to check.
 
 
 \subsection{Irreducible Characters of $D_{4k}$}
-
-Again, this will be different depending on whether $n$ is even or odd. 
-
-First we give the even case, for $D_{4k}$.
 
 \subsubsection{Linear Characters}
 The linear characters are precisely the homomorphisms $\lambda : D_{4k} \rightarrow \C^\times$. We can compute all 
@@ -102,9 +98,8 @@ In order to show $\psi_j$ is irreducible we compute $\langle \psi_j, \psi_j \ran
 
 Thus by Theorem 2.7, $\psi_j$ is an irreducible character. 
 
-We have found 4 irreducible linear characters and $k-1$ irreducible characters of degree 2. We have shown $D_{4k}$ 
-has $k+3$ conjugacy classes and so this must be a complete set of characters. Hence the character table of $D_{4k}$ 
-is 
+We have found 4 irreducible linear characters and $k-1$ irreducible characters of degree 2. There are $k+3$ 
+conjugacy classes and so this must be a complete set of characters. Hence the character table of $D_{4k}$ is 
 
 \begin{center}
 \begin{tabular}{c|ccccc}
@@ -119,16 +114,10 @@ is
 
 \section{Quantum Base Size of the Dihedral Group}
 
-Here we compute the quantum base size for the standard action of the Dihedral group of order $2n$ on the vertices 
-of the $n$-gon.
-
 
 
 
 \subsection{Permutation Character}
-
-
-
 Let $G = D_{4k}$. Consider the natural action of $D_{4k}$ on the vertices of the $2k$-gon. We want to compute 
 $\text{Fix}(g)$ for each conjugacy class.
 
