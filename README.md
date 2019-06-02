@@ -30,7 +30,9 @@ Chapter 2:
                 - Examples
 
 Chapter 3: 
-        - State theorems from Jamie's paper
+        - Base Size
+        - Quantum Base Size
+        - State theorems from paper
         - Prove them 
 
 Chapter 4:
