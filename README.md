@@ -21,7 +21,7 @@ Chapter 1:
 Chapter 2:
         - Representations
                 - Schur's Lemma
-                - The other big theorems
+                - Maschke's Theorem
                 - Relationship to Quantum Computing
         - Characters 
                 - Definition
@@ -32,8 +32,8 @@ Chapter 2:
 Chapter 3: 
         - Base Size
         - Quantum Base Size
-        - State theorems from paper
-        - Prove them 
+        - Introduce results from Copeland-Pommersheim
+        - Overview of methods
 
 Chapter 4:
         - Representation Theory of GL(2, q)
